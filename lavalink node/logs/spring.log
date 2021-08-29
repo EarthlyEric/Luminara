@@ -1,0 +1,97 @@
+2021-08-14 20:21:38.422  INFO 57112 --- [main] lavalink.server.Launcher                 : 
+
+[32m       .  [31m _                  _ _       _    [32m__ _ _
+[32m      /\\ [31m| | __ ___   ____ _| (_)_ __ | | __[32m\ \ \ \
+[32m     ( ( )[31m| |/ _` \ \ / / _` | | | '_ \| |/ /[32m \ \ \ \
+[32m      \\/ [31m| | (_| |\ V / (_| | | | | | |   < [32m  ) ) ) )
+[32m       '  [31m|_|\__,_| \_/ \__,_|_|_|_| |_|_|\_\[32m / / / /
+[0m    =========================================[32m/_/_/_/[0m
+
+	Version:        3.3.2.5
+	Build:          1222
+	Build time:     11.04.2021 08:07:27 UTC
+	Branch          master
+	Commit:         7b914f2
+	Commit time:    09.04.2021 17:14:27 UTC
+	JVM:            16.0.1
+	Lavaplayer      1.3.76
+
+2021-08-14 20:21:38.531  INFO 57112 --- [main] lavalink.server.Launcher                 : Starting Launcher on EARTHLYERIC_PRO_V2 with PID 57112 (C:\Users\minec\Desktop\½s½X\Alice\lavalink node\Lavalink.jar started by minec in C:\Users\minec\Desktop\½s½X\Alice\lavalink node)
+2021-08-14 20:21:38.532  INFO 57112 --- [main] lavalink.server.Launcher                 : No active profile set, falling back to default profiles: default
+2021-08-14 20:21:38.580  WARN 57112 --- [background-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2021-08-14 20:21:40.174  WARN 57112 --- [main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2021-08-14 20:21:40.200  INFO 57112 --- [main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2021-08-14 20:21:40.201  INFO 57112 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1622 ms
+2021-08-14 20:21:40.573  WARN 57112 --- [main] l.server.config.SentryConfiguration      : Turning off sentry
+2021-08-14 20:21:40.941  INFO 57112 --- [main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2021-08-14 20:21:41.246  INFO 57112 --- [main] lavalink.server.config.KoeConfiguration  : OS: Windows 10, Arch: amd64
+2021-08-14 20:21:41.246  WARN 57112 --- [main] lavalink.server.config.KoeConfiguration  : This system and architecture appears to not support native audio sending! GC pauses may cause your bot to stutter during playback.
+2021-08-14 20:21:41.496  INFO 57112 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-08-14 20:21:41.869  INFO 57112 --- [main] org.xnio                                 : XNIO version 3.3.8.Final
+2021-08-14 20:21:41.888  INFO 57112 --- [main] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.8.Final
+2021-08-14 20:21:41.993  INFO 57112 --- [main] o.s.b.w.e.u.UndertowServletWebServer     : Undertow started on port(s) 443 (http) with context path ''
+2021-08-14 20:21:41.997  INFO 57112 --- [main] lavalink.server.Launcher                 : Started Launcher in 4.161 seconds (JVM running for 4.975)
+2021-08-14 20:21:42.000  INFO 57112 --- [main] lavalink.server.Launcher                 : You can safely ignore the big red warning about illegal reflection. See https://github.com/Frederikam/Lavalink/issues/295
+2021-08-14 20:28:10.899  INFO 57112 --- [XNIO-1 task-1] io.undertow.servlet                      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-14 20:28:10.900  INFO 57112 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-08-14 20:28:10.906  INFO 57112 --- [XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2021-08-14 20:28:10.923  INFO 57112 --- [XNIO-1 task-1] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:4120
+2021-08-14 20:28:10.985  INFO 57112 --- [XNIO-1 task-1] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:4120
+2021-08-14 20:28:17.809  INFO 57112 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "600186908215214091", "sessionId": "3fbfeffe4d16785b19680b087810f7df", "event": {"token": "7507afa26eb644f0", "guild_id": "600186908215214091", "endpoint": "hongkong86.discord.media:443"}}
+2021-08-14 20:28:23.640  INFO 57112 --- [XNIO-1 task-2] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+2021-08-14 20:28:25.581  INFO 57112 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+2021-08-14 20:28:25.892  INFO 57112 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "600186908215214091", "track": "QAAAggIAGXRzZWVtIG5jbyBxdWIgaGx1YXMgbmthdWoAD2ZhdGUgbG92ZSBvZiBtZQAAAAAABOIAAAt3cWRVaENENzQ4ZwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PXdxZFVoQ0Q3NDhnAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2021-08-14 20:30:03.500  INFO 57112 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "600186908215214091", "sessionId": "3fbfeffe4d16785b19680b087810f7df", "event": {"token": "560a62490dfe71b7", "guild_id": "600186908215214091", "endpoint": "hongkong86.discord.media:443"}}
+2021-08-14 20:30:16.805  INFO 57112 --- [XNIO-1 task-4] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+2021-08-14 20:30:17.342  INFO 57112 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+2021-08-14 20:30:17.658  INFO 57112 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "600186908215214091", "track": "QAAAggIAGXRzZWVtIG5jbyBxdWIgaGx1YXMgbmthdWoAD2ZhdGUgbG92ZSBvZiBtZQAAAAAABOIAAAt3cWRVaENENzQ4ZwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PXdxZFVoQ0Q3NDhnAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2021-08-14 20:30:59.493  INFO 57112 --- [XNIO-1 task-6] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:Rick Astley - Never Gonna Give You Up (Official Music Video)"
+2021-08-14 20:31:00.830  INFO 57112 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: Rick Astley - Never Gonna Give You Up (Official Music Video)
+2021-08-14 20:31:07.258  INFO 57112 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "600186908215214091", "sessionId": "3fbfeffe4d16785b19680b087810f7df", "event": {"token": "a3a4f811bf55c126", "guild_id": "600186908215214091", "endpoint": "hongkong86.discord.media:443"}}
+2021-08-14 20:31:12.735  INFO 57112 --- [XNIO-1 task-8] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:Rick Astley - Never Gonna Give You Up (Official Music Video)"
+2021-08-14 20:31:13.997  INFO 57112 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: Rick Astley - Never Gonna Give You Up (Official Music Video)
+2021-08-14 20:31:14.340  INFO 57112 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "600186908215214091", "track": "QAAAoQIAPFJpY2sgQXN0bGV5IC0gTmV2ZXIgR29ubmEgR2l2ZSBZb3UgVXAgKE9mZmljaWFsIE11c2ljIFZpZGVvKQALUmljayBBc3RsZXkAAAAAAANACAALZFF3NHc5V2dYY1EAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2021-08-14 20:35:59.814  INFO 57112 --- [XNIO-1 task-10] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:6748
+2021-08-14 20:35:59.818  INFO 57112 --- [XNIO-1 task-10] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:6748
+2021-08-14 20:36:00.023  INFO 57112 --- [XNIO-1 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:4120 -- CloseStatus[code=1006, reason=]
+2021-08-14 20:36:00.024  INFO 57112 --- [XNIO-1 I/O-6] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-08-14 20:36:20.621  INFO 57112 --- [XNIO-1 task-11] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+2021-08-14 20:36:21.424  INFO 57112 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Rick Astley - Never Gonna Give You Up (Official Music Video)
+2021-08-14 20:36:47.993  INFO 57112 --- [XNIO-1 I/O-10] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "600186908215214091", "sessionId": "71431ae04055b709191d3a2ff65a9552", "event": {"token": "a3a4f811bf55c126", "guild_id": "600186908215214091", "endpoint": "hongkong86.discord.media:443"}}
+2021-08-14 20:36:52.954  INFO 57112 --- [XNIO-1 task-13] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+2021-08-14 20:36:53.732  INFO 57112 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Rick Astley - Never Gonna Give You Up (Official Music Video)
+2021-08-14 20:36:54.004  INFO 57112 --- [XNIO-1 I/O-10] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "600186908215214091", "track": "QAAAoQIAPFJpY2sgQXN0bGV5IC0gTmV2ZXIgR29ubmEgR2l2ZSBZb3UgVXAgKE9mZmljaWFsIE11c2ljIFZpZGVvKQALUmljayBBc3RsZXkAAAAAAAM8IAALZFF3NHc5V2dYY1EAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2021-08-14 20:46:06.959  INFO 57112 --- [XNIO-1 I/O-10] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:6748 -- CloseStatus[code=1006, reason=]
+2021-08-14 20:46:06.960  INFO 57112 --- [XNIO-1 I/O-10] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2021-08-14 20:52:20.460  INFO 57112 --- [XNIO-1 task-15] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:14101
+2021-08-14 20:52:20.464  INFO 57112 --- [XNIO-1 task-15] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:14101
+2021-08-14 20:52:23.874  INFO 57112 --- [XNIO-1 I/O-11] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "600186908215214091", "sessionId": "962aa75e5b44834e7e733d2a483185d4", "event": {"token": "6bcfc9a89704d924", "guild_id": "600186908215214091", "endpoint": "hongkong86.discord.media:443"}}
+2021-08-14 20:53:32.113  INFO 57112 --- [XNIO-1 I/O-11] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "600186908215214091", "sessionId": "962aa75e5b44834e7e733d2a483185d4", "event": {"token": "108e0acaf6e7e87b", "guild_id": "600186908215214091", "endpoint": "hongkong86.discord.media:443"}}
+2021-08-14 20:53:40.077  INFO 57112 --- [XNIO-1 task-16] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+2021-08-14 20:53:41.009  INFO 57112 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Rick Astley - Never Gonna Give You Up (Official Music Video)
+2021-08-14 20:53:41.380  INFO 57112 --- [XNIO-1 I/O-11] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "600186908215214091", "track": "QAAAoQIAPFJpY2sgQXN0bGV5IC0gTmV2ZXIgR29ubmEgR2l2ZSBZb3UgVXAgKE9mZmljaWFsIE11c2ljIFZpZGVvKQALUmljayBBc3RsZXkAAAAAAAM8IAALZFF3NHc5V2dYY1EAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2021-08-14 20:54:06.125  INFO 57112 --- [XNIO-1 I/O-11] lavalink.server.io.SocketServer          : {"op": "pause", "guildId": "600186908215214091", "pause": true}
+2021-08-14 20:54:08.958  INFO 57112 --- [XNIO-1 I/O-11] lavalink.server.io.SocketServer          : {"op": "pause", "guildId": "600186908215214091", "pause": false}
+2021-08-14 20:59:45.221  INFO 57112 --- [XNIO-1 task-18] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+2021-08-14 20:59:45.830  INFO 57112 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Rick Astley - Never Gonna Give You Up (Official Music Video)
+2021-08-14 20:59:46.252  INFO 57112 --- [XNIO-1 I/O-11] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "600186908215214091", "track": "QAAAoQIAPFJpY2sgQXN0bGV5IC0gTmV2ZXIgR29ubmEgR2l2ZSBZb3UgVXAgKE9mZmljaWFsIE11c2ljIFZpZGVvKQALUmljayBBc3RsZXkAAAAAAAM8IAALZFF3NHc5V2dYY1EAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2021-08-14 21:07:33.018  INFO 57112 --- [XNIO-1 task-20] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+2021-08-14 21:07:33.766  INFO 57112 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Rick Astley - Never Gonna Give You Up (Official Music Video)
+2021-08-14 21:07:34.170  INFO 57112 --- [XNIO-1 I/O-11] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "600186908215214091", "track": "QAAAoQIAPFJpY2sgQXN0bGV5IC0gTmV2ZXIgR29ubmEgR2l2ZSBZb3UgVXAgKE9mZmljaWFsIE11c2ljIFZpZGVvKQALUmljayBBc3RsZXkAAAAAAAM8IAALZFF3NHc5V2dYY1EAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2021-08-14 21:12:16.312  INFO 57112 --- [XNIO-1 I/O-11] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "600186908215214091", "sessionId": "962aa75e5b44834e7e733d2a483185d4", "event": {"token": "79e9ffb1afbcb513", "guild_id": "600186908215214091", "endpoint": "hongkong86.discord.media:443"}}
+2021-08-14 21:12:30.505  INFO 57112 --- [XNIO-1 task-22] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:faded"
+2021-08-14 21:12:31.365  INFO 57112 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: faded
+2021-08-14 21:12:31.727  INFO 57112 --- [XNIO-1 I/O-11] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "600186908215214091", "track": "QAAAeAIAE0FsYW4gV2Fsa2VyIC0gRmFkZWQAC0FsYW4gV2Fsa2VyAAAAAAADQAgACzYwSXRITHo1V0VBAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9NjBJdEhMejVXRUEAB3lvdXR1YmUAAAAAAAAAAA==", "noReplace": false, "startTime": "0"}
+2021-08-14 21:12:50.323  INFO 57112 --- [XNIO-1 I/O-11] lavalink.server.io.SocketServer          : {"op": "volume", "guildId": "600186908215214091", "volume": 100}
+2021-08-14 21:12:53.249  INFO 57112 --- [XNIO-1 I/O-11] lavalink.server.io.SocketServer          : {"op": "volume", "guildId": "600186908215214091", "volume": 90}
+2021-08-14 21:12:53.264  INFO 57112 --- [lava-daemon-pool-playback-1-thread-1] c.s.l.c.natives.NativeLibraryLoader      : Native library libmpg123-0: loading with filter com.sedmelluq.discord.lavaplayer.natives.ConnectorNativeLibLoader$$Lambda$574/0x00000008012f4a30@4c3bf2f5
+2021-08-14 21:12:53.272  INFO 57112 --- [lava-daemon-pool-playback-1-thread-1] c.s.l.c.natives.NativeLibraryLoader      : Native library libmpg123-0: successfully loaded.
+2021-08-14 21:12:53.272  INFO 57112 --- [lava-daemon-pool-playback-1-thread-1] c.s.l.c.natives.NativeLibraryLoader      : Native library connector: loading with filter null
+2021-08-14 21:12:53.298  INFO 57112 --- [lava-daemon-pool-playback-1-thread-1] c.s.l.c.natives.NativeLibraryLoader      : Native library connector: successfully loaded.
+2021-08-14 21:13:09.012  INFO 57112 --- [XNIO-1 I/O-11] lavalink.server.io.SocketServer          : {"op": "pause", "guildId": "600186908215214091", "pause": true}
+2021-08-14 21:13:13.042  INFO 57112 --- [XNIO-1 I/O-11] lavalink.server.io.SocketServer          : {"op": "pause", "guildId": "600186908215214091", "pause": false}
+2021-08-14 21:13:44.352  INFO 57112 --- [XNIO-1 task-24] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+2021-08-14 21:13:44.988  INFO 57112 --- [lava-daemon-pool-info-loader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track Rick Astley - Never Gonna Give You Up (Official Music Video)
+2021-08-14 21:16:09.335  INFO 57112 --- [XNIO-1 I/O-11] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "600186908215214091", "track": "QAAAoQIAPFJpY2sgQXN0bGV5IC0gTmV2ZXIgR29ubmEgR2l2ZSBZb3UgVXAgKE9mZmljaWFsIE11c2ljIFZpZGVvKQALUmljayBBc3RsZXkAAAAAAAM8IAALZFF3NHc5V2dYY1EAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2021-08-14 21:22:48.428  INFO 57112 --- [XNIO-1 I/O-11] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:14101 -- CloseStatus[code=1006, reason=]
+2021-08-14 21:22:48.428  INFO 57112 --- [XNIO-1 I/O-11] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
