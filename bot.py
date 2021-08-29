@@ -29,8 +29,8 @@ for coglist in os.listdir('./cogs'):
 
 bot.load_extension('core.debugcmds')
 
-if out==1:
-    core.uptime.uptime.keep_alive()
+
+core.uptime.uptime.keep_alive()
 
 if __name__ == "__main__":
      bot.run(token)
