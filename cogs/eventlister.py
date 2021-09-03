@@ -2,7 +2,7 @@
 import discord,pymysql
 from discord.ext import commands
 from discord.ext import *
-from core.config_loader import *
+from core.config import *
 from core.classes import CogTop
 from core.dbwork import *
 

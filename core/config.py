@@ -19,4 +19,4 @@ mysqldb=config['mysqldb']
 fmysqlport=config['mysqlport']
 mysqlport=int(fmysqlport)
 
-token=config['token']
+token=str(config['token'])

@@ -6,7 +6,7 @@ from datetime import datetime
 from discord.ext import *
 from discord.ext import commands
 from core.classes import CogTop
-from core.config_loader import *
+from core.config import *
 from core.lib  import *
 
 

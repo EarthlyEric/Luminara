@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 import pymysql
-from config_loader import *
+from core.config import *
 
 def connect():
        db = pymysql.connect(

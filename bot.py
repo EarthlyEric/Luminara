@@ -1,10 +1,8 @@
 # -*- coding: UTF-8 -*-
-import discord,json,os,time,core.uptime.uptime
+import discord,os,core.uptime.uptime
 from discord.ext import commands
-from discord.ext import *
 from datetime import datetime
-from core.classes import CogTop
-from core.json_loader import *
+from core.config import *
 
 
 intents=discord.Intents.all()
@@ -13,7 +11,7 @@ bot = commands.Bot(command_prefix='>',intents=intents)
 bot.remove_command("help")
 bot.launch_time = datetime.utcnow()
 
-out=0
+
 
 @bot.event
 async def on_ready():
@@ -28,10 +26,9 @@ for coglist in os.listdir('./cogs'):
 	if coglist.endswith('.py'):
 		bot.load_extension(f'cogs.{coglist[:-3]}')
 
-bot.load_extension('core.debugcmds')
 
 
-core.uptime.uptime.keep_alive()
+#core.uptime.uptime.keep_alive()
 
-if __name__ == "__main__":
-     bot.run(token)
+
+bot.run(token)
