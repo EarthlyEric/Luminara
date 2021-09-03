@@ -1,14 +1,22 @@
 # -*- coding: UTF-8 -*-
 import pymysql
-from core.json_loader import *
+from config_loader import *
 
-def guild_join(guild):
-    db = pymysql.connect(
+def connect():
+       db = pymysql.connect(
             host=mysqlhost,
             user=mysqluser,
             passwd=mysqlpasswd,
             db=mysqldb,
             port=mysqlport)
+
+       return db
+
+
+
+
+def guild_join(guild):
+    db=connect()
 
     try:
            cursor=db.cursor()
@@ -26,12 +34,7 @@ def guild_join(guild):
     db.close()
 
 def guild_remove(guild):
-    db = pymysql.connect(
-            host=mysqlhost,
-            user=mysqluser,
-            passwd=mysqlpasswd,
-            db=mysqldb,
-            port=mysqlport)
+    db=connect()
 
     try:
            cursor=db.cursor()

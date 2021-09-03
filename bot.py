@@ -6,6 +6,7 @@ from datetime import datetime
 from core.classes import CogTop
 from core.json_loader import *
 
+
 intents=discord.Intents.all()
 
 bot = commands.Bot(command_prefix='>',intents=intents)
