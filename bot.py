@@ -13,6 +13,7 @@ bot.launch_time = datetime.utcnow()
 
 
 
+
 @bot.event
 async def on_ready():
     
@@ -28,7 +29,7 @@ for coglist in os.listdir('./cogs'):
 
 
 
-#core.uptime.uptime.keep_alive()
+core.uptime.uptime.keep_alive()
 
 
 bot.run(token)
