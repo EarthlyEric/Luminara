@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "alice-3"
+version = "0.1.0"
+description = ""
+authors = ["EarthlyEric <<>>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+discord = "^1.7.3"
+Flask = "^2.0.1"
+wavelink = "^0.9.10"
+configobj = "^5.0.6"
+PyMySQL = "^1.0.2"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

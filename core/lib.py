@@ -3,6 +3,10 @@ import random
 
 from discord.enums import UserFlags
 
+def showinfo(tip, info):
+    print("{}:{}".format(tip,info))
+
+
 def randomimgall():
     num=random.randint(1, 73)
 
