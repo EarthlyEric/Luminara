@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-import discord,pymysql
+import discord
 from discord.ext import commands
 from discord.ext import *
 from core.config import *

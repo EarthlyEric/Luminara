@@ -18,7 +18,7 @@ bot.launch_time = datetime.utcnow()
 
 @bot.event
 async def on_ready():
-    logopath='res\logo\logo.txt'
+    logopath='./res/logo/logo.txt'
     f=open(logopath, 'r')
     time.sleep(1)
     print('____________________________________________________________________________________________________________')
