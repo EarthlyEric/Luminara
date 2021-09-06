@@ -13,9 +13,15 @@ class errors(CogTop):
     async def on_command_error(self, ctx, error):
 
         if isinstance(error, commands.MissingRequiredArgument):
-            await ctx.send("遺失必要參數")
+            embed=discord.Embed(title=f":question:  {ctx.author.name} 遺失必要參數 ",color=0xed0202)#Red
+            embed.add_field(name=f"{error}",value='')
+            embed.set_footer(text=f"ALICE", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
+            await ctx.send(embed=embed)
         else:
-            await ctx.send(f'未知錯誤{error}')
+            embed=discord.Embed(title=f":question:  {ctx.author.name} 未知錯誤 ",color=0xed0202)#Red
+            embed.add_field(name=f"{error}",value='')
+            embed.set_footer(text=f"ALICE", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
+            await ctx.send(embed=embed)
 
 
 def setup(bot):
