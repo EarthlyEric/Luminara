@@ -5,7 +5,7 @@ from datetime import datetime
 from core.config import *
 from core.lib import showinfo
 
-core.uptime.uptime.keep_alive()
+#core.uptime.uptime.keep_alive()
 
 intents=discord.Intents.all()
 
