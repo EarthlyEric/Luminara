@@ -14,8 +14,6 @@ bot.remove_command("help")
 bot.launch_time = datetime.utcnow()
 
 
-
-
 @bot.event
 async def on_ready():
     logopath='./res/logo/logo.txt'

@@ -3,7 +3,8 @@ import pymysql
 from core.config import *
 
 def connect():
-       db = pymysql.connect(
+
+       db=pymysql.connect(
             host=mysqlhost,
             user=mysqluser,
             passwd=mysqlpasswd,
@@ -11,6 +12,8 @@ def connect():
             port=mysqlport)
 
        return db
+
+       
 
 
 
