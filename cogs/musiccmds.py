@@ -8,6 +8,7 @@ import math
 import random
 import re
 import typing
+import json
 from discord import embeds
 from discord import colour
 import wavelink
@@ -315,22 +316,8 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
             for node in previous.values():
                 await node.destroy()
 
-        nodes = {'Public MAIN': {'host': 'lava.link',
-                          'port': 80,
-                          'rest_uri': 'http://lava.link:80',
-                          'password': 'anything as a password',
-                          'identifier': 'Public MAIN',
-                          'region': 'europe'
-                             },
-                'Public VPS MAIN': {'host': 'freeserver.darynode.site',
-                          'port': 25666,
-                          'rest_uri': 'http://freeserver.darynode.site:25666',
-                          'password': 'ReloadDevPASS',
-                          'identifier': 'Public VPS MAIN',
-                          'region': 'europe'
-                             }
-                }
-
+        nodes_info = open("nodes.json", "r")
+        nodes = json.load(nodes_info)
 
         for n in nodes.values():
             await self.bot.wavelink.initiate_node(**n)
@@ -357,21 +344,8 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         for node in previous.values():
                 await node.destroy()
 
-        nodes = {'Public MAIN': {'host': 'lava.link',
-                          'port': 80,
-                          'rest_uri': 'http://lava.link:80',
-                          'password': 'anything as a password',
-                          'identifier': 'Public MAIN',
-                          'region': 'europe'
-                             },
-                'Public VPS MAIN': {'host': 'freeserver.darynode.site',
-                          'port': 25666,
-                          'rest_uri': 'http://freeserver.darynode.site:25666',
-                          'password': 'ReloadDevPASS',
-                          'identifier': 'Public VPS MAIN',
-                          'region': 'europe'
-                             }
-                }
+        nodes_info = open("nodes.json", "r")
+        nodes = json.load(nodes_info)
 
         for n in nodes.values():
                 await self.bot.wavelink.initiate_node(**n)

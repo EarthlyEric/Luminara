@@ -39,6 +39,7 @@ class Basiccmds(CogTop):
 
         embed=discord.Embed(title="Alice Plus 狀態", color=0x0162b7)#blue
         embed.add_field(name="Bot Core 版本", value=f"{printversion} :flag_tw: ", inline=False)
+        embed.add_field(name="提供服務的伺服器數",value=f"{len(self.bot.guilds)}", inline= False)
         embed.add_field(name="目前延遲", value=f"{round(self.bot.latency*1000)} ms", inline=False)
         embed.add_field(name="已運作時間", value=f"{days} d, {hours} h, {minutes} m, {seconds} s", inline=False)
         embed.set_footer(text=f"Alice Plus", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")

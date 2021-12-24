@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-import discord,os,core.start_menu
+import discord,os,time,platform
 from discord.ext import commands
 from datetime import datetime
 from core.config import *
@@ -13,11 +13,42 @@ bot = commands.Bot(command_prefix='a!',intents=intents)
 bot.remove_command("help")
 bot.launch_time = datetime.utcnow()
 
+def start_menu():
+    logopath='./res/logo/logo.txt'
+    f=open(logopath, 'r')
+    time.sleep(1)
+    print('____________________________________________________________________________________________________________')
+
+    print(f.read())
+
+    
+    print('____________________________________________________________________________________________________________')
+    print('                                                                                                            ')
+    time.sleep(1)
+    now_type0=datetime.now().strftime("%Y-%m-%d %I:%M:%S %p")
+    showinfo("作業系統",platform.platform())
+    showinfo('系統版本',platform.version())
+    showinfo('作業系統名稱', platform.system())
+    showinfo('系統位數', platform.architecture()[0])
+    showinfo('CPU 架構', platform.machine())
+    showinfo('系統名稱', platform.node())
+    showinfo('處理器', platform.processor())
+    print(f'Time:{now_type0}')
+    print('____________________________________________________________________________________________________________')
+    print('                                                                                                            ')
+    time.sleep(1)
+    print("Alice is online")
+    print(f"Login as {bot.user}")
+    print(f"Alice Version: {printversion}")
+    print(f"Discord.py API Version: {discord.__version__}")
+    print('____________________________________________________________________________________________________________')
 
 @bot.event
 async def on_ready():
-    core.start_menu.start_menu()
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name =f"{bot.command_prefix}help｜{len(bot.guilds)}"))
+    start_menu()
+    await bot.change_presence(
+        activity=discord.Activity(type=discord.ActivityType.playing, name =f"{bot.command_prefix}help｜Watch {len(bot.guilds)} erver")
+        )
 
 for coglist in os.listdir('./cogs'):
 	if coglist.endswith('.py'):
