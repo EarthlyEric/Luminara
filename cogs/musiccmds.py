@@ -322,14 +322,14 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
                           'identifier': 'Public MAIN',
                           'region': 'europe'
                              },
-                'Public VPS MAIN': {'host': 'heroku-lavalink-node.herokuapp.com',
-                          'port': 80,
-                          'rest_uri': 'http://heroku-lavalink-node.herokuapp.com',
+                'Public VPS MAIN': {'host': 'freeserver.darynode.site',
+                          'port': 25666,
+                          'rest_uri': 'http://freeserver.darynode.site:25666',
                           'password': 'ReloadDevPASS',
                           'identifier': 'Public VPS MAIN',
                           'region': 'europe'
                              }
-                             }
+                }
 
 
         for n in nodes.values():
@@ -364,14 +364,14 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
                           'identifier': 'Public MAIN',
                           'region': 'europe'
                              },
-                'Public VPS MAIN': {'host': 'heroku-lavalink-node.herokuapp.com',
-                          'port': 80,
-                          'rest_uri': 'http://heroku-lavalink-node.herokuapp.com',
+                'Public VPS MAIN': {'host': 'freeserver.darynode.site',
+                          'port': 25666,
+                          'rest_uri': 'http://freeserver.darynode.site:25666',
                           'password': 'ReloadDevPASS',
                           'identifier': 'Public VPS MAIN',
                           'region': 'europe'
                              }
-                             }
+                }
 
         for n in nodes.values():
                 await self.bot.wavelink.initiate_node(**n)
@@ -408,7 +408,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
 
         if isinstance(error, NoChannelProvided):
             embed=discord.Embed(title=f":x: {ctx.author.name} 請先加入語音頻道，才可以使用此指令",color=0xed0202)#Red
-            embed.set_footer(text=f"ALICE", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
+            embed.set_footer(text=f"Alice Plus", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
             return await ctx.send(embed=embed)
 
     async def cog_check(self, ctx: commands.Context):
@@ -447,7 +447,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         if player.is_connected:
             if ctx.author not in channel.members:
                 embed=discord.Embed(title=f':x:{ctx.author.mention}, 你必須 `{channel.name}` 才可以此指令',color=0xed0202)#Red
-                embed.set_footer(text=f"ALICE", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
+                embed.set_footer(text=f"Alice Plus", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
                 await ctx.send(embed=embed)
                 raise IncorrectChannelError
 #Done2021/8/16 08:46
@@ -482,7 +482,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
             raise NoChannelProvided
 
         embed=discord.Embed(title=f':satellite_orbital: 已連線至 `{channel.name}`',color=0x2de907)#Green
-        embed.set_footer(text=f"ALICE", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
+        embed.set_footer(text=f"Alice Plus", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
 
         await player.connect(channel.id)
         await ctx.send(embed=embed)
@@ -516,7 +516,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
             
             embed=discord.Embed(title=f':white_check_mark: 已將播放清單{tracks.data["playlistInfo"]["name"]}加進隊列',color=0x2de907)#Green
             embed.description =f' 共 {len(tracks.tracks)} 首歌'
-            embed.set_footer(text=f"ALICE", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
+            embed.set_footer(text=f"Alice Plus", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
             await ctx.send(embed=embed, delete_after=15)
             await ctx.message.delete()
         else:
@@ -524,7 +524,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
             await player.queue.put(track)
 
             embed=discord.Embed(title=f':white_check_mark: 已將{track.title}加進隊列',color=0x2de907)#Green
-            embed.set_footer(text=f"ALICE", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
+            embed.set_footer(text=f"Alice Plus", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
             await ctx.send(embed=embed,delete_after=15)
             await ctx.message.delete()
             
@@ -542,7 +542,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
 
         if self.is_privileged(ctx):
             embed=discord.Embed(title=':pause_button: 管理員或DJ暫停了播放',color=0xd4ff00)#yellow
-            embed.set_footer(text=f"ALICE", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
+            embed.set_footer(text=f"Alice Plus", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
             await ctx.send(embed=embed, delete_after=15)
             player.pause_votes.clear()
 
@@ -552,7 +552,8 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         player.pause_votes.add(ctx.author)
 
         if len(player.pause_votes) >= required:
-            embed=discord.Embed(title=':white_check_mark:投票通過!:pause_button: 暫停當前播放歌曲',color=0x2de907)#Green
+            embed=discord.Embed(title=':white_check_mark:投票通過!:pause_button: 暫停當前播放歌曲',color=0x2de907)
+            embed.set_footer(text=f"Alice Plus", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")#Green
             await ctx.send(embed=embed, delete_after=15)
             player.pause_votes.clear()
             await player.set_pause(True)
