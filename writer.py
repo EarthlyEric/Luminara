@@ -7,11 +7,11 @@ nodes = {'Public EU Main 01': {'host': 'lava.link',
                           'identifier': 'Public EU Main 01',
                           'region': 'europe'
                              },
-        'Public EU Main 02': {'host': 'lavalink.pumpdev.org',
-                          'port': 3876,
-                          'rest_uri': 'http://lavalink.pumpdev.or:3876',
-                          'password': 'pumpisfree',
-                          'identifier': 'Public EU Main 02',
+        'Private EU Main 01': {'host': 'uk02.scarcehost.uk',
+                          'port': 3073,
+                          'rest_uri': 'http://uk02.scarcehost.uk:3073',
+                          'password': 'Minecraft940911/@@@',
+                          'identifier': 'Private EU Main 01',
                           'region': 'europe'
                              }
                 }

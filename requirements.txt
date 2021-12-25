@@ -1,8 +1,9 @@
 async_timeout==3.0.1
 configobj==5.0.6
 discord.py==1.7.3
-discord-ext-menus==1.1
 Flask==2.0.1
 humanize==3.11.0
+py_dactyl==1.1.1
+pydactyl==0.5
 PyMySQL==1.0.2
 wavelink==0.9.10

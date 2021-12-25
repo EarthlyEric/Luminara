@@ -1,17 +1,19 @@
 # -*- coding: UTF-8 -*-
 import discord,os,time,platform
+import core.uptime.uptime
 from discord.ext import commands
 from datetime import datetime
 from core.config import *
 from core.lib import showinfo
-
-#core.uptime.uptime.keep_alive()
+from pydactyl import PterodactylClient
 
 intents=discord.Intents.all()
 
 bot = commands.Bot(command_prefix='a!',intents=intents)
 bot.remove_command("help")
 bot.launch_time = datetime.utcnow()
+
+
 
 def start_menu():
     logopath='./res/logo/logo.txt'
@@ -37,7 +39,7 @@ def start_menu():
     print('____________________________________________________________________________________________________________')
     print('                                                                                                            ')
     time.sleep(1)
-    print("Alice is online")
+    print("Alice Plus is online")
     print(f"Login as {bot.user}")
     print(f"Alice Version: {printversion}")
     print(f"Discord.py API Version: {discord.__version__}")
@@ -46,8 +48,10 @@ def start_menu():
 @bot.event
 async def on_ready():
     start_menu()
+    time.sleep(2)
+    core.uptime.uptime.keep_alive()
     await bot.change_presence(
-        activity=discord.Activity(type=discord.ActivityType.playing, name =f"{bot.command_prefix}help｜Watch {len(bot.guilds)} erver")
+        activity=discord.Activity(type=discord.ActivityType.playing, name =f"{bot.command_prefix}help｜Watch {len(bot.guilds)} server")
         )
 
 for coglist in os.listdir('./cogs'):

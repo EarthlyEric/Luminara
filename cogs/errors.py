@@ -14,12 +14,12 @@ class errors(CogTop):
 
         if isinstance(error, commands.MissingRequiredArgument):
             embed=discord.Embed(title=f":question:  {ctx.author.name} 遺失必要參數 ",color=0xed0202)#Red
-            embed.add_field(name=f"{error}",value='')
+            embed.add_field(name=f"{error}",value='NULL')
             embed.set_footer(text=f"ALICE", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
             await ctx.send(embed=embed)
         else:
             embed=discord.Embed(title=f":question:  {ctx.author.name} 未知錯誤 ",color=0xed0202)#Red
-            embed.add_field(name=f"{error}",value='')
+            embed.add_field(name=f"{error}",value='NULL')
             embed.set_footer(text=f"ALICE", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
             await ctx.send(embed=embed)
 

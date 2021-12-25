@@ -8,9 +8,11 @@ from discord.ext import commands
 from core.classes import CogTop
 from core.config import *
 from core.lib  import *
+from pydactyl import PterodactylClient
 
 
-class Basiccmds(CogTop):
+
+class basic_cmds(CogTop):
 
     @commands.group()
     async def help(self, ctx):
@@ -61,4 +63,4 @@ class Basiccmds(CogTop):
         
         
 def setup(bot):
-    bot.add_cog(Basiccmds(bot))
+    bot.add_cog(basic_cmds(bot))
