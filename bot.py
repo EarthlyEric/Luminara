@@ -9,7 +9,7 @@ from pydactyl import PterodactylClient
 
 intents=discord.Intents.all()
 
-bot = commands.Bot(command_prefix='a!',intents=intents)
+bot = commands.Bot(command_prefix='e!',intents=intents)
 bot.remove_command("help")
 bot.launch_time = datetime.utcnow()
 
@@ -39,9 +39,9 @@ def start_menu():
     print('____________________________________________________________________________________________________________')
     print('                                                                                                            ')
     time.sleep(1)
-    print("Alice Plus is online")
+    print("Elyse is online")
     print(f"Login as {bot.user}")
-    print(f"Alice Version: {printversion}")
+    print(f"Elyse Version: {printversion}")
     print(f"Discord.py API Version: {discord.__version__}")
     print('____________________________________________________________________________________________________________')
 

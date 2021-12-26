@@ -133,8 +133,7 @@ class Player(wavelink.Player):
         embed.add_field(name='點歌者', value=track.requester.mention)
         embed.add_field(name='DJ', value=self.dj.mention)
         embed.add_field(name='音樂 URL', value=f'[點擊開啟!]({track.uri})')
-        embed.set_footer(text=f"Aice Plus", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
-
+        embed.set_footer(text=f"Elyse", icon_url="https://cdn-elyse.reload-dev.ml/circle.png")
         return embed
 #Done 2021/08:37
     async def is_position_fresh(self) -> bool:
@@ -287,7 +286,7 @@ class PaginatorSource(menus.ListPageSource):
     async def format_page(self, menu: menus.Menu, page):
         embed = discord.Embed(title='即將播放...', colour=0x6002ed)#purple
         embed.description = '\n'.join(f'`{index}. {title}`' for index, title in enumerate(page, 1))
-        embed.set_footer(text=f"Alice Plus", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
+        embed.set_footer(text=f"Elyse", icon_url="https://cdn-elyse.reload-dev.ml/circle.png")
         return embed
 
     def is_paginating(self):
@@ -382,7 +381,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
 
         if isinstance(error, NoChannelProvided):
             embed=discord.Embed(title=f":x: {ctx.author.name} 請先加入語音頻道，才可以使用此指令",color=0xed0202)#Red
-            embed.set_footer(text=f"Alice Plus", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
+            embed.set_footer(text=f"Elyse", icon_url="https://cdn-elyse.reload-dev.ml/circle.png")
             return await ctx.send(embed=embed)
 
     async def cog_check(self, ctx: commands.Context):
@@ -402,7 +401,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         if player.context:
             if player.context.channel != ctx.channel:
                 embed=discord.Embed(title=f':x:{ctx.author.mention}，你必須 `{player.context.channel.mention}` 才可以此指令',color=0xed0202)#Red
-                embed.set_footer(text=f"Alice Plus", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
+                embed.set_footer(text=f"Elyse", icon_url="https://cdn-elyse.reload-dev.ml/circle.png")
                 await ctx.send(embed=embed)
                 raise IncorrectChannelError
 
@@ -421,7 +420,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         if player.is_connected:
             if ctx.author not in channel.members:
                 embed=discord.Embed(title=f':x:{ctx.author.mention}, 你必須 `{channel.name}` 才可以此指令',color=0xed0202)#Red
-                embed.set_footer(text=f"Alice Plus", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
+                embed.set_footer(text=f"Elyse", icon_url="https://cdn-elyse.reload-dev.ml/circle.png")
                 await ctx.send(embed=embed)
                 raise IncorrectChannelError
 #Done2021/8/16 08:46
@@ -456,7 +455,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
             raise NoChannelProvided
 
         embed=discord.Embed(title=f':satellite_orbital: 已連線至 `{channel.name}`',color=0x2de907)#Green
-        embed.set_footer(text=f"Alice Plus", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
+        embed.set_footer(text=f"Elyse", icon_url="https://cdn-elyse.reload-dev.ml/circle.png")
         await player.connect(channel.id)
         await ctx.send(embed=embed)
 #Done 2021/8/16        
@@ -477,7 +476,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         if not tracks:
 
             embed=discord.Embed(title=':question: 找不到歌曲，請再試一次',color=0xed0202)#Red
-            embed.set_footer(text=f"Alice Plus", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
+            embed.set_footer(text=f"Elyse", icon_url="https://cdn-elyse.reload-dev.ml/circle.png")
             return await ctx.send(embed=embed, delete_after=15)
 
         if isinstance(tracks, wavelink.TrackPlaylist):
@@ -486,7 +485,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
                 await player.queue.put(track)
             
             embed=discord.Embed(title=f':white_check_mark: 已將播放清單{tracks.data["playlistInfo"]["name"]}加進隊列',color=0x2de907)#Green
-            embed.set_footer(text=f"Alice Plus", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
+            embed.set_footer(text=f"Elyse", icon_url="https://cdn-elyse.reload-dev.ml/circle.png")
             embed.description =f' 共 {len(tracks.tracks)} 首歌'
             await ctx.send(embed=embed, delete_after=15)
             await ctx.message.delete()
@@ -512,7 +511,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
 
         if self.is_privileged(ctx):
             embed=discord.Embed(title=':pause_button: 管理員或DJ暫停了播放',color=0xd4ff00)#yellow
-            embed.set_footer(text=f"Alice Plus", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
+            embed.set_footer(text=f"Elyse", icon_url="https://cdn-elyse.reload-dev.ml/circle.png")
             await ctx.send(embed=embed, delete_after=15)
             player.pause_votes.clear()
 
@@ -523,7 +522,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
 
         if len(player.pause_votes) >= required:
             embed=discord.Embed(title=':white_check_mark:投票通過!:pause_button: 暫停當前播放歌曲',color=0x2de907)
-            embed.set_footer(text=f"Alice Plus", icon_url="https://raw.githubusercontent.com/EarthlyEric/Alice-RES/master/Alice-icon.png")
+            embed.set_footer(text=f"Elyse", icon_url="https://cdn-elyse.reload-dev.ml/circle.png")
             await ctx.send(embed=embed, delete_after=15)
             player.pause_votes.clear()
             await player.set_pause(True)
