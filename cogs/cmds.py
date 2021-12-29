@@ -16,9 +16,9 @@ class basic_cmds(CogTop):
 
     @commands.group()
     async def help(self, ctx):
-        embed=discord.Embed(title="Alice 命令列表", color=0x0162b7)#blue
+        embed=discord.Embed(title="Elyse 命令列表", color=0x0162b7)#blue
         embed.add_field(name="`a!help`", value="顯示命令列表", inline=True)
-        embed.add_field(name="`a!ping`", value="顯示Alice 狀態", inline=True)
+        embed.add_field(name="`a!ping`", value="顯示Elyse 狀態", inline=True)
         embed.add_field(name="`a!set`", value="設定專用指令", inline=True)
         embed.set_footer(text=f"Elyse", icon_url="https://cdn-elyse.reload-dev.ml/circle.png")
         await ctx.send(embed=embed)
