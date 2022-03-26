@@ -7,3 +7,4 @@ py_dactyl==1.1.1
 pydactyl==0.5
 PyMySQL==1.0.2
 wavelink==0.9.10
+discord-ext-menus==1.1

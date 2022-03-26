@@ -1,3 +1,4 @@
-# Alice Plus 
-The Python Discord Bot
-Websites:https://alice.reload-dev.ml
+# Elyse
+##### The Powerful,Useful and Multi function Discord Bot
+
+More Info : https://elyse.reload-dev.ml
