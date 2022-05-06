@@ -1,11 +1,10 @@
 # -*- coding: UTF-8 -*-
 import discord,os,time,platform
 import core.uptime.uptime
-from discord.ext import commands
 from datetime import datetime
 from core.config import *
 from core.lib import showinfo
-from pydactyl import PterodactylClient
+from discord.ext import commands
 
 intents=discord.Intents.all()
 

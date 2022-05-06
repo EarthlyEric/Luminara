@@ -8,7 +8,7 @@ from discord.ext import commands
 from core.classes import CogTop
 from core.config import *
 from core.lib  import *
-from pydactyl import PterodactylClient
+
 
 
 
