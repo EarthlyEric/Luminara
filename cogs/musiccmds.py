@@ -15,7 +15,7 @@ class Music(CogTop):
         bot.loop.create_task(self.connect_nodes())
 
     async def connect_nodes(self):
-        """Lavalink nodes."""
+        """連線到Lavalink節點"""
         await self.bot.wait_until_ready()
         
         await wavelink.NodePool.create_node(bot=self.bot,
