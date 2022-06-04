@@ -2,18 +2,22 @@ import json
 
 nodes = {'Public EU Main 01': {'host': 'lava.link',
                           'port': 80,
-                          'rest_uri': 'http://lava.link:80',
                           'password': 'anything as a password',
                           'identifier': 'Public EU Main 01',
-                          'region': 'europe'
+                          'region': 'eu_west'
                              },
-        'Private EU Main 01': {'host': 'uk02.scarcehost.uk',
-                          'port': 3073,
-                          'rest_uri': 'http://uk02.scarcehost.uk:3073',
-                          'password': 'Minecraft940911/@@@',
-                          'identifier': 'Private EU Main 01',
-                          'region': 'europe'
-                             }
+        'Private Asia Main 01': {'host': 'lavalink.oops.wtf:2000',
+                          'port': 2000,
+                          'password': 'www.freelavalink.ga',
+                          'identifier': 'Public Asia Main 01',
+                          'region': 'singapore'
+                             },
+         'Private US Main 01': {'host': 'lavalink.darrenofficial.com',
+                          'port': 80,
+                          'password': 'anything as a password',
+                          'identifier': 'Public US Main 01',
+                          'region': 'us_east'
+                             },
                 }
 
 tf = open("nodes.json", "w")

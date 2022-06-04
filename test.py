@@ -1,7 +1,6 @@
-from pydactyl import PterodactylClient
+import json
 
-api = PterodactylClient('https://panel.scarcehost.uk', 'NODgc4jyM5GsJvr3YWcLXBWzfZHfMjM9VdAO9uPJvGCPlhWF')
+nodes_info = open("nodes.json", "r")
+nodes = json.load(nodes_info)
 
-# Get a list of all servers the user has access to
-my_servers = api.client.servers.get_server(server_id="33cf4871")
-print(my_servers)
+print(ralen((nodes))))

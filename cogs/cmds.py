@@ -9,24 +9,13 @@ from core.classes import CogTop
 from core.config import *
 from core.lib  import *
 
-
-
-
 class basic_cmds(CogTop):
 
-    @commands.group()
+    @commands.command()
     async def help(self, ctx):
-        embed=discord.Embed(title="Elyse 命令列表", color=0x0162b7)#blue
-        embed.add_field(name="`a!help`", value="顯示命令列表", inline=True)
-        embed.add_field(name="`a!ping`", value="顯示Elyse 狀態", inline=True)
-        embed.set_footer(text=f"Elyse", icon_url="https://cdn-elyse.reload-dev.ml/circle.png")
-        await ctx.send(embed=embed)
-    
-    @help.command()
-    async def set(swlf, ctx):
-        embed=discord.Embed(title="`a!set`命令列表", color=0x0162b)#blue
-        embed.add_field(name="`a!set <參數>`", value= "以下為參數", inline=False)
-        embed.add_field(name="`come`", value="設定此處為歡迎訊息發出頻道")
+        embed=discord.Embed(title="Elyse 基本命令列表", color=0x0162b7) #blue
+        embed.add_field(name="`e!help`", value="顯示命令列表", inline=True)
+        embed.add_field(name="`e!ping`", value="顯示Elyse 狀態", inline=True)
         embed.set_footer(text=f"Elyse", icon_url="https://cdn-elyse.reload-dev.ml/circle.png")
         await ctx.send(embed=embed)
  
@@ -49,8 +38,6 @@ class basic_cmds(CogTop):
     @commands.is_owner()
     async def set(self, ctx):
         pass
-
-        
         
 def setup(bot):
     bot.add_cog(basic_cmds(bot))
