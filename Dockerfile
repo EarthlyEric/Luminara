@@ -8,4 +8,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY src /app
 EXPOSE 443
 
-CMD [ "python", "bot.py" ]
+CMD [ "python3", "bot.py" ]
