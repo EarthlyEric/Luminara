@@ -5,7 +5,7 @@ config=ConfigObj('config.ini')
   
   
 #版本資訊導入
-version=config['printversion']
+version=config['version']
 #MySQL 連線設定導入
 mysqlhost=str(config['mysqlhost'])
 mysqluser=config['mysqluser']

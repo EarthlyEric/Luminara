@@ -12,12 +12,6 @@ nodes = {'Public EU Main 01': {'host': 'lava.link',
                           'identifier': 'Public Asia Main 01',
                           'region': 'singapore'
                              },
-         'Private US Main 01': {'host': 'lavalink.darrenofficial.com',
-                          'port': 80,
-                          'password': 'anything as a password',
-                          'identifier': 'Public US Main 01',
-                          'region': 'us_east'
-                             },
                 }
 
 tf = open("nodes.json", "w")
