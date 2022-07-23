@@ -4,12 +4,11 @@ from discord.ext import commands
 from discord.ext import *
 from core.config import *
 from core.classes import CogTop
-from core.dbwork import *
+from core.db import *
 
 
  
-class eventlister(CogTop):
-
+class eventLister(CogTop):
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
         guild_join(guild=guild)
@@ -20,4 +19,4 @@ class eventlister(CogTop):
 
 
 def setup(bot):
-    bot.add_cog(eventlister(bot))
+    bot.add_cog(eventLister(bot))

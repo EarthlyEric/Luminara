@@ -12,6 +12,7 @@ class bot_tasks(commands.Cog):
        await self.bot.change_presence(
         activity=discord.Activity(type=discord.ActivityType.playing, name =f"{self.bot.command_prefix}help｜Watch {len(self.bot.guilds)} servers")
         )
+        
     @update_ststus.before_loop
     async def before_update_ststus(self):
         await self.bot.wait_until_ready()

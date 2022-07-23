@@ -5,18 +5,12 @@ config=ConfigObj('config.ini')
   
   
 #版本資訊導入
-printversion=config['printversion']
-#//MySQL 設定導入
-fmysqlhost=config['mysqlhost']
-mysqlhost=str(fmysqlhost)
-
+version=config['printversion']
+#MySQL 連線設定導入
+mysqlhost=str(config['mysqlhost'])
 mysqluser=config['mysqluser']
-
 mysqlpasswd=config['mysqlpasswd']
-
 mysqldb=config['mysqldb']
-
-fmysqlport=config['mysqlport']
-mysqlport=int(fmysqlport)
+mysqlport=int(config['mysqlport'])
 
 token=str(config['token'])

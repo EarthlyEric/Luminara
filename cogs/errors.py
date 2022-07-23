@@ -1,10 +1,11 @@
 # -*- coding: UTF-8 -*-
-import discord,asyncio
+import discord
+import bot
 from discord.ext import commands
 from discord.ext import *
 from core.config import *
 from core.classes import CogTop
-from core.dbwork import *
+from core.db import *
 
 
 class errors(CogTop):
@@ -15,12 +16,12 @@ class errors(CogTop):
         if isinstance(error, commands.MissingRequiredArgument):
             embed=discord.Embed(title=f":question:  {ctx.author.name} 遺失必要參數 ",color=0xed0202)#Red
             embed.add_field(name=f"{error}",value='NULL')
-            embed.set_footer(text=f"Elyse", icon_url="https://cdn-elyse.reload-dev.ml/circle.png")
+            embed.set_footer(text=f"Lost", icon_url=bot.icon_url)
             await ctx.send(embed=embed)
         else:
             embed=discord.Embed(title=f":question:  {ctx.author.name} 未知錯誤 ",color=0xed0202)#Red
             embed.add_field(name=f"{error}",value='NULL')
-            embed.set_footer(text=f"Elyse", icon_url="https://cdn-elyse.reload-dev.ml/circle.png")
+            embed.set_footer(text=f"Lost", icon_url=bot.icon_url)
             await ctx.send(embed=embed)
 
 

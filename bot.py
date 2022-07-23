@@ -1,5 +1,8 @@
 # -*- coding: UTF-8 -*-
-import discord,os,time,platform
+import discord
+import os
+import time
+import platform
 import core.uptime.uptime
 from datetime import datetime
 from core.config import *
@@ -8,21 +11,18 @@ from discord.ext import commands
 
 intents=discord.Intents.all()
 
-bot = commands.Bot(command_prefix='e!',intents=intents)
+bot=commands.Bot(command_prefix='$',intents=intents)
 bot.remove_command("help")
-bot.launch_time = datetime.utcnow()
+bot.launch_time=datetime.utcnow()
 
+icon_url= ""
 
-
-def start_menu():
+def starting():
     logopath='./res/logo/logo.txt'
     f=open(logopath, 'r')
     time.sleep(1)
     print('____________________________________________________________________________________________________________')
-
     print(f.read())
-
-    
     print('____________________________________________________________________________________________________________')
     print('                                                                                                            ')
     time.sleep(1)
@@ -38,15 +38,15 @@ def start_menu():
     print('____________________________________________________________________________________________________________')
     print('                                                                                                            ')
     time.sleep(1)
-    print("Elyse is online")
+    print("Lost is online")
     print(f"Login as {bot.user}")
-    print(f"Elyse Version: {printversion}")
+    print(f"Lost Version: {version}")
     print(f"Discord.py API Version: {discord.__version__}")
     print('____________________________________________________________________________________________________________')
 
 @bot.event
 async def on_ready():
-    start_menu()
+    starting()
     time.sleep(2)
     core.uptime.uptime.keep_alive()
     await bot.change_presence(
