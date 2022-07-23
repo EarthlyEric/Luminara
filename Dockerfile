@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM python:3.9
 
 WORKDIR /app
 
@@ -7,4 +7,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY src /app
 EXPOSE 443
+
 CMD [ "python", "bot.py" ]
