@@ -18,6 +18,21 @@ class MusicCommands(CogTop):
     async def connect_nodes(self):
         """連線到Lavalink節點"""
         await self.bot.wait_until_ready()
+
+        await wavelink.NodePool.create_node(bot=self.bot,
+            host='185.187.170.159',
+            port=4873,
+            password='1A6DCEE7A27DA826B313FBC562CD2',
+            identifier='Public EU Main VPS 01',
+            region='eu_west',
+            )
+        await wavelink.NodePool.create_node(bot=self.bot,
+            host='51.161.130.134',
+            port=10414,
+            password='1A6DCEE7A27DA826B313FBC562CD2',
+            identifier='Public Asia Main VPS 01',
+            region='singapore',
+            )
         
         await wavelink.NodePool.create_node(bot=self.bot,
             host='lava.link',
@@ -49,8 +64,8 @@ class MusicCommands(CogTop):
         else:
             vc: wavelink.Player = ctx.voice_client
 
-        embed=nextcord.Embed(title=':white_check_mark: %s' % (search.title))
-        embed.add_field(name='已新增至播放清單 !',value=NULL,inline=False)
+        embed=nextcord.Embed(title=':white_check_mark: 已新增至播放清單 !')
+        embed.add_field(name='%s'% (search.title),value='目前有%d'%(wavelink.Queue.count()),inline=False)
         embed.set_footer(text=f'Lost', icon_url=bot.icon_url)
         
         await vc.play(search)
