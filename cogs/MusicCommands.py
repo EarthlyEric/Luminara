@@ -51,7 +51,7 @@ class MusicCommands(CogTop):
             vc: wavelink.Player = ctx.voice_client
 
         embed=discord.Embed(title=':white_check_mark: %s' % (search.title))
-        embed.add_field(name='已新增至播放清單 !',value='')
+        embed.add_field(name='已新增至播放清單 !',value='',inline=False)
         embed.set_footer(text=f'Lost', icon_url=bot.icon_url)
         
         await vc.play(search)
