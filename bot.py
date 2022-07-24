@@ -15,7 +15,7 @@ bot=commands.Bot(command_prefix='$',intents=intents)
 bot.remove_command("help")
 bot.launch_time=datetime.utcnow()
 
-icon_url= ""
+icon_url= "https://cdn-lost.reload-dev.ml/Lost.png"
 
 def starting():
     logopath='./res/logo/logo.txt'
