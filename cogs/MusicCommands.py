@@ -65,7 +65,7 @@ class MusicCommands(CogTop):
             vc: wavelink.Player = ctx.voice_client
 
         embed=nextcord.Embed(title=':white_check_mark: 已新增至播放清單 !')
-        embed.add_field(name='%s'% (search.title),value='目前有%d'%(wavelink.Queue.count()),inline=False)
+        embed.add_field(name='%s'% (search.title),value='From Youtube',inline=False)
         embed.set_footer(text=f'Lost', icon_url=bot.icon_url)
         
         await vc.play(search)
