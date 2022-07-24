@@ -1,17 +1,19 @@
+from click import secho
+from matplotlib.pyplot import text
 import wavelink
-import json
+import discord
+import bot
 from discord.ext import commands
 from core.classes import CogTop
 from core.config import *
 from core.lib  import *
 
 
-class Music(CogTop):
+class MusicCommands(CogTop):
     """Music cog to hold Wavelink related commands and listeners."""
 
-    def __init__(self, bot: commands.Bot):
+    def __init__(self, bot:commands.Bot):
         self.bot = bot
-
         bot.loop.create_task(self.connect_nodes())
 
     async def connect_nodes(self):
@@ -32,15 +34,6 @@ class Music(CogTop):
             identifier='Public Asia Main 01',
             region='singapore',
             )
-        await wavelink.NodePool.create_node(bot=self.bot,
-            host='lavalink.darrenofficial.com',
-            port= 80,
-            password='anything as a password',
-            identifier='Public US Main 01',
-            region='us_east',
-            )
-
-
 
     @commands.Cog.listener()
     async def on_wavelink_node_ready(self, node: wavelink.Node):
@@ -48,7 +41,7 @@ class Music(CogTop):
         print(f'Node: <{node.identifier}> is ready!')
 
     @commands.command()
-    async def play(self, ctx: commands.Context, *, search: wavelink.YouTubeTrack):
+    async def play(self, ctx: commands.Context, *, search):
         """Play a song with the given search query.
         If not connected, connect to our voice channel.
         """
@@ -56,8 +49,21 @@ class Music(CogTop):
             vc: wavelink.Player = await ctx.author.voice.channel.connect(cls=wavelink.Player)
         else:
             vc: wavelink.Player = ctx.voice_client
+        
+        if 'youtube' or 'youtu.be' in search:
+            if 'playlist' in search:
+                search:wavelink.YouTubePlaylist
+            else:
+                search:wavelink.YouTubeTrack
+        else:
+            search:wavelink.YouTubeTrack
 
+        embed=discord.Embed(title=':white_check_mark: %s' % (search.title))
+        embed.add_field(name='已新增至播放清單 !',value='')
+        embed.set_footer(text=f'Lost', icon_url=bot.icon_url)
+        
         await vc.play(search)
+        await ctx.send(embed=embed)
 
 def setup(bot):
-    bot.add_cog(Music(bot))
+    bot.add_cog(MusicCommands(bot))
