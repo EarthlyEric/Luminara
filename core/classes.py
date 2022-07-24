@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-import discord
+import nextcord
 from discord.ext import commands
 
 class CogTop(commands.Cog):

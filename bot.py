@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-import discord
+import nextcord
 import os
 import time
 import platform
@@ -7,9 +7,9 @@ import core.uptime.uptime
 from datetime import datetime
 from core.config import *
 from core.lib import showinfo
-from discord.ext import commands
+from nextcord.ext import commands
 
-intents=discord.Intents.all()
+intents=nextcord.Intents.all()
 
 bot=commands.Bot(command_prefix='$',intents=intents)
 bot.remove_command("help")
@@ -41,7 +41,7 @@ def starting():
     print("Lost is online")
     print(f"Login as {bot.user}")
     print(f"Lost Version: {version}")
-    print(f"Discord.py API Version: {discord.__version__}")
+    print(f"nextcord.py API Version: {nextcord.__version__}")
     print('____________________________________________________________________________________________________________')
 
 @bot.event
@@ -50,7 +50,7 @@ async def on_ready():
     time.sleep(2)
     core.uptime.uptime.keep_alive()
     await bot.change_presence(
-        activity=discord.Activity(type=discord.ActivityType.playing, name =f"{bot.command_prefix}help｜Watch {len(bot.guilds)} server")
+        activity=nextcord.Activity(type=nextcord.ActivityType.streaming, name =f"{bot.command_prefix}help｜Watch {len(bot.guilds)} server")
         )
 
 for coglist in os.listdir('./cogs'):

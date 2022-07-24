@@ -1,9 +1,9 @@
 # -*- coding: UTF-8 -*-
-import discord
+import nextcord
 import bot
 from datetime import datetime
-from discord.ext import *
-from discord.ext import commands
+from nextcord.ext import *
+from nextcord.ext import commands
 from core.classes import CogTop
 from core.config import *
 from core.lib  import *
@@ -12,7 +12,7 @@ class BasicCommands(CogTop):
 
     @commands.command()
     async def help(self, ctx):
-        embed=discord.Embed(title="Lost 基本命令列表", color=0x0162b7) #blue
+        embed=nextcord.Embed(title="Lost 基本命令列表", color=0x0162b7) #blue
         embed.add_field(name="`e!help`", value="顯示命令列表", inline=True)
         embed.add_field(name="`e!ping`", value="顯示Lost 狀態", inline=True)
         embed.set_footer(text="Lost", icon_url=bot.icon_url)
@@ -26,7 +26,7 @@ class BasicCommands(CogTop):
         minutes, seconds = divmod(remainder, 60)
         days, hours = divmod(hours, 24)
 
-        embed=discord.Embed(title="Lost 狀態", color=0x0162b7)#blue
+        embed=nextcord.Embed(title="Lost 狀態", color=0x0162b7)#blue
         embed.add_field(name="Bot Core 版本", value=f"{version} :flag_tw: ", inline=False)
         embed.add_field(name="提供服務的伺服器數",value=f"{len(self.bot.guilds)}", inline= False)
         embed.add_field(name="目前延遲", value=f"{round(self.bot.latency*1000)} ms", inline=False)
