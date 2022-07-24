@@ -41,7 +41,7 @@ class MusicCommands(CogTop):
         print(f'Node: <{node.identifier}> is ready!')
 
     @commands.command()
-    async def play(self, ctx: commands.Context, *, search):
+    async def play(self, ctx: commands.Context, *, search:wavelink.YouTubeTrack):
         """Play a song with the given search query.
         If not connected, connect to our voice channel.
         """
@@ -49,14 +49,6 @@ class MusicCommands(CogTop):
             vc: wavelink.Player = await ctx.author.voice.channel.connect(cls=wavelink.Player)
         else:
             vc: wavelink.Player = ctx.voice_client
-        
-        if 'youtube' or 'youtu.be' in search:
-            if 'playlist' in search:
-                search:wavelink.YouTubePlaylist
-            else:
-                search:wavelink.YouTubeTrack
-        else:
-            search:wavelink.YouTubeTrack
 
         embed=discord.Embed(title=':white_check_mark: %s' % (search.title))
         embed.add_field(name='已新增至播放清單 !',value='')
