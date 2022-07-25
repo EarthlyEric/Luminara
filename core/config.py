@@ -14,7 +14,5 @@ mysqlpasswd=config['mysqlpasswd']
 mysqldb=config['mysqldb']
 mysqlport=int(config['mysqlport'])
 
-if os.getenv('deploy') == None:
-    token=str(config['local_token'])
-elif os.getenv('deploy') =='True':
-    token=str(config['deploy_token'])
+
+token=str(config['deploy_token'])

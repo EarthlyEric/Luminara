@@ -44,6 +44,15 @@ class MusicCommands(CogTop):
             password='www.freelavalink.ga',
             identifier='Public Asia Main 01',
             )
+    @commands.Cog.listener()
+    async def on_wavelink_track_end(self,player:wavelink.Player,track: wavelink.Track):
+        ctx = player.ctx
+        vc: player = ctx.voice_client
+
+        next_song = vc.queue.get()
+
+        await vc.play(next_song)
+        await ctx.send(f"即將播放下一首 {next_song.title}")
 
     @commands.Cog.listener()
     async def on_wavelink_node_ready(self, node: wavelink.Node):
@@ -51,7 +60,7 @@ class MusicCommands(CogTop):
         print(f'Node: <{node.identifier}> is ready!')
 
     @commands.command()
-    async def play(self, ctx: commands.Context, *, search:wavelink.YouTubeTrack):
+    async def play(self, ctx: commands.Context, *, track:wavelink.YouTubeTrack):
         await ctx.send('<:loading:1001057291036020776> 搜尋歌曲中...',delete_after=3)
 
         if not ctx.voice_client:
@@ -59,17 +68,17 @@ class MusicCommands(CogTop):
         else:
             vc: wavelink.Player=ctx.voice_client
 
-        playlist = wavelink.Queue()
 
         embed=nextcord.Embed(title=':white_check_mark: 已新增至播放清單 !')
-        embed.add_field(name='%s'% (search.title),value='From Youtube',inline=False)
+        embed.add_field(name='%s'% (track.title),value='From Youtube',inline=False)
         embed.set_footer(text=f'Lost', icon_url=bot.icon_url)
         await ctx.reply(embed=embed)
 
-        if playlist.is_empty:
-            await vc.play(search)
+        if vc.queue.is_empty and not vc.is_playing:
+            await vc.play(track)
         else:
-            await playlist.pop(search)
+            await vc.queue.put_wait(track)
+
 
     @commands.command()
     async def leave(self,ctx:commands.Context):
