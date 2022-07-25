@@ -10,7 +10,6 @@ from core.classes import CogTop
 from core.config import *
 from core.lib  import *
 
-
 class MusicCommands(CogTop):
     """Music cog to hold Wavelink related commands and listeners."""
 
@@ -65,7 +64,7 @@ class MusicCommands(CogTop):
     @commands.command()
     async def play(self, ctx: commands.Context, *, search:wavelink.YouTubeTrack):
         await ctx.send('<:loading:1001057291036020776> 搜尋歌曲中...',delete_after=3)
-        
+
         if not ctx.voice_client:
             vc: wavelink.Player=await ctx.author.voice.channel.connect(cls=wavelink.Player)
         else:
