@@ -1,5 +1,4 @@
 # -*- coding: UTF-8 -*-
-from matplotlib.pyplot import text
 import nextcord
 import bot
 from core.embed_color import colors
