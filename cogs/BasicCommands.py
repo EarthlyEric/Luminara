@@ -1,6 +1,8 @@
 # -*- coding: UTF-8 -*-
+from matplotlib.pyplot import text
 import nextcord
 import bot
+from core.embed_color import colors
 from datetime import datetime
 from nextcord.ext import *
 from nextcord.ext import commands
@@ -12,10 +14,8 @@ class BasicCommands(CogTop):
 
     @commands.command()
     async def help(self, ctx:commands.Context):
-        embed=nextcord.Embed(title="Lost 基本命令列表", color=0x0162b7) #blue
-        embed.add_field(name="`e!help`", value="顯示命令列表", inline=True)
-        embed.add_field(name="`e!ping`", value="顯示Lost 狀態", inline=True)
-        embed.set_footer(text="Lost", icon_url=bot.icon_url)
+        embed=nextcord.Embed(title='Lost', color=colors.purple)
+        embed.add_field(text='Hello，我是Lost，很高興見到你!',value='請從下面選擇指令教學')
 
         await ctx.reply(embed=embed)
  
