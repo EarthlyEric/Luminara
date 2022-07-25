@@ -13,9 +13,10 @@ class BasicCommands(CogTop):
 
     @commands.command()
     async def help(self, ctx:commands.Context):
-        embed=nextcord.Embed(title='Lost', color=colors.purple)
+        embed=nextcord.Embed(color=colors.purple)
+        embed.set_author(name='Lost',icon_url=bot.icon_url,url='https://blog.earthlyeric6.ml/')
         embed.add_field(name='Hello，我是Lost，很高興見到你!',value='請從下面選擇指令教學')
-
+        embed.set_footer(text="Lost", icon_url=bot.icon_url)
         await ctx.reply(embed=embed)
  
     @commands.command()
