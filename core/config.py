@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 from configobj import ConfigObj
+import os
 
 config=ConfigObj('config.ini')
   
@@ -13,4 +14,7 @@ mysqlpasswd=config['mysqlpasswd']
 mysqldb=config['mysqldb']
 mysqlport=int(config['mysqlport'])
 
-token=str(config['token'])
+if os.getenv('deploy') == None:
+    token=str(config['local_token'])
+elif os.getenv('deploy') =='True':
+    token=str(config['deploy_token'])
