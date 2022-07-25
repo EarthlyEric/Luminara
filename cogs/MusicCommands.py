@@ -1,7 +1,3 @@
-from tabnanny import check
-from discord import Embed
-import requests
-import requests
 import wavelink
 import nextcord
 import bot
@@ -16,13 +12,6 @@ class MusicCommands(CogTop):
     def __init__(self, bot:commands.Bot):
         self.bot = bot
         bot.loop.create_task(self.connect_nodes())
-
-    def check_node_status(self,url,http_code:int):
-        r = requests.get(url)
-        if r.status_code() == http_code:
-            return True
-        else:
-            return False
 
     async def connect_nodes(self):
         """連線到Lavalink節點"""
