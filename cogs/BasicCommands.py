@@ -15,7 +15,7 @@ class BasicCommands(CogTop):
     @commands.command()
     async def help(self, ctx:commands.Context):
         embed=nextcord.Embed(title='Lost', color=colors.purple)
-        embed.add_field(text='Hello，我是Lost，很高興見到你!',value='請從下面選擇指令教學')
+        embed.add_field(name='Hello，我是Lost，很高興見到你!',value='請從下面選擇指令教學')
 
         await ctx.reply(embed=embed)
  
