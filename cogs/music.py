@@ -75,8 +75,8 @@ class Music(CogTop):
         embed.set_footer(text=f'Lost', icon_url=bot.icon_url)
         await ctx.reply(embed=embed)
 
-        # a something for test
-        if vc.queue.is_empty and not vc.is_playing:
+        
+        if vc.queue.is_empty and vc.is_playing:
             await vc.play(track)
         else:
             await vc.queue.put_wait(track)
