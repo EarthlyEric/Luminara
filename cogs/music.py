@@ -6,7 +6,7 @@ from core.classes import CogTop
 from core.config import *
 from core.lib  import *
 
-class MusicCommands(CogTop):
+class Music(CogTop):
     """Music cog to hold Wavelink related commands and listeners."""
 
     def __init__(self, bot:commands.Bot):
@@ -88,4 +88,4 @@ class MusicCommands(CogTop):
     
 
 def setup(bot):
-    bot.add_cog(MusicCommands(bot))
+    bot.add_cog(Music(bot))

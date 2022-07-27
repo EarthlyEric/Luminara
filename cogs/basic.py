@@ -6,10 +6,10 @@ from datetime import datetime
 from nextcord.ext import *
 from nextcord.ext import commands
 from core.classes import CogTop
-from core.config import *
+from core.config import config
 from core.lib  import *
 
-class BasicCommands(CogTop):
+class Basic(CogTop):
 
     @commands.command()
     async def help(self, ctx:commands.Context):
@@ -27,7 +27,7 @@ class BasicCommands(CogTop):
         days, hours = divmod(hours, 24)
 
         embed=nextcord.Embed(title="Lost 狀態", color=0x0162b7)#blue
-        embed.add_field(name="Bot Core 版本", value=f"{version} :flag_tw: ", inline=False)
+        embed.add_field(name="Bot Core 版本", value=f"{config.version} :flag_tw: ", inline=False)
         embed.add_field(name="提供服務的伺服器數",value=f"{len(self.bot.guilds)}", inline= False)
         embed.add_field(name="目前延遲", value=f"{round(self.bot.latency*1000)} ms", inline=False)
         embed.add_field(name="已運作時間", value=f"{days} d, {hours} h, {minutes} m, {seconds} s", inline=False)
@@ -37,4 +37,4 @@ class BasicCommands(CogTop):
     
         
 def setup(bot):
-    bot.add_cog(BasicCommands(bot))
+    bot.add_cog(Basic(bot))

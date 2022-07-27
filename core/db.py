@@ -1,14 +1,14 @@
 # -*- coding: UTF-8 -*-
 import pymysql
-from core.config import *
+from core.config import config
 
 def connect():
        db=pymysql.connect(
-            host=mysqlhost,
-            user=mysqluser,
-            passwd=mysqlpasswd,
-            db=mysqldb,
-            port=mysqlport)
+            host=config.mysqlhost,
+            user=config.mmysqluser,
+            passwd=config.mmysqlpasswd,
+            db=config.mmysqldb,
+            port=config.mmysqlport)
        return db
        
 def guild_join(guild):

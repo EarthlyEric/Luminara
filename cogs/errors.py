@@ -8,7 +8,7 @@ from core.classes import CogTop
 from core.db import *
 
 
-class errors(CogTop):
+class Errors(CogTop):
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.MissingRequiredArgument):
@@ -23,4 +23,4 @@ class errors(CogTop):
             await ctx.send(embed=embed)
 
 def setup(bot):
-    bot.add_cog(errors(bot))
+    bot.add_cog(Errors(bot))

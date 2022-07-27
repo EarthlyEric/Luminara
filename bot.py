@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 import nextcord
+from nextcord.ext import commands
 import os
 import time
 import platform
@@ -7,7 +8,7 @@ import core.uptime.uptime
 from datetime import datetime
 from core.config import *
 from core.lib import showinfo
-from nextcord.ext import commands
+
 
 intents=nextcord.Intents.all()
 
@@ -40,7 +41,7 @@ def starting():
     time.sleep(1)
     print("Lost is online")
     print(f"Login as {bot.user}")
-    print(f"Lost Version: {version}")
+    print(f"Lost Version: {config.version}")
     print(f"nextcord.py API Version: {nextcord.__version__}")
     print('____________________________________________________________________________________________________________')
 
@@ -57,4 +58,4 @@ for coglist in os.listdir('./cogs'):
 	if coglist.endswith('.py'):
 		bot.load_extension(f'cogs.{coglist[:-3]}')
 
-bot.run(token)
+bot.run(config.token)

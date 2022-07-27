@@ -1,8 +1,7 @@
 import nextcord
 from nextcord.ext import tasks,commands
-from core.classes import CogTop
 
-class bot_tasks(commands.Cog):
+class Tasks(commands.Cog):
     def __init__(self, bot):
         self.bot=bot
         self.update_ststus.start()
@@ -18,4 +17,4 @@ class bot_tasks(commands.Cog):
         await self.bot.wait_until_ready()
 
 def setup(bot):
-    bot.add_cog(bot_tasks(bot))
+    bot.add_cog(Tasks(bot))
