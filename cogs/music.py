@@ -5,6 +5,7 @@ from nextcord.ext import commands
 from core.classes import CogTop
 from core.config import *
 from core.lib  import *
+from core.embed_color import colors
 
 class Music(CogTop):
     """Music cog to hold Wavelink related commands and listeners."""
@@ -45,14 +46,14 @@ class Music(CogTop):
             identifier='Public Asia Main 01',
             )
     @commands.Cog.listener()
-    async def on_wavelink_track_end(self,player:wavelink.Player,track: wavelink.Track):
+    async def on_wavelink_track_end(self,player:wavelink.Player,track: wavelink.Track, reason):
         ctx = player.ctx
         vc: player = ctx.voice_client
 
         next_song = vc.queue.get()
 
         await vc.play(next_song)
-        await ctx.send(f"即將播放下一首 {next_song.title}")
+        await ctx.send(f"現在播放下一首 {next_song.title}")
 
     @commands.Cog.listener()
     async def on_wavelink_node_ready(self, node: wavelink.Node):
@@ -69,12 +70,12 @@ class Music(CogTop):
             vc: wavelink.Player=ctx.voice_client
 
 
-        embed=nextcord.Embed(title=':white_check_mark: 已新增至播放清單 !')
+        embed=nextcord.Embed(title=':white_check_mark: 已新增至播放清單 !',color=colors.green)
         embed.add_field(name='%s'% (track.title),value='From Youtube',inline=False)
         embed.set_footer(text=f'Lost', icon_url=bot.icon_url)
         await ctx.reply(embed=embed)
 
-        if vc.queue.is_empty and  vc.is_playing:
+        if vc.queue.is_empty and vc.is_playing:
             await vc.play(track)
         else:
             await vc.queue.put_wait(track)
@@ -82,9 +83,17 @@ class Music(CogTop):
 
     @commands.command()
     async def leave(self,ctx:commands.Context):
+        if not ctx.voice_client:
+            embed=nextcord.Embed(title=f':no_entry: Lost 沒有加入任何頻道。',color=colors.red)
+            embed.set_footer(text=f'Lost', icon_url=bot.icon_url)
+            
+            return await ctx.reply
+
         vc: wavelink.Player=await ctx.voice_client.disconnect()
-        embed=nextcord.Embed(title=f':no_entry: 已被{ctx.author.name}要求中斷連線')
-        await ctx.reply(embed=embed)
+        embed=nextcord.Embed(title=f':no_entry: 已被{ctx.author.name}要求中斷連線',color=colors.red)
+        embed.set_footer(text=f'Lost', icon_url=bot.icon_url)
+
+        return await ctx.reply(embed=embed)
     
 
 def setup(bot):
