@@ -2,10 +2,10 @@
 import nextcord
 from nextcord.ext import commands
 from core.config import *
-from core.classes import CogTop
+from core.classes import Cogs
 from core.db import *
 
-class Events(CogTop):
+class Events(Cogs):
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
         guild_join(guild=guild)

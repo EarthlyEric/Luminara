@@ -4,6 +4,7 @@ import os
 
 class config():
     config=ConfigObj('config.ini')
+    
     #版本資訊導入
     version=config['version']
     #MySQL 連線設定導入

@@ -17,17 +17,15 @@ bot.remove_command("help")
 bot.launch_time=datetime.utcnow()
 
 icon_url= "https://cdn-lost.reload-dev.ml/public/Lost.png"
+cogsList=['tasks','events','errors','basic','music']
 
 def starting():
     logopath='./res/logo/logo.txt'
     f=open(logopath, 'r')
-    time.sleep(1)
     print('____________________________________________________________________________________________________________')
     print(f.read())
     print('____________________________________________________________________________________________________________')
     print('                                                                                                            ')
-    time.sleep(1)
-    now_type0=datetime.now().strftime("%Y-%m-%d %I:%M:%S %p")
     showinfo("作業系統",platform.platform())
     showinfo('系統版本',platform.version())
     showinfo('作業系統名稱', platform.system())
@@ -35,14 +33,13 @@ def starting():
     showinfo('CPU 架構', platform.machine())
     showinfo('系統名稱', platform.node())
     showinfo('處理器', platform.processor())
-    print(f'Time:{now_type0}')
+    print('Time:%s'%(datetime.now().strftime("%Y-%m-%d %I:%M:%S %p")))
     print('____________________________________________________________________________________________________________')
     print('                                                                                                            ')
-    time.sleep(1)
     print("Lost is online")
-    print(f"Login as {bot.user}")
-    print(f"Lost Version: {config.version}")
-    print(f"nextcord.py API Version: {nextcord.__version__}")
+    print("Login as %s"%(bot.user))
+    print("Lost Version: %s"%(config.version))
+    print("nextcord.py API Version: %s"%(nextcord.__version__))
     print('____________________________________________________________________________________________________________')
 
 @bot.event
@@ -54,8 +51,9 @@ async def on_ready():
         activity=nextcord.Activity(type=nextcord.ActivityType.streaming, name =f"{bot.command_prefix}help｜Watch {len(bot.guilds)} server")
         )
 
-for coglist in os.listdir('./cogs'):
-	if coglist.endswith('.py'):
-		bot.load_extension(f'cogs.{coglist[:-3]}')
+def register_cogs():
+    for filename in cogsList:
+        bot.load_extension('cogs.%s'%(filename))
 
+register_cogs()
 bot.run(config.token)

@@ -1,13 +1,14 @@
+import operator
 import wavelink
 import nextcord
 import bot
 from nextcord.ext import commands
-from core.classes import CogTop
+from core.classes import Cogs
 from core.config import *
 from core.lib  import *
 from core.embed_color import colors
 
-class Music(CogTop):
+class Music(Cogs):
     """Music cog to hold Wavelink related commands and listeners."""
 
     def __init__(self, bot:commands.Bot):
@@ -69,17 +70,22 @@ class Music(CogTop):
         else:
             vc: wavelink.Player=ctx.voice_client
 
+        if vc.queue.is_empty and operator.not_(vc.is_playing):
+            embed=nextcord.Embed(title=':white_check_mark: 現在播放 !',description='%s'% (track.title),color=colors.green)
+            embed.set_thumbnail(url=track.thumbnail)
+            embed.set_footer(text=f'Lost', icon_url=bot.icon_url)
 
-        embed=nextcord.Embed(title=':white_check_mark: 已新增至播放清單 !',color=colors.green)
-        embed.add_field(name='%s'% (track.title),value='From Youtube',inline=False)
-        embed.set_footer(text=f'Lost', icon_url=bot.icon_url)
-        await ctx.reply(embed=embed)
+            await ctx.reply(embed=embed)
 
-        
-        if vc.queue.is_empty and vc.is_playing:
             await vc.play(track)
         else:
             await vc.queue.put_wait(track)
+
+
+
+
+        
+
 
 
     @commands.command()
