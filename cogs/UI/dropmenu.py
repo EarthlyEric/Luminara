@@ -4,8 +4,8 @@ import nextcord
 class Help(nextcord.ui.Select):
     def __init__(self):
         options=[
-            nextcord.SelectOption(label='一般',description='基礎指令',emoji='<:general:1002820067324600380>'),
-            nextcord.SelectOption(label='音樂',description="Let's start the music !",emoji='<:music:1002824345095241878>')
+            nextcord.SelectOption(label='一般',value='general',description='基礎指令',emoji='<:general:1002820067324600380>'),
+            nextcord.SelectOption(label='音樂',value='music',description="Let's start the music !",emoji='<:music:1002824345095241878>')
         ]
         super().__init__(
             placeholder='指令指南',
@@ -13,6 +13,12 @@ class Help(nextcord.ui.Select):
             max_values=1,
             options=options,
             )
+        async def callback(self,interaction:nextcord.Interaction):
+            value=self.values[0]
+            if value=='general':
+                return await interaction.response.send_message('尚未完成')
+            elif value[0]=='music':
+                return await interaction.response.send_message('尚未完成')
 class HelpView(nextcord.ui.View):
     def __init__(self):
         super().__init__()

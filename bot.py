@@ -17,7 +17,7 @@ bot.remove_command("help")
 bot.launch_time=datetime.utcnow()
 
 icon_url= "https://cdn-lost.reload-dev.ml/public/Lost.png"
-cogsList=['tasks','events','errors','basic','music']
+cogsList=['tasks','events','errors','general','music']
 
 def starting():
     os.system('cls' if os.name=='nt' else 'clear')

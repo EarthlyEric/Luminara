@@ -10,10 +10,10 @@ from core.config import config
 from core.lib  import *
 
 
-class Basic(Cogs):
+class General(Cogs):
     @commands.command()
     async def help(self, ctx:commands.Context):
-        view=cogs.ui.dropmenu.HelpView()
+        view=cogs.UI.dropmenu.HelpView()
 
         embed=nextcord.Embed(color=colors.purple)
         embed.set_author(name='歡迎使用 Lost !!',icon_url=bot.icon_url,url='https://blog.earthlyeric6.ml/')
@@ -40,4 +40,4 @@ class Basic(Cogs):
     
         
 def setup(bot):
-    bot.add_cog(Basic(bot))
+    bot.add_cog(General(bot))
