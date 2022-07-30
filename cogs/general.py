@@ -2,7 +2,7 @@
 import nextcord
 import bot
 import cogs.UI.dropmenu
-import datetime
+from datetime import datetime
 from core.embed_color import colors
 from nextcord.ext import commands
 from core.classes import Cogs
