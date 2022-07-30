@@ -8,7 +8,7 @@ class Help(nextcord.ui.Select):
             nextcord.SelectOption(label='音樂',description="Let's start the music !",emoji='<:music:1002824345095241878>')
         ]
         super().__init__(
-            placeholder=':bookmark: 指令指南',
+            placeholder='指令指南',
             min_values=1,
             max_values=1,
             options=options,
