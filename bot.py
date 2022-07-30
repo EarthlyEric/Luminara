@@ -20,12 +20,14 @@ icon_url= "https://cdn-lost.reload-dev.ml/public/Lost.png"
 cogsList=['tasks','events','errors','basic','music']
 
 def starting():
+    os.system('cls' if os.name=='nt' else 'clear')
     logopath='./res/logo/logo.txt'
     f=open(logopath, 'r')
     print('____________________________________________________________________________________________________________')
     print(f.read())
+    time.sleep(0.5)
     print('____________________________________________________________________________________________________________')
-    print('                                                                                                            ')
+    print()
     showinfo("作業系統",platform.platform())
     showinfo('系統版本',platform.version())
     showinfo('作業系統名稱', platform.system())
