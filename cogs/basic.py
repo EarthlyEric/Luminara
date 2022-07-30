@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 import nextcord
 import bot
-import cogs.ui.dropmenu
+import cogs.UI.dropmenu
 import datetime
 from core.embed_color import colors
 from nextcord.ext import commands
