@@ -1,23 +1,26 @@
 # -*- coding: UTF-8 -*-
 import nextcord
 import bot
+import cogs.ui.dropmenu
+import datetime
 from core.embed_color import colors
-from datetime import datetime
-from nextcord.ext import *
 from nextcord.ext import commands
 from core.classes import Cogs
 from core.config import config
 from core.lib  import *
 
+
 class Basic(Cogs):
     @commands.command()
     async def help(self, ctx:commands.Context):
+        view=cogs.ui.dropmenu.HelpView()
+
         embed=nextcord.Embed(color=colors.purple)
-        embed.set_author(name='Lost',icon_url=bot.icon_url,url='https://blog.earthlyeric6.ml/')
-        embed.add_field(name='Hello，我是Lost，很高興見到你!',value='請從下面選擇指令教學')
+        embed.set_author(name='歡迎使用 Lost !!',icon_url=bot.icon_url,url='https://blog.earthlyeric6.ml/')
+        embed.add_field(name='Hello，我是Lost，很高興見到你!',value='你可以從下面選擇想看的指令使')
         embed.set_footer(text="Lost", icon_url=bot.icon_url)
-        
-        await ctx.reply(embed=embed)
+
+        await ctx.reply(embed=embed,view=view)
  
     @commands.command()
     async def ping(self, ctx:commands.Context):
