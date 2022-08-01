@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 import nextcord
-import bot
+from core.icon import icon
 import cogs.UI.dropmenu
 from datetime import datetime
 from core.embed_color import colors
@@ -16,9 +16,9 @@ class General(Cogs):
         view=cogs.UI.dropmenu.HelpView()
 
         embed=nextcord.Embed(color=colors.purple)
-        embed.set_author(name='歡迎使用 Lost !!',icon_url=bot.icon_url,url='https://blog.earthlyeric6.ml/')
-        embed.add_field(name='Hello，我是Lost，很高興見到你!',value='你可以從下面選擇想看的指令使')
-        embed.set_footer(text="Lost", icon_url=bot.icon_url)
+        embed.set_author(name='Lost使用指南',icon_url=icon.guide_icon_url,url='https://blog.earthlyeric6.ml/')
+        embed.add_field(name='Hello，我是Lost，很高興見到你!',value='你可以從下面選擇想看的指令使令用法類別。')
+        embed.set_footer(text="Lost", icon_url=icon.icon_url)
 
         await ctx.reply(embed=embed,view=view)
  
@@ -34,7 +34,7 @@ class General(Cogs):
         embed.add_field(name="提供服務的伺服器數",value=f"{len(self.bot.guilds)}", inline= False)
         embed.add_field(name="目前延遲", value=f"{round(self.bot.latency*1000)} ms", inline=False)
         embed.add_field(name="已運作時間", value=f"{days} d, {hours} h, {minutes} m, {seconds} s", inline=False)
-        embed.set_footer(text="Lost", icon_url=bot.icon_url)
+        embed.set_footer(text="Lost", icon_url=icon.icon_url)
 
         await ctx.reply(embed=embed)
     

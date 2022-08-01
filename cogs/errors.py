@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 import nextcord
-import bot
+from core.icon import icon
 from nextcord.ext import commands
 from nextcord.ext import *
 from core.config import *
@@ -15,13 +15,13 @@ class Errors(Cogs):
         if isinstance(error, commands.MissingRequiredArgument):
             embed=nextcord.Embed(title=f":question:  {ctx.author.name} 遺失必要參數 ",color=colors.red)
             embed.add_field(name=f"{error}",value='NULL')
-            embed.set_footer(text=f"Lost", icon_url=bot.icon_url)
+            embed.set_footer(text=f"Lost", icon_url=icon.icon_url)
 
             await ctx.send(embed=embed)
         else:
             embed=nextcord.Embed(title=f":question:  {ctx.author.name} 未知錯誤 ",color=colors.red)
             embed.add_field(name=f"{error}",value='NULL')
-            embed.set_footer(text=f"Lost", icon_url=bot.icon_url)
+            embed.set_footer(text=f"Lost", icon_url=icon.icon_url)
             
             await ctx.send(embed=embed)
 

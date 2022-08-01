@@ -16,7 +16,7 @@ bot=commands.Bot(command_prefix='$',intents=intents)
 bot.remove_command("help")
 bot.launch_time=datetime.utcnow()
 
-icon_url= "https://cdn-lost.reload-dev.ml/public/Lost.png"
+
 cogsList=['tasks','events','errors','general','music']
 
 def starting():

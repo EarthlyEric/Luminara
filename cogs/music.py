@@ -1,7 +1,7 @@
 import operator
 import wavelink
 import nextcord
-import bot
+from core.icon import icon
 from nextcord.ext import commands
 from core.classes import Cogs
 from core.config import *
@@ -73,7 +73,7 @@ class Music(Cogs):
         if vc.queue.is_empty and operator.not_(vc.is_playing):
             embed=nextcord.Embed(title=':white_check_mark: 現在播放 !',description='%s'% (track.title),color=colors.green)
             embed.set_thumbnail(url=track.thumbnail)
-            embed.set_footer(text=f'Lost', icon_url=bot.icon_url)
+            embed.set_footer(text=f'Lost', icon_url=icon.icon_url)
 
             await ctx.reply(embed=embed)
 
