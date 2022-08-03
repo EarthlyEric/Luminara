@@ -1,21 +1,18 @@
 # -*- coding: UTF-8 -*-
 import nextcord
-from nextcord.ext import commands
 import os
 import time
 import platform
-import core.uptime.uptime
+from nextcord.ext import commands
 from datetime import datetime
 from core.config import *
 from core.lib import showinfo
-
 
 intents=nextcord.Intents.all()
 
 bot=commands.Bot(command_prefix='$',intents=intents)
 bot.remove_command("help")
 bot.launch_time=datetime.utcnow()
-
 
 cogsList=['tasks','events','errors','general','music']
 
@@ -48,7 +45,6 @@ def starting():
 async def on_ready():
     starting()
     time.sleep(2)
-    core.uptime.uptime.keep_alive()
     await bot.change_presence(
         activity=nextcord.Activity(type=nextcord.ActivityType.streaming, name =f"{bot.command_prefix}help｜Watch {len(bot.guilds)} server")
         )
@@ -56,6 +52,5 @@ async def on_ready():
 def register_cogs():
     for filename in cogsList:
         bot.load_extension('cogs.%s'%(filename))
-
 register_cogs()
 bot.run(config.token)

@@ -72,7 +72,6 @@ class Music(Cogs):
 
         if vc.queue.is_empty and operator.not_(vc.is_playing):
             embed=nextcord.Embed(title=':white_check_mark: 現在播放 !',description='%s'% (track.title),color=colors.green)
-            embed.set_thumbnail(url=track.thumbnail)
             embed.set_footer(text=f'Lost', icon_url=icon.icon_url)
 
             await ctx.reply(embed=embed)
@@ -80,13 +79,6 @@ class Music(Cogs):
             await vc.play(track)
         else:
             await vc.queue.put_wait(track)
-
-
-
-
-        
-
-
 
     @commands.command()
     async def leave(self,ctx:commands.Context):
