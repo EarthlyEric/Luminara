@@ -1,12 +1,11 @@
 import operator
 import wavelink
 import nextcord
-from core.icon import icon
 from nextcord.ext import commands
 from core.classes import Cogs
 from core.config import *
 from core.lib  import *
-from core.embed_color import colors
+from core.utils import colors,icon
 
 class Music(Cogs):
     """Music cog to hold Wavelink related commands and listeners."""
@@ -25,13 +24,6 @@ class Music(Cogs):
             password='1A6DCEE7A27DA826B313FBC562CD2',
             identifier='Public US Main VPS 01',
             https=True,
-            )
-
-        await wavelink.NodePool.create_node(bot=self.bot,
-            host='51.161.130.134',
-            port=10414,
-            password='1A6DCEE7A27DA826B313FBC562CD2',
-            identifier='Public Asia Main VPS 01',
             )
         
         await wavelink.NodePool.create_node(bot=self.bot,
@@ -84,13 +76,13 @@ class Music(Cogs):
     async def leave(self,ctx:commands.Context):
         if not ctx.voice_client:
             embed=nextcord.Embed(title=f':no_entry: Lost 沒有加入任何頻道。',color=colors.red)
-            embed.set_footer(text=f'Lost', icon_url=bot.icon_url)
+            embed.set_footer(text=f'Lost', icon_url=icon.icon_url)
             
             return await ctx.reply
 
         vc: wavelink.Player=await ctx.voice_client.disconnect()
         embed=nextcord.Embed(title=f':no_entry: 已被{ctx.author.name}要求中斷連線',color=colors.red)
-        embed.set_footer(text=f'Lost', icon_url=bot.icon_url)
+        embed.set_footer(text=f'Lost', icon_url=icon.icon_url)
 
         return await ctx.reply(embed=embed)
     
