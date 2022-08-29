@@ -1,6 +1,6 @@
-from discord import slash_command
 import nextcord
 from nextcord.ext import commands
+from typing import Optional
 from core.config import *
 from core.classes import Cogs
 from core.utils import colors
@@ -17,7 +17,5 @@ class Debug(Cogs):
         except Exception as e:
             embed = nextcord.Embed(title='Error', description=f'{e}', color=colors.red)
             return await ctx.send(embed=embed)
-        
-
 def setup(bot):
     bot.add_cog(Debug(bot))
