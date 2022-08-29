@@ -1,9 +1,9 @@
 # -*- coding: UTF-8 -*-
 import nextcord
-from core.icon import icon
 import cogs.UI.dropmenu
+import psutil
 from datetime import datetime
-from core.embed_color import colors
+from core.utils import colors,icon,utils
 from nextcord.ext import commands
 from core.classes import Cogs
 from core.config import config
@@ -29,12 +29,28 @@ class General(Cogs):
         minutes, seconds = divmod(remainder, 60)
         days, hours = divmod(hours, 24)
 
-        embed=nextcord.Embed(title="Lost 狀態", color=colors.purple)#blue
-        embed.add_field(name="Bot Core 版本", value=f"{config.version} :flag_tw: ", inline=False)
+        embed=nextcord.Embed(color=colors.purple)
+        embed.set_author(name='Lost狀態',icon_url=icon.icon_url,url='https://blog.earthlyeric6.ml/')
+        # CPU Usage
+        cpu_usage=psutil.cpu_percent(interval=0.3)
+        usage_bar=utils.processesBar(level=int(round(cpu_usage,0)))
+        embed.add_field(name='<:CPU:1008034878882852954>|CPU',value=f'`{cpu_usage}%{usage_bar}`',inline=True)
+        # RAM Usage
+        ram=psutil.virtual_memory()
+        ram_usage=ram.percent
+        usage_bar=utils.processesBar(level=int(round(ram_usage,0)))
+        embed.add_field(name='<:RAM:1008035593894236241>|RAM',value=f'`{ram_usage}%{usage_bar}`',inline=True)
+
+        embed.add_field(name='<:Lost:1008221589231386645> |Bot Version',value='`%s`'%(config.version),inline=False)
+        embed.add_field(name='<:server:1008236554042490950> | 伺服器數量',value='`%s個`'%((str(len(self.bot.guilds)))),inline=True)
+
+        
+        """
         embed.add_field(name="提供服務的伺服器數",value=f"{len(self.bot.guilds)}", inline= False)
         embed.add_field(name="目前延遲", value=f"{round(self.bot.latency*1000)} ms", inline=False)
         embed.add_field(name="已運作時間", value=f"{days} d, {hours} h, {minutes} m, {seconds} s", inline=False)
         embed.set_footer(text="Lost", icon_url=icon.icon_url)
+        """
 
         await ctx.reply(embed=embed)
     

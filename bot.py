@@ -14,7 +14,7 @@ bot=commands.Bot(command_prefix='$',intents=intents)
 bot.remove_command("help")
 bot.launch_time=datetime.utcnow()
 
-cogsList=['tasks','events','errors','general','music']
+extension=['tasks','events','errors','general','music','debug']
 
 def starting():
     os.system('cls' if os.name=='nt' else 'clear')
@@ -50,7 +50,7 @@ async def on_ready():
         )
 
 def register_cogs():
-    for filename in cogsList:
+    for filename in extension:
         bot.load_extension('cogs.%s'%(filename))
 register_cogs()
 bot.run(config.token)

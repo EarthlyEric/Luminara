@@ -1,4 +1,3 @@
-# -*- coding: UTF-8 -*-
 import pymysql
 from core.config import config
 

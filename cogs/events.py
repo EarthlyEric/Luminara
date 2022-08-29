@@ -7,12 +7,8 @@ from core.db import *
 
 class Events(Cogs):
     @commands.Cog.listener()
-    async def on_guild_join(self, guild):
-        guild_join(guild=guild)
-
-    @commands.Cog.listener()
-    async def on_guild_remove(self, guild):
-        guild_remove(guild=guild)
+    async def on_guild_join(self, guild:nextcord.Guild):
+        print('%s'%(guild.name))
 
 def setup(bot):
     bot.add_cog(Events(bot))
