@@ -3,7 +3,6 @@ import nextcord
 from nextcord.ext import commands
 from core.config import *
 from core.classes import Cogs
-from core.db import *
 from core.utils import colors,icon
 
 
