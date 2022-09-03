@@ -1,5 +1,6 @@
 # Lost Version History
 ---
+## v.0.9.9.7.beta
 ## v.0.9.9.6.beta 
 - [+]全新的`$ping`指令介面，如下
 - [+]程式架構大幅度更新
