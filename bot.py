@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+import imp
 import nextcord
 import os
 import time
@@ -6,7 +7,7 @@ import platform
 from nextcord.ext import commands
 from datetime import datetime
 from core.config import *
-from core.lib import showinfo
+from core.utils import utils
 
 intents=nextcord.Intents.all()
 
@@ -25,13 +26,13 @@ def starting():
     time.sleep(0.5)
     print('____________________________________________________________________________________________________________')
     print()
-    showinfo("作業系統",platform.platform())
-    showinfo('系統版本',platform.version())
-    showinfo('作業系統名稱', platform.system())
-    showinfo('系統位數', platform.architecture()[0])
-    showinfo('CPU 架構', platform.machine())
-    showinfo('系統名稱', platform.node())
-    showinfo('處理器', platform.processor())
+    utils.showinfo("作業系統",platform.platform())
+    utils.showinfo('系統版本',platform.version())
+    utils.showinfo('作業系統名稱', platform.system())
+    utils.showinfo('系統位數', platform.architecture()[0])
+    utils.showinfo('CPU 架構', platform.machine())
+    utils.showinfo('系統名稱', platform.node())
+    utils.showinfo('處理器', platform.processor())
     print('Time:%s'%(datetime.now().strftime("%Y-%m-%d %I:%M:%S %p")))
     print('____________________________________________________________________________________________________________')
     print('                                                                                                            ')
