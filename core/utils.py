@@ -53,6 +53,9 @@ class utils():
             string+=style[3]
 
             return string
+    @classmethod
+    def showinfo(tip, info):
+        print("{}:{}".format(tip,info))
 
 
 
