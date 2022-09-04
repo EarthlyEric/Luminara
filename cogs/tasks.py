@@ -9,8 +9,9 @@ class Tasks(commands.Cog):
     @tasks.loop(seconds=60)
     async def update_status(self):
        await self.bot.change_presence(
-        activity=nextcord.Activity(type=nextcord.ActivityType.streaming, name =f"{self.bot.command_prefix}help｜Watch {len(self.bot.guilds)} servers")
+        activity=nextcord.Activity(type=nextcord.ActivityType.streaming, name ='%shelp｜在 %s 個伺服器中'%(self.bot.command_prefix,str(len(self.bot.guilds))))
         )
+        
         
     @update_status.before_loop
     async def before_update_ststus(self):

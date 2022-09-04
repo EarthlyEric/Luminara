@@ -46,7 +46,7 @@ async def on_ready():
     starting()
     time.sleep(2)
     await bot.change_presence(
-        activity=nextcord.Activity(type=nextcord.ActivityType.streaming, name =f"{bot.command_prefix}help｜Watch {len(bot.guilds)} server")
+        activity=nextcord.Activity(type=nextcord.ActivityType.streaming, name='%shelp｜在 %s 個伺服器中'%(bot.command_prefix,str(len(bot.guilds))))
         )
 
 def register_cogs():
