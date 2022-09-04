@@ -62,7 +62,7 @@ class Music(Cogs):
         else:
             vc: wavelink.Player=ctx.voice_client
 
-        if vc.queue.is_empty and operator.not_(vc.is_playing):
+        if vc.queue.is_empty and vc.is_playing:
             embed=nextcord.Embed(title=':white_check_mark: 現在播放 !',description='%s'% (track.title),color=colors.green)
             embed.set_footer(text=f'Lost', icon_url=icon.icon_url)
 
