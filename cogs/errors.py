@@ -8,20 +8,25 @@ from core.utils import colors,icon
 
 class Errors(Cogs):
     @commands.Cog.listener()
-    async def on_command_error(self, ctx, error):
+    async def on_command_error(self, ctx:commands.Context, error):
         if isinstance(error, commands.MissingRequiredArgument):
+            embed=nextcord.Embed(color=colors.red)
+            embed.add_field(name=':question: 遺失必要參數',value='%s'%(error))
+            embed.set_footer(text='Lost', icon_url=icon.icon_url)
 
-            embed=nextcord.Embed(title=f":question:  {ctx.author.name} 遺失必要參數 ",color=colors.red)
-            embed.add_field(name=f"{error}",value='NULL')
-            embed.set_footer(text=f"Lost", icon_url=icon.icon_url)
+            return await ctx.send(embed=embed)
+        if isinstance(error,commands.CommandNotFound):
+            embed=nextcord.Embed(color=colors.red)
+            embed.add_field(name=':question: 未知命令',value='%s'%(error))
+            embed.set_footer(text='Lost', icon_url=icon.icon_url)
 
-            await ctx.send(embed=embed)
+            return await ctx.send(embed=embed)
         else:
-            embed=nextcord.Embed(title=f":question:  {ctx.author.name} 未知錯誤 ",color=colors.red)
-            embed.add_field(name=f"{error}",value='NULL')
-            embed.set_footer(text=f"Lost", icon_url=icon.icon_url)
+            embed=nextcord.Embed(color=colors.red)
+            embed.add_field(name=':question: 未知錯誤',value='%s'%(error))
+            embed.set_footer(text='Lost', icon_url=icon.icon_url)
             
-            await ctx.send(embed=embed)
+            return await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(Errors(bot))
