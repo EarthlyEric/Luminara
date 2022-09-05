@@ -8,8 +8,6 @@ from nextcord.ext import commands
 from core.classes import Cogs
 from core.config import config
 
-
-
 class General(Cogs):
     @commands.command()
     async def help(self, ctx:commands.Context):
@@ -50,7 +48,6 @@ class General(Cogs):
         embed.set_footer(text="Lost", icon_url=icon.icon_url)
 
         await ctx.reply(embed=embed)
-    
-        
+     
 def setup(bot):
     bot.add_cog(General(bot))

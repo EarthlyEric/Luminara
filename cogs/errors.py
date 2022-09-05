@@ -5,7 +5,6 @@ from core.config import *
 from core.classes import Cogs
 from core.utils import colors,icon
 
-
 class Errors(Cogs):
     @commands.Cog.listener()
     async def on_command_error(self, ctx:commands.Context, error):

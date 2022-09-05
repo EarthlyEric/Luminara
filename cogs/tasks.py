@@ -11,8 +11,7 @@ class Tasks(commands.Cog):
        await self.bot.change_presence(
         activity=nextcord.Activity(type=nextcord.ActivityType.streaming, name ='%shelp｜在 %s 個伺服器中'%(self.bot.command_prefix,str(len(self.bot.guilds))))
         )
-        
-        
+         
     @update_status.before_loop
     async def before_update_ststus(self):
         await self.bot.wait_until_ready()

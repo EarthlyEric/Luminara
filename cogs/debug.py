@@ -17,5 +17,6 @@ class Debug(Cogs):
         except Exception as e:
             embed = nextcord.Embed(title='Error', description=f'{e}', color=colors.red)
             return await ctx.send(embed=embed)
+            
 def setup(bot):
     bot.add_cog(Debug(bot))
