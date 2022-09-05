@@ -4,7 +4,6 @@ import nextcord
 from nextcord.ext import commands
 from core.classes import Cogs
 from core.config import *
-from core.lib  import *
 from core.utils import colors,icon
 
 class Music(Cogs):
@@ -86,6 +85,5 @@ class Music(Cogs):
 
         return await ctx.reply(embed=embed)
     
-
 def setup(bot):
     bot.add_cog(Music(bot))
