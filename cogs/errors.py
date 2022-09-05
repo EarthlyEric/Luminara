@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-import datetime
+from datetime import datetime
 import nextcord
 from nextcord.ext import commands
 from core.config import *
@@ -11,20 +11,20 @@ class Errors(Cogs):
     async def on_command_error(self, ctx:commands.Context, error):
         print(error)
         if isinstance(error, commands.MissingRequiredArgument):
-            embed=nextcord.Embed(color=colors.red)
-            embed.add_field(name=':question: 遺失必要參數',value='%s'%(error),timestamp=datetime.now())
+            embed=nextcord.Embed(color=colors.red,timestamp=datetime.now())
+            embed.add_field(name=':question: 遺失必要參數',value='%s'%(error))
             embed.set_footer(text='Lost', icon_url=icon.icon_url)
 
             return await ctx.send(embed=embed)
         if isinstance(error,commands.CommandNotFound):
-            embed=nextcord.Embed(color=colors.red)
-            embed.add_field(name=':question: 未知命令',value='%s'%(error),timestamp=datetime.now())
+            embed=nextcord.Embed(color=colors.red,timestamp=datetime.now())
+            embed.add_field(name=':question: 未知命令',value='%s'%(error))
             embed.set_footer(text='Lost', icon_url=icon.icon_url)
 
             return await ctx.send(embed=embed)
         else:
-            embed=nextcord.Embed(color=colors.red)
-            embed.add_field(name=':question: 未知錯誤',value='%s'%(error),timestamp=datetime.now())
+            embed=nextcord.Embed(color=colors.red,timestamp=datetime.now())
+            embed.add_field(name=':question: 未知錯誤',value='%s'%(error))
             embed.set_footer(text='Lost', icon_url=icon.icon_url)
             
             return await ctx.send(embed=embed)
