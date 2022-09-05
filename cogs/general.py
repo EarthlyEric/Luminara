@@ -2,6 +2,7 @@
 import nextcord
 import cogs.UI.dropmenu
 import psutil
+import datetime
 from datetime import datetime
 from core.utils import colors,icon,utils
 from nextcord.ext import commands
@@ -13,7 +14,7 @@ class General(Cogs):
     async def help(self, ctx:commands.Context):
         view=cogs.UI.dropmenu.HelpView()
 
-        embed=nextcord.Embed(color=colors.purple)
+        embed=nextcord.Embed(color=colors.purple,timestamp=datetime.now())
         embed.set_author(name='Lost使用指南',icon_url=icon.guide_icon_url,url='https://blog.earthlyeric6.ml/')
         embed.add_field(name='Hello，我是Lost，很高興見到你!',value='你可以從下面選擇想看的指令使令用法類別。')
         embed.set_footer(text="Lost", icon_url=icon.icon_url)
@@ -27,7 +28,7 @@ class General(Cogs):
         minutes, seconds = divmod(remainder, 60)
         days, hours = divmod(hours, 24)
 
-        embed=nextcord.Embed(color=colors.purple)
+        embed=nextcord.Embed(color=colors.purple,timestamp=datetime.now())
         embed.insert_field_at
         embed.set_author(name='Lost狀態',icon_url=icon.icon_url,url='https://blog.earthlyeric6.ml/')
         # CPU Usage
@@ -45,7 +46,7 @@ class General(Cogs):
         embed.add_field(name='<:clock_lost:1013705761064493096> Lost上線時間(本次進程)', value='`%s d, %s h, %s m, %s s`'%(days,hours,minutes,seconds), inline=False)
         embed.add_field(name='<:Lost:1008221589231386645>|Bot Version',value=' `%s`<:beta:1013696625031520276>'%(config.version),inline=False)
         # Footer
-        embed.set_footer(text="Lost", icon_url=icon.icon_url)
+        embed.set_footer(text='Lost', icon_url=icon.icon_url)
 
         return await ctx.reply(embed=embed)
      

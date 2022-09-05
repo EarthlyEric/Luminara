@@ -1,3 +1,4 @@
+import datetime
 import nextcord
 from nextcord.ext import commands
 from typing import Optional
@@ -12,10 +13,10 @@ class Debug(Cogs):
         try:
             self.bot.reload_extension(f"cogs.{extension}")
             print(f'Reloaded {extension}')
-            embed = nextcord.Embed(title='Reload', description=f'{extension} successfully reloaded', color=colors.green)
+            embed = nextcord.Embed(title='Reload', description=f'{extension} successfully reloaded', color=colors.green,timestamp=datetime.now())
             return await ctx.send(embed=embed)
         except Exception as e:
-            embed = nextcord.Embed(title='Error', description=f'{e}', color=colors.red)
+            embed = nextcord.Embed(title='Error', description=f'{e}', color=colors.red,timestamp=datetime.now())
             return await ctx.send(embed=embed)
             
 def setup(bot):

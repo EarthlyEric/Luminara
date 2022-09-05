@@ -1,3 +1,4 @@
+import datetime
 import operator
 import wavelink
 import nextcord
@@ -62,7 +63,7 @@ class Music(Cogs):
             vc: wavelink.Player=ctx.voice_client
 
         if vc.queue.is_empty and vc.is_playing:
-            embed=nextcord.Embed(title=':white_check_mark: 現在播放 !',description='%s'% (track.title),color=colors.green)
+            embed=nextcord.Embed(title=':white_check_mark: 現在播放 !',description='%s'% (track.title),color=colors.green,timestamp=datetime.now())
             embed.set_footer(text=f'Lost', icon_url=icon.icon_url)
 
             await ctx.reply(embed=embed)
@@ -74,13 +75,13 @@ class Music(Cogs):
     @commands.command()
     async def leave(self,ctx:commands.Context):
         if not ctx.voice_client:
-            embed=nextcord.Embed(title=f':no_entry: Lost 沒有加入任何頻道。',color=colors.red)
+            embed=nextcord.Embed(title=f':no_entry: Lost 沒有加入任何頻道。',color=colors.red,timestamp=datetime.now())
             embed.set_footer(text=f'Lost', icon_url=icon.icon_url)
             
             return await ctx.reply
 
         vc: wavelink.Player=await ctx.voice_client.disconnect()
-        embed=nextcord.Embed(title=f':no_entry: 已被{ctx.author.name}要求中斷連線',color=colors.red)
+        embed=nextcord.Embed(title=f':no_entry: 已被{ctx.author.name}要求中斷連線',color=colors.red,timestamp=datetime.now())
         embed.set_footer(text=f'Lost', icon_url=icon.icon_url)
 
         return await ctx.reply(embed=embed)
