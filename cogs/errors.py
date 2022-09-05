@@ -9,6 +9,7 @@ from core.utils import colors,icon
 class Errors(Cogs):
     @commands.Cog.listener()
     async def on_command_error(self, ctx:commands.Context, error):
+        print(error)
         if isinstance(error, commands.MissingRequiredArgument):
             embed=nextcord.Embed(color=colors.red)
             embed.add_field(name=':question: 遺失必要參數',value='%s'%(error),timestamp=datetime.now())

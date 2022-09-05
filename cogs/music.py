@@ -85,6 +85,6 @@ class Music(Cogs):
         embed.set_footer(text=f'Lost', icon_url=icon.icon_url)
 
         return await ctx.reply(embed=embed)
-    
+        
 def setup(bot):
     bot.add_cog(Music(bot))

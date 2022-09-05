@@ -1,5 +1,4 @@
 # -*- coding: UTF-8 -*-
-import imp
 import nextcord
 import os
 import time
