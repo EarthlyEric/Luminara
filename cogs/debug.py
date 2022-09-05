@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 import nextcord
 from nextcord.ext import commands
 from typing import Optional
