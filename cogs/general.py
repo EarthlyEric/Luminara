@@ -7,7 +7,7 @@ from core.utils import colors,icon,utils
 from nextcord.ext import commands
 from core.classes import Cogs
 from core.config import config
-from core.lib  import *
+
 
 
 class General(Cogs):
