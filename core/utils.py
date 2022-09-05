@@ -54,7 +54,7 @@ class utils():
 
             return string
     @classmethod
-    def showinfo(tip, info):
+    def showinfo(self,tip, info):
         print("{}:{}".format(tip,info))
 
 
