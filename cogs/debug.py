@@ -1,7 +1,6 @@
-from datetime import datetime
 import nextcord
 from nextcord.ext import commands
-from typing import Optional
+from datetime import datetime
 from core.config import *
 from core.classes import Cogs
 from core.utils import colors
@@ -18,6 +17,5 @@ class Debug(Cogs):
         except Exception as e:
             embed = nextcord.Embed(title='Error', description=f'{e}', color=colors.red,timestamp=datetime.now())
             return await ctx.send(embed=embed)
-            
 def setup(bot):
     bot.add_cog(Debug(bot))
