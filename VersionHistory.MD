@@ -1,5 +1,7 @@
 # Lost Version History
 ---
+## v.0.9.9.7.beta.hotfix.1
+- [+]修復音樂無法進行播放隊列的問題。
 ## v.0.9.9.7.beta
 - [+]更新機器人狀態文字
 - [+]修復`$play`無法正常播放的bug。
