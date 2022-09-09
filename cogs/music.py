@@ -1,5 +1,4 @@
 from datetime import datetime
-import operator
 import wavelink
 import nextcord
 from nextcord.ext import commands
@@ -25,19 +24,6 @@ class Music(Cogs):
             identifier='Public US Main VPS 01',
             https=True,
             )
-        
-        await wavelink.NodePool.create_node(bot=self.bot,
-            host='lava.link',
-            port= 80,
-            password='anything as a password',
-            identifier='Public EU Main 01',
-            )
-        await wavelink.NodePool.create_node(bot=self.bot,
-            host='lavalink.oops.wtf',
-            port= 2000,
-            password='www.freelavalink.ga',
-            identifier='Public Asia Main 01',
-            )
     @commands.Cog.listener()
     async def on_wavelink_track_end(self,player:wavelink.Player,track: wavelink.Track, reason):
         ctx = player.ctx
@@ -55,22 +41,29 @@ class Music(Cogs):
 
     @commands.command()
     async def play(self, ctx: commands.Context, *, track:wavelink.YouTubeTrack):
-        await ctx.send('<a:loading:1001057291036020776> 搜尋歌曲中...',delete_after=3)
-
+        if not ctx.author.voice:
+            return await ctx.send(':x: 你尚未加任何語音頻道',delete_after=1)
         if not ctx.voice_client:
             vc: wavelink.Player=await ctx.author.voice.channel.connect(cls=wavelink.Player)
         else:
             vc: wavelink.Player=ctx.voice_client
 
-        if vc.queue.is_empty and vc.is_playing:
-            embed=nextcord.Embed(title=':white_check_mark: 現在播放 !',description='%s'% (track.title),color=colors.green,timestamp=datetime.now())
+        await ctx.send('<a:loading:1001057291036020776> 搜尋歌曲中...',delete_after=1)
+        
+        if vc.queue.is_empty and vc.is_connected and vc._source is None:
+            await vc.play(track)
+
+            embed=nextcord.Embed(title=':white_check_mark: 現在播放!',description='%s'% (track.title),color=colors.green,timestamp=datetime.now())
             embed.set_footer(text=f'Lost', icon_url=icon.icon_url)
 
             await ctx.reply(embed=embed)
-
-            await vc.play(track)
         else:
             await vc.queue.put_wait(track)
+
+            embed=nextcord.Embed(title=':white_check_mark: 已加入播放清單!',description='%s'% (track.title),color=colors.green,timestamp=datetime.now())
+            embed.set_footer(text=f'Lost', icon_url=icon.icon_url)
+
+            await ctx.reply(embed=embed)
 
     @commands.command()
     async def leave(self,ctx:commands.Context):
