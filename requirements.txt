@@ -2,5 +2,5 @@ async_timeout==4.0.2
 configobj==5.0.6
 nextcord==2.0.0
 PyMySQL==1.0.2
-wavelink==1.1.1
+wavelink==1.2.5
 psutil==5.9.1

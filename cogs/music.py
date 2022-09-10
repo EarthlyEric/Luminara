@@ -54,6 +54,7 @@ class Music(Cogs):
             await vc.play(track)
 
             embed=nextcord.Embed(title=':white_check_mark: 現在播放!',description='%s'% (track.title),color=colors.green,timestamp=datetime.now())
+            embed.set_thumbnail(url=track.thumbnail)
             embed.set_footer(text=f'Lost', icon_url=icon.icon_url)
 
             await ctx.reply(embed=embed)
@@ -61,9 +62,11 @@ class Music(Cogs):
             await vc.queue.put_wait(track)
 
             embed=nextcord.Embed(title=':white_check_mark: 已加入播放清單!',description='%s'% (track.title),color=colors.green,timestamp=datetime.now())
+            embed.set_thumbnail(url=track.thumbnail)
             embed.set_footer(text=f'Lost', icon_url=icon.icon_url)
 
             await ctx.reply(embed=embed)
+        vc.ctx = ctx
 
     @commands.command()
     async def leave(self,ctx:commands.Context):
