@@ -6,7 +6,7 @@ class config():
     config=ConfigObj('config.ini')
     
     # Version Infomation.
-    version=config['INFO']['version']
+    version=config['Info']['version']
     # Import MongoDB connection config.
 
     deploy=config['Delpoy']
