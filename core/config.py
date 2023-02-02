@@ -5,14 +5,12 @@ import os
 class config():
     config=ConfigObj('config.ini')
     
-    #版本資訊導入
-    version=config['version']
-    #MySQL 連線設定導入
-    mysqlhost=str(config['mysqlhost'])
-    mysqluser=config['mysqluser']
-    mysqlpasswd=config['mysqlpasswd']
-    mysqldb=config['mysqldb']
-    mysqlport=int(config['mysqlport'])
+    # Version Infomation.
+    version=config['INFO']['version']
+    # Import MongoDB connection config.
 
-
-    token=str(config['deploy_token'])
+    deploy=config['Delpoy']
+    if str(deploy['enable_beta'])=='True':
+        token=str(deploy['beta_token'])
+    else:
+        token=str(deploy['deploy_token'])

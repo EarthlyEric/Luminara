@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from nextcord import Emoji
 import nextcord
 
@@ -17,10 +18,10 @@ class Help(nextcord.ui.Select):
             value=self.values[0]
             if value=='general':
                 return await interaction.response.send_message('尚未完成')
-            elif value[0]=='music':
+            elif value=='music':
                 return await interaction.response.send_message('尚未完成')
+
 class HelpView(nextcord.ui.View):
     def __init__(self):
         super().__init__()
         self.add_item(Help())
-

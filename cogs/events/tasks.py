@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import nextcord
 from nextcord.ext import tasks,commands
 

@@ -10,11 +10,16 @@ from core.utils import utils
 
 intents=nextcord.Intents.all()
 
+<<<<<<< HEAD
 bot=commands.Bot(command_prefix='$',intents=intents)
 bot.remove_command("help")
+=======
+bot=commands.Bot(command_prefix='b$',intents=intents)
+bot.remove_command('help')
+>>>>>>> dev-v.0.9.9.8.beta
 bot.launch_time=datetime.utcnow()
 
-extension=['tasks','events','errors','general','music','debug']
+
 
 def starting():
     os.system('cls' if os.name=='nt' else 'clear')
@@ -36,7 +41,7 @@ def starting():
     print("Lost is online")
     print("Login as %s"%(bot.user))
     print("Lost Version: %s"%(config.version))
-    print("nextcord API Version: %s"%(nextcord.__version__))
+    print("Nextcord API Version: %s"%(nextcord.__version__))
     print('____________________________________________________________________________________________________________')
 
 @bot.event
@@ -45,10 +50,20 @@ async def on_ready():
     await bot.change_presence(
         activity=nextcord.Activity(type=nextcord.ActivityType.streaming, name='%shelp｜在 %s 個伺服器中'%(bot.command_prefix,str(len(bot.guilds))))
         )
-
 def register_cogs():
-    for filename in extension:
-        bot.load_extension('cogs.%s'%(filename))
+    # Debug Commands
+    bot.load_extension('cogs.debugs')
+    bot.load_extension('cogs.slash_debugs')
+    # Events Cogs
+    bot.load_extension('cogs.events.events')
+    bot.load_extension('cogs.events.errors')
+    bot.load_extension('cogs.events.tasks')
+    # Traditional Commands
+    bot.load_extension('cogs.commands.general')
+    bot.load_extension('cogs.commands.management')
+    bot.load_extension('cogs.commands.music')
+
+
 
 register_cogs()
 bot.run(config.token)

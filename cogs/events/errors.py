@@ -22,12 +22,6 @@ class Errors(Cogs):
             embed.set_footer(text='Lost', icon_url=icon.icon_url)
 
             return await ctx.send(embed=embed)
-        else:
-            embed=nextcord.Embed(color=colors.red,timestamp=datetime.now())
-            embed.add_field(name=':question: 未知錯誤',value='%s'%(error))
-            embed.set_footer(text='Lost', icon_url=icon.icon_url)
-            
-            return await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(Errors(bot))
