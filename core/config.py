@@ -9,7 +9,7 @@ class config():
     version=config['Info']['version']
     # Import MongoDB connection config.
 
-    deploy=config['Delpoy']
+    deploy=config['Deploy']
     if str(deploy['enable_beta'])=='True':
         token=str(deploy['beta_token'])
     else:
