@@ -10,13 +10,8 @@ from core.utils import utils
 
 intents=nextcord.Intents.all()
 
-<<<<<<< HEAD
 bot=commands.Bot(command_prefix='$',intents=intents)
 bot.remove_command("help")
-=======
-bot=commands.Bot(command_prefix='b$',intents=intents)
-bot.remove_command('help')
->>>>>>> dev-v.0.9.9.8.beta
 bot.launch_time=datetime.utcnow()
 
 
