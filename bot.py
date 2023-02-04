@@ -39,12 +39,6 @@ def starting():
     print("Nextcord API Version: %s"%(nextcord.__version__))
     print('____________________________________________________________________________________________________________')
 
-@bot.event
-async def on_ready():
-    starting()
-    await bot.change_presence(
-        activity=nextcord.Activity(type=nextcord.ActivityType.streaming, name='%shelp｜在 %s 個伺服器中'%(bot.command_prefix,str(len(bot.guilds))))
-        )
 def register_cogs():
     # Debug Commands
     bot.load_extension('cogs.debugs')
@@ -58,7 +52,12 @@ def register_cogs():
     bot.load_extension('cogs.commands.management')
     bot.load_extension('cogs.commands.music')
 
-
+@bot.event
+async def on_ready():
+    starting()
+    await bot.change_presence(
+        activity=nextcord.Activity(type=nextcord.ActivityType.streaming, name='%shelp｜在 %s 個伺服器中'%(bot.command_prefix,str(len(bot.guilds))))
+        )
 
 register_cogs()
 bot.run(config.token)

@@ -17,7 +17,7 @@ class General(Cogs):
         embed.add_field(name='Hello，我是Lost，很高興見到你!',value='你可以從下面選擇想看的指令使令用法類別。')
         embed.set_footer(text="Lost", icon_url=icon.icon_url)
 
-        await ctx.reply(embed=embed,view=view)
+        return await ctx.reply(embed=embed,view=view)
  
     @commands.command(name='ping')
     async def ping(self, ctx:commands.Context):
@@ -25,7 +25,7 @@ class General(Cogs):
         hours, remainder = divmod(int(bot_uptime.total_seconds()), 3600)
         minutes, seconds = divmod(remainder, 60)
         days, hours = divmod(hours, 24)
-
+        # Embed Message
         embed=nextcord.Embed(color=colors.purple,timestamp=datetime.now())
         embed.insert_field_at
         embed.set_author(name='Lost狀態',icon_url=icon.icon_url,url='https://blog.earthlyeric6.ml/')
@@ -47,8 +47,6 @@ class General(Cogs):
         embed.set_footer(text='Lost', icon_url=icon.icon_url)
 
         return await ctx.reply(embed=embed)
-
-    
-    
+   
 def setup(bot):
     bot.add_cog(General(bot))

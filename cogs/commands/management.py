@@ -8,6 +8,7 @@ from core.config import config
 from ui.view import *
 
 class Management(Cogs):
+    # command ifno group
     @commands.group(name='info')
     async def info(self,ctx:commands.Context):
         pass
@@ -54,7 +55,7 @@ class Management(Cogs):
         embed.add_field(name='擁有者',value='%s'%(owner_mention),inline=False)
         embed.set_footer(text='Lost', icon_url=icon.icon_url)
 
-        await ctx.reply(embed=embed)
+        return await ctx.reply(embed=embed)
     
     @info.command(name='user')
     async def user(self,ctx:commands.Context,user:nextcord.Member=None):
@@ -79,7 +80,7 @@ class Management(Cogs):
         embed.add_field(name='創建時間',value='`%s`'%(created_date),inline=False)
         embed.set_footer(text='Lost', icon_url=icon.icon_url)
 
-        await ctx.reply(embed=embed)
+        return await ctx.reply(embed=embed)
 
 def setup(bot):
     bot.add_cog(Management(bot))
