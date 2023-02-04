@@ -1,5 +1,5 @@
 FROM python:3.9
-
+ENV enable_beta=False
 
 WORKDIR /app
 COPY requirements.txt ./

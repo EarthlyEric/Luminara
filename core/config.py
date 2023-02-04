@@ -10,7 +10,7 @@ class config():
     # Import MongoDB connection config.
 
     deploy=config['Deploy']
-    if str(deploy['enable_beta'])=='True':
+    if str(os.getenv('enable_beta', default=True))=='True':
         token=str(deploy['beta_token'])
     else:
         token=str(deploy['deploy_token'])
