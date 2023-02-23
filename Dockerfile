@@ -8,7 +8,7 @@ RUN apk update \
 && apk add --no-cache bash \
 && apk add --no-cache --virtual=build-dependencies unzip \
 && apk add --no-cache curl \
-&& apk add --no-cache openjdk-13-jdk
+&& apk add --no-cache openjdk13-jre-headless
 
 ### 3. Get Python, PIP
 
