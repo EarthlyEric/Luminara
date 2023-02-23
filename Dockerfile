@@ -1,5 +1,5 @@
 ### 1. Get Linux
-FROM alpine:3.7
+FROM alpine:3.17
 ENV enable_beta=False
 
 ### 2. Get Java via the package manager
