@@ -5,6 +5,7 @@ import time
 import platform
 from nextcord.ext import commands
 from datetime import datetime
+from core.lavalink.lavalink import init_lavalink
 from core.config import *
 from core.utils import utils
 
@@ -60,4 +61,5 @@ async def on_ready():
         )
 
 register_cogs()
+init_lavalink()
 bot.run(config.token)

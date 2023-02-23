@@ -18,11 +18,10 @@ class Music(Cogs):
         await self.bot.wait_until_ready()
 
         await wavelink.NodePool.create_node(bot=self.bot,
-            host='us01.lavalink.reload-dev.ml',
-            port=443,
+            host='localhost',
+            port=80,
             password='1A6DCEE7A27DA826B313FBC562CD2',
             identifier='Public US Main VPS 01',
-            https=True,
             )
 
     @commands.Cog.listener()
