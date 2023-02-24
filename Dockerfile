@@ -1,6 +1,7 @@
 ### 1. Get Linux
 FROM alpine:3.17
 ENV enable_beta=False
+ARG PYTHON_VERSION=3.9
 
 ### 2. Get Java via the package manager
 RUN apk update \
@@ -10,15 +11,26 @@ RUN apk update \
 && apk add --no-cache curl \
 && apk add --no-cache openjdk13
 
-### 3. Get Python, PIP
+# install build dependencies and needed tools
+RUN apk add \
+    wget \
+    gcc \
+    make \
+    zlib-dev \
+    libffi-dev \
+    openssl-dev \
+    musl-dev
 
-RUN apk add --no-cache python3=3.9 \
-&& python3 -m ensurepip \
-&& pip3 install --upgrade pip setuptools \
-&& rm -r /usr/lib/python*/ensurepip && \
-if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
-if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
-rm -r /root/.cache
+# download and extract python sources
+RUN cd /opt \
+    && wget https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz \                                              
+    && tar xzf Python-${PYTHON_VERSION}.tgz
+
+# build python and remove left-over sources
+RUN cd /opt/Python-${PYTHON_VERSION} \ 
+    && ./configure --prefix=/usr --enable-optimizations --with-ensurepip=install \
+    && make install \
+    && rm /opt/Python-${PYTHON_VERSION}.tgz /opt/Python-${PYTHON_VERSION} -rf
 
 WORKDIR /app
 COPY requirements.txt ./
