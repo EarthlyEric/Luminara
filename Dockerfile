@@ -8,12 +8,11 @@ RUN apk update \
 && apk add --no-cache bash \
 && apk add --no-cache --virtual=build-dependencies unzip \
 && apk add --no-cache curl \
-&& apk add --no-cache openjdk13 \
-&& apk add --no-cache gcc
+&& apk add --no-cache openjdk13
 
 ### 3. Get Python, PIP
 
-RUN apk add --no-cache python3 \
+RUN apk add --no-cache python3.9 \
 && python3 -m ensurepip \
 && pip3 install --upgrade pip setuptools \
 && rm -r /usr/lib/python*/ensurepip && \
