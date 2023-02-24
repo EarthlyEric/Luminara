@@ -4,7 +4,8 @@ ENV enable_beta=False
 
 RUN apk update && \
     apk upgrade 
-RUN apk add openjdk13
+RUN apk add openjdk13 \
+    apk add gcc
 
 WORKDIR /app
 COPY requirements.txt ./
