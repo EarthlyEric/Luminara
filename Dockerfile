@@ -12,7 +12,7 @@ RUN apk update \
 
 ### 3. Get Python, PIP
 
-RUN apk add --no-cache python3.9 \
+RUN apk add --no-cache python=3.9 \
 && python3 -m ensurepip \
 && pip3 install --upgrade pip setuptools \
 && rm -r /usr/lib/python*/ensurepip && \
