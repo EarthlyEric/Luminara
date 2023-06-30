@@ -15,9 +15,7 @@ bot=commands.Bot(command_prefix='$',intents=intents)
 bot.remove_command("help")
 bot.launch_time=datetime.utcnow()
 
-
-
-def starting():
+def start_up():
     os.system('cls' if os.name=='nt' else 'clear')
     print('____________________________________________________________________________________________________________')
     print(open('./res/logo/logo.txt', 'r').read())
@@ -55,7 +53,7 @@ def register_cogs():
 
 @bot.event
 async def on_ready():
-    starting()
+    start_up()
     await bot.change_presence(
         activity=nextcord.Activity(type=nextcord.ActivityType.streaming, name='%shelp｜在 %s 個伺服器中'%(bot.command_prefix,str(len(bot.guilds))))
         )
