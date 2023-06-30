@@ -62,4 +62,5 @@ async def on_ready():
 
 register_cogs()
 init_lavalink()
+time.sleep(5)
 bot.run(config.token)
