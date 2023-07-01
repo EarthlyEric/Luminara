@@ -12,7 +12,7 @@ WORKDIR /app
 COPY Pipfile ./
 COPY Pipfile.lock ./
 RUN pip3 install pipenv
-RUN pipenv install --system --deploy
+RUN pipenv install --system
 COPY . .
 EXPOSE 443
 EXPOSE 2333
