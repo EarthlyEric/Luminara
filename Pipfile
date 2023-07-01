@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+async-timeout = "==4.0.2"
+configobj = "==5.0.6"
+nextcord = "==2.5.0"
+pymysql = "==1.0.2"
+psutil = "==5.9.1"
+pymongo = "==4.3.3"
+wavelink = "==2.5.1"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"

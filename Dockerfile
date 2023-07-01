@@ -10,7 +10,9 @@ RUN apk add build-base linux-headers
 
 WORKDIR /app
 COPY requirements.txt ./
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pip3 install pipenv
+RUN pipenv install --system --deploy
 COPY . .
 EXPOSE 443
+EXPOSE 2333
 CMD [ "python3", "bot.py" ]

@@ -57,8 +57,6 @@ async def on_ready():
     await bot.change_presence(
         activity=nextcord.Activity(type=nextcord.ActivityType.streaming, name='%shelp｜在 %s 個伺服器中'%(bot.command_prefix,str(len(bot.guilds))))
         )
-
+init_lavalink()    
 register_cogs()
-init_lavalink()
-time.sleep(5)
 bot.run(config.token)
