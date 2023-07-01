@@ -9,7 +9,8 @@ RUN apk add gcc
 RUN apk add build-base linux-headers
 
 WORKDIR /app
-COPY requirements.txt ./
+COPY Pipfile ./
+COPY Pipfile.lock ./
 RUN pip3 install pipenv
 RUN pipenv install --system --deploy
 COPY . .
