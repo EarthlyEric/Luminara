@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c49868863e4e46ef4d0d114ef5abe8d68ad340c423652de44fdb6e7083e3cc2a"
+            "sha256": "4fd3cb98081c3937125312ac8db447317ed5d4281ec0dd9e75762770b6a9ca4a"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -545,6 +545,14 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==4.7.1"
+        },
+        "wavelink": {
+            "hashes": [
+                "sha256:2f83cf712cd1b12c3553bf33b3e8c98dd77cb1b725d3aef24245ee2a4608b5fe",
+                "sha256:dcb0f828478a700e8c3a1098206dd6e66f4737a150c7b2eedd2f7c6f234794ef"
+            ],
+            "index": "pypi",
+            "version": "==1.3.5"
         },
         "yarl": {
             "hashes": [
