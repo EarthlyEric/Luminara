@@ -11,8 +11,9 @@ RUN apk add build-base linux-headers
 WORKDIR /app
 COPY Pipfile ./
 COPY Pipfile.lock ./
-RUN pip3 install pipenv
-RUN pipenv install --system
+RUN  pip3 install pipenv  \
+    && pipenv requirements > requirements.txt \
+    && pip3 install -r requirements.txt
 COPY . .
 EXPOSE 443
 EXPOSE 2333
