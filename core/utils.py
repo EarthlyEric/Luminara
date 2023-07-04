@@ -23,8 +23,8 @@ class colors():
     blurple=0x7289da
     greyple=0x99aab5
 class icon():
-    icon_url= 'https://cdn-lost.reload-dev.ml/public/Lost.png'
-    guide_icon_url='https://cdn-lost.reload-dev.ml/public/guide.gif'
+    icon_url= 'https://raw.githubusercontent.com/EarthlyEric/Lost_cdn/master/public/Lost.png'
+    guide_icon_url='https://raw.githubusercontent.com/EarthlyEric/Lost_cdn/master/public/guide.gif'
 class utils():
     @classmethod
     def processesBar(self,level:int,style=['[','#','-',']'],multiple=2):
