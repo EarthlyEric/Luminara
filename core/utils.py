@@ -1,4 +1,5 @@
 class colors():
+
     default=0
     teal=0x1abc9c
     dark_teal=0x11806a
@@ -22,10 +23,14 @@ class colors():
     darker_grey=0x546e7a
     blurple=0x7289da
     greyple=0x99aab5
+
 class icon():
+
     icon_url= 'https://raw.githubusercontent.com/EarthlyEric/Lost_cdn/master/public/Lost.png'
     guide_icon_url='https://raw.githubusercontent.com/EarthlyEric/Lost_cdn/master/public/guide.gif'
+
 class utils():
+
     @classmethod
     def processesBar(self,level:int,style=['[','#','-',']'],multiple=2):
         """
@@ -53,11 +58,13 @@ class utils():
             string+=style[3]
 
             return string
+        
     @classmethod
     def showinfo(self,tip, info):
         print("{}:{}".format(tip,info))
 
 class emojis():
+    
     success='<a:success:1046376200685228082>'
     errors='<a:errors:1047495355786338365>'
     Lost='<:Lost:1008221589231386645>'

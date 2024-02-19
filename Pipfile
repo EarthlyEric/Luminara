@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 async-timeout = "==4.0.2"
-configobj = "==5.0.6"
+configobj = "*"
 nextcord = "*"
 pymysql = "==1.0.2"
 psutil = "==5.9.1"
