@@ -1,6 +1,6 @@
 import nextcord
 import psutil
-from datetime import datetime
+from datetime import datetime, timezone
 from core.utils import colors,icon,utils,emojis
 from nextcord.ext import commands
 from core.classes import Cogs

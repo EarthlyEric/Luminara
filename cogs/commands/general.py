@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 import nextcord
 import psutil
-from datetime import datetime
+from datetime import datetime,timezone
 from core.utils import colors,icon,utils,emojis
 from nextcord.ext import commands
 from core.classes import Cogs
@@ -21,7 +21,7 @@ class General(Cogs):
  
     @commands.command(name='ping')
     async def ping(self, ctx:commands.Context):
-        bot_uptime = datetime.utcnow() - self.bot.launch_time
+        bot_uptime = datetime.now(timezone.utc) - self.bot.launch_time
         hours, remainder = divmod(int(bot_uptime.total_seconds()), 3600)
         minutes, seconds = divmod(remainder, 60)
         days, hours = divmod(hours, 24)

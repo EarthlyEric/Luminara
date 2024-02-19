@@ -1,11 +1,12 @@
 # -*- coding: UTF-8 -*-
 import nextcord
+import datetime
 import os
 import time
 import platform
 from nextcord.ext import commands
-from datetime import datetime
-from core.lavalink.lavalink import init_lavalink
+from datetime import datetime, timezone
+# load core library
 from core.config import *
 from core.utils import utils
 
@@ -13,10 +14,10 @@ intents=nextcord.Intents.all()
 
 bot=commands.Bot(command_prefix='$',intents=intents)
 bot.remove_command("help")
-bot.launch_time=datetime.utcnow()
+bot.launch_time=datetime.now(timezone.utc)
 
 def start_up():
-    os.system('cls' if os.name=='nt' else 'clear')
+    # os.system('cls' if os.name=='nt' else 'clear')
     print('____________________________________________________________________________________________________________')
     print(open('./res/logo/logo.txt', 'r').read())
     time.sleep(0.5)
@@ -49,7 +50,7 @@ def register_cogs():
     # Traditional Commands
     bot.load_extension('cogs.commands.general')
     bot.load_extension('cogs.commands.management')
-    bot.load_extension('cogs.commands.music')
+    # bot.load_extension('cogs.commands.music')
 
 @bot.event
 async def on_ready():
