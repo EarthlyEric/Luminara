@@ -1,5 +1,7 @@
 # Luminara Version History
 ---
+## v.1.0.release
+
 ## v.0.9.9.9.beta
 - [-]暫時移除music功能 Rebuild
 - [+]更改機器人名稱  "Lost">>"Luminara"
