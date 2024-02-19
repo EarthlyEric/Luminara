@@ -53,7 +53,7 @@ class Management(Cogs):
         embed.add_field(name='加成狀態',value='`%d個`/`%d級`'%(booster,booster_level),inline=False)
         embed.add_field(name='總頻道數',value='`%s個`\n`(文字頻道:%s個，語音頻道:%s個)`\n(機器人僅顯示有權訪問)\n'%(channels_count,text_channels_count,voice_channels_count))
         embed.add_field(name='擁有者',value='%s'%(owner_mention),inline=False)
-        embed.set_footer(text='Lost', icon_url=icon.icon_url)
+        embed.set_footer(text='Luminara', icon_url=icon.icon_url)
 
         return await ctx.reply(embed=embed)
     
@@ -78,7 +78,7 @@ class Management(Cogs):
         embed.set_thumbnail(url=avatar_url)
         embed.add_field(name='`使用者ID`',value='%s'%(id),inline=False)
         embed.add_field(name='創建時間',value='`%s`'%(created_date),inline=False)
-        embed.set_footer(text='Lost', icon_url=icon.icon_url)
+        embed.set_footer(text='Luminara', icon_url=icon.icon_url)
 
         return await ctx.reply(embed=embed)
 

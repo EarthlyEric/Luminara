@@ -33,9 +33,9 @@ def start_up():
     print('Time:%s'%(datetime.now().strftime("%Y-%m-%d %I:%M:%S %p")))
     print('____________________________________________________________________________________________________________')
     print('                                                                                                            ')
-    print("Lost is online")
+    print("Luminara is online")
     print("Login as %s"%(bot.user))
-    print("Lost Version: %s"%(config.version))
+    print("Luminara Version: %s"%(config.version))
     print("Nextcord API Version: %s"%(nextcord.__version__))
     print('____________________________________________________________________________________________________________')
 

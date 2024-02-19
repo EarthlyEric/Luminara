@@ -13,13 +13,13 @@ class Errors(Cogs):
         if isinstance(error, commands.MissingRequiredArgument):
             embed=nextcord.Embed(color=colors.red,timestamp=datetime.now())
             embed.add_field(name=':question: 遺失必要參數',value='%s'%(error))
-            embed.set_footer(text='Lost', icon_url=icon.icon_url)
+            embed.set_footer(text='Luminara', icon_url=icon.icon_url)
 
             return await ctx.send(embed=embed)
         if isinstance(error,commands.CommandNotFound):
             embed=nextcord.Embed(color=colors.red,timestamp=datetime.now())
             embed.add_field(name=':question: 未知命令',value='%s'%(error))
-            embed.set_footer(text='Lost', icon_url=icon.icon_url)
+            embed.set_footer(text='Luminara', icon_url=icon.icon_url)
 
             return await ctx.send(embed=embed)
 

@@ -60,7 +60,7 @@ class Music(Cogs):
 
             embed=nextcord.Embed(title=':white_check_mark: 現在播放!',description='%s'% (track.uri),color=colors.green,timestamp=datetime.now())
             embed.set_thumbnail(url=track.thumbnail)
-            embed.set_footer(text=f'Lost', icon_url=icon.icon_url)
+            embed.set_footer(text=f'Luminara', icon_url=icon.icon_url)
 
             await ctx.reply(embed=embed,view=view)
         else:
@@ -68,7 +68,7 @@ class Music(Cogs):
 
             embed=nextcord.Embed(title=':white_check_mark: 已加入播放清單!',description='%s'% (track.title),color=colors.green,timestamp=datetime.now())
             embed.set_thumbnail(url=track.thumbnail)
-            embed.set_footer(text=f'Lost', icon_url=icon.icon_url)
+            embed.set_footer(text=f'Luminara', icon_url=icon.icon_url)
 
             await ctx.reply(embed=embed,view=view)
         vc.ctx = ctx
@@ -76,14 +76,14 @@ class Music(Cogs):
     @commands.command()
     async def leave(self,ctx:commands.Context):
         if not ctx.voice_client:
-            embed=nextcord.Embed(title=f':no_entry: Lost 沒有加入任何頻道。',color=colors.red,timestamp=datetime.now())
-            embed.set_footer(text=f'Lost', icon_url=icon.icon_url)
+            embed=nextcord.Embed(title=f':no_entry: Luminara 沒有加入任何頻道。',color=colors.red,timestamp=datetime.now())
+            embed.set_footer(text=f'Luminara', icon_url=icon.icon_url)
             
             return await ctx.reply
 
         vc: wavelink.Player=await ctx.voice_client.disconnect()
         embed=nextcord.Embed(title=f':no_entry: 已被{ctx.author.name}要求中斷連線',color=colors.red,timestamp=datetime.now())
-        embed.set_footer(text=f'Lost', icon_url=icon.icon_url)
+        embed.set_footer(text=f'Luminara', icon_url=icon.icon_url)
 
         return await ctx.reply(embed=embed)
         
