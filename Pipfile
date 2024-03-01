@@ -6,11 +6,10 @@ name = "pypi"
 [packages]
 async-timeout = "==4.0.2"
 configobj = "*"
-nextcord = "*"
 pymysql = "==1.0.2"
 psutil = "==5.9.1"
 pymongo = "==4.3.3"
-wavelink = "*"
+"discord.py" = "*"
 
 [dev-packages]
 
