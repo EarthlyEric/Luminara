@@ -11,7 +11,6 @@ from core.utils import colors,icon
 class Music(Cogs):
     def __init__(self, bot:commands.Bot):
         self.bot = bot
-        bot.loop.create_task(self.connect_nodes())
 
     async def connect_nodes(self):
         """連線到Lavalink節點"""
