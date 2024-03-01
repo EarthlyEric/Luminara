@@ -1,16 +1,15 @@
 # -*- coding: UTF-8 -*-
-import nextcord
+import discord
 import datetime
 import os
 import time
 import platform
-from nextcord.ext import commands
+from discord.ext import commands
 from datetime import datetime, timezone
-# load core library
 from core.config import *
 from core.utils import utils
 
-intents=nextcord.Intents.all()
+intents=discord.Intents.all()
 
 bot=commands.Bot(command_prefix='$',intents=intents)
 bot.remove_command("help")
@@ -36,7 +35,7 @@ def start_up():
     print("Luminara is online")
     print("Login as %s"%(bot.user))
     print("Luminara Version: %s"%(config.version))
-    print("Nextcord API Version: %s"%(nextcord.__version__))
+    print("nextcord API Version: %s"%(discord.__version__))
     print('____________________________________________________________________________________________________________')
 
 def register_cogs():
@@ -50,13 +49,13 @@ def register_cogs():
     # Traditional Commands
     bot.load_extension('cogs.commands.general')
     bot.load_extension('cogs.commands.management')
-    # bot.load_extension('cogs.commands.music')
+    bot.load_extension('cogs.commands.music')
 
 @bot.event
 async def on_ready():
     start_up()
     await bot.change_presence(
-        activity=nextcord.Activity(type=nextcord.ActivityType.streaming, name='%shelp｜在 %s 個伺服器中'%(bot.command_prefix,str(len(bot.guilds))))
+        activity=discord.Activity(type=discord.ActivityType.streaming, name='%shelp｜在 %s 個伺服器中'%(bot.command_prefix,str(len(bot.guilds))))
         )
-register_cogs()
+#register_cogs()
 bot.run(config.token)
