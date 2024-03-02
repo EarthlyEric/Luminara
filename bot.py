@@ -54,8 +54,8 @@ async def main():
         #bot.load_extension('cogs.events.errors')
         #bot.load_extension('cogs.events.tasks')
         # Traditional Commands
-        #bot.load_extension('cogs.commands.general')
-        #bot.load_extension('cogs.commands.management')
+        await bot.load_extension('cogs.commands.general')
+        await bot.load_extension('cogs.commands.management')
         #bot.load_extension('cogs.commands.music')
         await bot.start(config.token)
 
