@@ -1,8 +1,8 @@
-import nextcord
+import discord
 import psutil
 from datetime import datetime, timezone
 from core.utils import colors,icon,utils,emojis
-from nextcord.ext import commands
+from discord.ext import commands
 from core.classes import Cogs
 from core.config import config
 from ui.view import *
@@ -37,7 +37,7 @@ class Management(Cogs):
         elif booster>=14:
             booster_level=3
 
-        embed=nextcord.Embed(
+        embed=discord.Embed(
         title='<:discord_api:1013700080118804580> |伺服器詳情',
         description='***%s***'%(name),
         color=colors.purple,
@@ -58,7 +58,7 @@ class Management(Cogs):
         return await ctx.reply(embed=embed)
     
     @info.command(name='user')
-    async def user(self,ctx:commands.Context,user:nextcord.Member=None):
+    async def user(self,ctx:commands.Context,user:discord.Member=None):
         if user==None:
             name=ctx.author.name
             avatar_url=ctx.author.avatar.url
@@ -70,7 +70,7 @@ class Management(Cogs):
             avatar_url=user.avatar.url
             created_date=user.created_at.strftime('%Y年%m月%d日 %H時%M分%S秒')
 
-        embed=nextcord.Embed(
+        embed=discord.Embed(
         title='%s |使用者詳情'%(emojis.discord_api),
         description='***%s***'%(name),
         color=colors.purple,
@@ -82,6 +82,6 @@ class Management(Cogs):
 
         return await ctx.reply(embed=embed)
 
-def setup(bot):
-    bot.add_cog(Management(bot))
+async def setup(bot):
+    await bot.add_cog(Management(bot))
     

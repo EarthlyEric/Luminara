@@ -1,9 +1,9 @@
 # -*- coding: UTF-8 -*-
-import nextcord
+import discord
 import psutil
 from datetime import datetime,timezone
 from core.utils import colors,icon,utils,emojis
-from nextcord.ext import commands
+from discord.ext import commands
 from core.classes import Cogs
 from core.config import config
 from ui.view import *
@@ -12,7 +12,7 @@ class General(Cogs):
     @commands.command(name='help')
     async def help(self, ctx:commands.Context):
         view=HelpView()
-        embed=nextcord.Embed(color=colors.purple,timestamp=datetime.now())
+        embed=discord.Embed(color=colors.purple,timestamp=datetime.now())
         embed.set_author(name='Luminara使用指南',icon_url=icon.guide_icon_url,url='https://blog.earthlyeric6.ml/')
         embed.add_field(name='Hello，我是Luminara，很高興見到你!',value='你可以從下面選擇想看的指令使令用法類別。')
         embed.set_footer(text="Luminara", icon_url=icon.icon_url)
@@ -26,7 +26,7 @@ class General(Cogs):
         minutes, seconds = divmod(remainder, 60)
         days, hours = divmod(hours, 24)
         # Embed Message
-        embed=nextcord.Embed(color=colors.purple,timestamp=datetime.now())
+        embed=discord.Embed(color=colors.purple,timestamp=datetime.now())
         embed.insert_field_at
         embed.set_author(name='Luminara狀態',icon_url=icon.icon_url,url='https://blog.earthlyeric6.ml/')
         # CPU Usage
@@ -48,5 +48,5 @@ class General(Cogs):
 
         return await ctx.reply(embed=embed)
    
-def setup(bot):
-    bot.add_cog(General(bot))
+async def setup(bot):
+    await bot.add_cog(General(bot))
