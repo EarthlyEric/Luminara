@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
-import nextcord
-from nextcord.ext import commands
+import discord
+from discord.ext import commands
 
 class Cogs(commands.Cog):
     def __init__(self, bot):

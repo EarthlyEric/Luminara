@@ -1,9 +1,9 @@
 # -*- coding: UTF-8 -*-
 import discord
 import datetime
-import os
 import time
 import platform
+import asyncio
 from discord.ext import commands
 from datetime import datetime, timezone
 from core.config import *
@@ -11,12 +11,11 @@ from core.utils import utils
 
 intents=discord.Intents.all()
 
-bot=commands.Bot(command_prefix='$',intents=intents)
+bot=commands.Bot(command_prefix='b$',intents=intents)
 bot.remove_command("help")
 bot.launch_time=datetime.now(timezone.utc)
 
 def start_up():
-    # os.system('cls' if os.name=='nt' else 'clear')
     print('____________________________________________________________________________________________________________')
     print(open('./res/logo/logo.txt', 'r').read())
     time.sleep(0.5)
@@ -35,27 +34,29 @@ def start_up():
     print("Luminara is online")
     print("Login as %s"%(bot.user))
     print("Luminara Version: %s"%(config.version))
-    print("nextcord API Version: %s"%(discord.__version__))
+    print("Discord API Version: %s"%(discord.__version__))
     print('____________________________________________________________________________________________________________')
-
-def register_cogs():
-    # Debug Commands
-    bot.load_extension('cogs.debugs')
-    bot.load_extension('cogs.slash_debugs')
-    # Events Cogs
-    bot.load_extension('cogs.events.events')
-    bot.load_extension('cogs.events.errors')
-    bot.load_extension('cogs.events.tasks')
-    # Traditional Commands
-    bot.load_extension('cogs.commands.general')
-    bot.load_extension('cogs.commands.management')
-    bot.load_extension('cogs.commands.music')
-
+    
 @bot.event
 async def on_ready():
     start_up()
     await bot.change_presence(
         activity=discord.Activity(type=discord.ActivityType.streaming, name='%shelp｜在 %s 個伺服器中'%(bot.command_prefix,str(len(bot.guilds))))
         )
-#register_cogs()
-bot.run(config.token)
+
+async def main():
+    async with bot:
+        # Debug Commands
+        await bot.load_extension('cogs.debugs')
+        #bot.load_extension('cogs.slash_debugs')
+        # Events Cogs
+        #bot.load_extension('cogs.events.events')
+        #bot.load_extension('cogs.events.errors')
+        #bot.load_extension('cogs.events.tasks')
+        # Traditional Commands
+        #bot.load_extension('cogs.commands.general')
+        #bot.load_extension('cogs.commands.management')
+        #bot.load_extension('cogs.commands.music')
+        await bot.start(config.token)
+
+asyncio.run(main())
