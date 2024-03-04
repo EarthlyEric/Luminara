@@ -1,13 +1,13 @@
 # -*- coding: UTF-8 -*-
-import nextcord
-from nextcord.ext import commands
+import discord
+from discord.ext import commands
 from core.config import *
-from core.classes import Cogs
+from classes import Cogs
 
 class Events(Cogs):
     @commands.Cog.listener()
-    async def on_guild_join(self, guild:nextcord.Guild):
+    async def on_guild_join(self, guild:discord.Guild):
         await print('%s'%(guild.name))
 
-def setup(bot):
-    bot.add_cog(Events(bot))
+async def setup(bot):
+    await bot.add_cog(Events(bot))

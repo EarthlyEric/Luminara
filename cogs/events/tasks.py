@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
-import nextcord
-from nextcord.ext import tasks,commands
+import discord
+from discord.ext import tasks,commands
 
 class Tasks(commands.Cog):
     def __init__(self, bot):
@@ -10,12 +10,12 @@ class Tasks(commands.Cog):
     @tasks.loop(seconds=60)
     async def update_status(self):
        await self.bot.change_presence(
-        activity=nextcord.Activity(type=nextcord.ActivityType.streaming, name ='%shelp｜在 %s 個伺服器中'%(self.bot.command_prefix,str(len(self.bot.guilds))))
+        activity=discord.Activity(type=discord.ActivityType.streaming, name ='%shelp｜在 %s 個伺服器中'%(self.bot.command_prefix,str(len(self.bot.guilds))))
         )
          
     @update_status.before_loop
     async def before_update_ststus(self):
         await self.bot.wait_until_ready()
 
-def setup(bot):
-    bot.add_cog(Tasks(bot))
+async def setup(bot):
+    await bot.add_cog(Tasks(bot))

@@ -1,9 +1,9 @@
 # -*- coding: UTF-8 -*-
 from datetime import datetime
-import nextcord
-from nextcord.ext import commands
+import discord
+from discord.ext import commands
 from core.config import *
-from core.classes import Cogs
+from classes import Cogs
 from core.utils import colors,icon
 
 class Errors(Cogs):
@@ -11,17 +11,17 @@ class Errors(Cogs):
     async def on_command_error(self, ctx:commands.Context, error):
         print(error)
         if isinstance(error, commands.MissingRequiredArgument):
-            embed=nextcord.Embed(color=colors.red,timestamp=datetime.now())
+            embed=discord.Embed(color=colors.red,timestamp=datetime.now())
             embed.add_field(name=':question: 遺失必要參數',value='%s'%(error))
             embed.set_footer(text='Luminara', icon_url=icon.icon_url)
 
             return await ctx.send(embed=embed)
         if isinstance(error,commands.CommandNotFound):
-            embed=nextcord.Embed(color=colors.red,timestamp=datetime.now())
+            embed=discord.Embed(color=colors.red,timestamp=datetime.now())
             embed.add_field(name=':question: 未知命令',value='%s'%(error))
             embed.set_footer(text='Luminara', icon_url=icon.icon_url)
 
             return await ctx.send(embed=embed)
 
-def setup(bot):
-    bot.add_cog(Errors(bot))
+async def setup(bot):
+    await bot.add_cog(Errors(bot))
