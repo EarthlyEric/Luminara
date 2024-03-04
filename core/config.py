@@ -6,6 +6,9 @@ class config():
     config=ConfigObj('config.ini')
     version=config['version']
 
+    lavalinkHost = os.getenv('lavalinkHost')
+    lavalinkPasswd = os.getenv('lavalinkPasswd')
+
     if str(os.getenv('betaMode', default=True))=='True':
         token=os.getenv('betaToken')
         commandPrefix="b"+os.getenv('commandPrefix')
