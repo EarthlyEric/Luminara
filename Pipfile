@@ -10,6 +10,7 @@ pymysql = "==1.0.2"
 psutil = "==5.9.1"
 pymongo = "==4.3.3"
 "discord.py" = "*"
+wavelink = "*"
 
 [dev-packages]
 
