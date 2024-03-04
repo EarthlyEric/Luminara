@@ -1,8 +1,10 @@
+# -*- coding: UTF-8 -*-
 import discord
 import wavelink
 from datetime import datetime, timezone
 from core.utils import colors,icon,utils,emojis
 from discord.ext import commands
+
 from classes import Cogs
 from core.config import config
 from ui.view import *

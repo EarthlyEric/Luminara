@@ -1,7 +1,8 @@
+# -*- coding: UTF-8 -*-
 import discord
 from discord.ext import commands
 from datetime import datetime
-from core.config import *
+
 from classes import Slash_Cogs
 from core.utils import colors,icon,emojis
 

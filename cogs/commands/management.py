@@ -1,14 +1,13 @@
+# -*- coding: UTF-8 -*-
 import discord
-import psutil
-from datetime import datetime, timezone
-from core.utils import colors,icon,utils,emojis
+from datetime import datetime
 from discord.ext import commands
+
 from classes import Cogs
-from core.config import config
 from ui.view import *
+from core.utils import colors,icon,emojis
 
 class Management(Cogs):
-    # command ifno group
     @commands.group(name='info')
     async def info(self,ctx:commands.Context):
         pass

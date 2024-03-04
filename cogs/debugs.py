@@ -2,7 +2,7 @@
 import discord
 from discord.ext import commands
 from datetime import datetime
-from core.config import *
+
 from classes import Cogs
 from core.utils import colors, emojis,icon
 
