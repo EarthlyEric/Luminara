@@ -4,14 +4,13 @@ import datetime
 import time
 import platform
 import asyncio
+import classes
 from discord.ext import commands
 from datetime import datetime, timezone
 from core.config import *
 from core.utils import utils
 
-intents=discord.Intents.all()
-
-bot=commands.Bot(command_prefix='b$',intents=intents)
+bot=classes.theBot()
 bot.remove_command("help")
 bot.launch_time=datetime.now(timezone.utc)
 
@@ -48,11 +47,11 @@ async def main():
     async with bot:
         # Debug Commands
         await bot.load_extension('cogs.debugs')
-        #bot.load_extension('cogs.slash_debugs')
+        #await bot.load_extension('cogs.slash_debugs')
         # Events Cogs
-        #bot.load_extension('cogs.events.events')
-        #bot.load_extension('cogs.events.errors')
-        #bot.load_extension('cogs.events.tasks')
+        await bot.load_extension('cogs.events.events')
+        await bot.load_extension('cogs.events.errors')
+        await bot.load_extension('cogs.events.tasks')
         # Traditional Commands
         await bot.load_extension('cogs.commands.general')
         await bot.load_extension('cogs.commands.management')
