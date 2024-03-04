@@ -1,6 +1,6 @@
 FROM python:3.10-alpine3.17
-ENV enable_beta=False
-ENV deploy_token=null
+ENV betaMode=False
+ENV deployToken default_value
 
 RUN apk update && \
     apk upgrade 
