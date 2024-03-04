@@ -4,7 +4,7 @@ import wavelink
 import nextcord
 from datetime import datetime
 from nextcord.ext import commands
-from core.classes import Cogs
+from classes import Cogs
 from core.config import *
 from core.utils import colors,icon
 
