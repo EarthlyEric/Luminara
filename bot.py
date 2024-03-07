@@ -56,7 +56,7 @@ async def main():
         # Traditional Commands
         await bot.load_extension('cogs.commands.general')
         await bot.load_extension('cogs.commands.management')
-        #bot.load_extension('cogs.commands.music')
+        await bot.load_extension('cogs.commands.music')
         await bot.start(config.token)
 
 asyncio.run(main())
