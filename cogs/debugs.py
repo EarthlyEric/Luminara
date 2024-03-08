@@ -22,14 +22,14 @@ class Debugs(Cogs):
             await self.bot.reload_extension('cogs.%s.%s'%(extension_location,extension))
             print(f'[Debug][INFO] Reloaded {extension_location}.{extension}')
             embed = discord.Embed(title='重新載入中...', description='`%s` 載入成功'%(extension), color=colors.green,timestamp=datetime.now())
-            embed.set_footer(text='Luminara•Debug System', icon_url=icon.icon_url)
+            embed.set_footer(text='Luminara • Debug System')
             return await ctx.send(embed=embed)
         except Exception as e:
             print('[Debug][ERROR] %s')%(e)
             embed = discord.Embed(title='重新載入中...', description='載入失敗', color=colors.red,timestamp=datetime.now())
             embed.add_field(name='原因',value='`%s`'%(e))
             embed.set_footer(text='Luminara', icon_url=icon.icon_url)
-            embed.set_footer(text='Luminara•Debug System', icon_url=icon.icon_url)
+            embed.set_footer(text='Luminara • Debug System')
             return await ctx.send(embed=embed)
 async def setup(bot):
     await bot.add_cog(Debugs(bot))
