@@ -16,19 +16,25 @@ class Music(Cogs):
     
     @commands.command(name='play')
     async def play(self,ctx: commands.Context, *, query: str):
-        embed = discord.Embed('')
+        embed = discord.Embed()
         if not ctx.guild:
-            return await ctx.send('')
+            embed.color=colors.red
+            embed.timestamp=datetime.now(timezone.utc)
+            embed.title="%s | 無法在私人訊息中使用此命令 !" % (emojis.errors)
+            embed.set_footer(text='Luminara')
+            return await ctx.send(embed=embed)
     
         player : wavelink.Player
         player = cast(wavelink.Player, ctx.voice_client)
         
         if not player:
             try:
-                player = await ctx.author.voice.channel.connect(cls=wavelink.Player)  # type: ignore
+                embed.color=colors.green
+                embed.timestamp=datetime.now(timezone.utc)
+                embed.title="%s | 成功加入您所處的語音頻道 `%s`" % (emojis.success,ctx.author.voice.channel.mention)
+                player = await ctx.author.voice.channel.connect(cls=wavelink.Player)  
             except AttributeError:
-                return await ctx.send("Please join a voice channel first before using this command.")
-                
+                return await ctx.send("Please join a voice channel first before using this command.")   
             except discord.ClientException:
                 return await ctx.send("I was unable to join this voice channel. Please try again.")
                 
