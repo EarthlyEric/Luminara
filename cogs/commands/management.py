@@ -37,7 +37,7 @@ class Management(Cogs):
             booster_level=3
 
         embed=discord.Embed(
-        title='<:discord_api:1013700080118804580> |伺服器詳情',
+        title='<:discord_api:1013700080118804580> | 伺服器詳情',
         description='***%s***'%(name),
         color=colors.purple,
         timestamp=datetime.now())
@@ -70,7 +70,7 @@ class Management(Cogs):
             created_date=user.created_at.strftime('%Y年%m月%d日 %H時%M分%S秒')
 
         embed=discord.Embed(
-        title='%s |使用者詳情'%(emojis.discord_api),
+        title='%s | 使用者詳情'%(emojis.discord_api),
         description='***%s***'%(name),
         color=colors.purple,
         timestamp=datetime.now())
