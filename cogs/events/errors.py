@@ -5,7 +5,7 @@ from discord.ext import commands
 
 from core.config import *
 from classes import Cogs
-from core.utils import colors,icon
+from core.utils import colors,icon,emojis
 
 class Errors(Cogs):
     @commands.Cog.listener()
@@ -13,7 +13,7 @@ class Errors(Cogs):
         print(error)
         if isinstance(error, commands.MissingRequiredArgument):
             embed=discord.Embed(color=colors.red,timestamp=datetime.now())
-            embed.add_field(name=':question: 遺失必要參數',value='%s'%(error))
+            embed.add_field(name='%s | 遺失必要參數'%(emojis.errors),value='%s'%(error))
             embed.set_footer(text='Luminara', icon_url=icon.icon_url)
 
             return await ctx.send(embed=embed)
