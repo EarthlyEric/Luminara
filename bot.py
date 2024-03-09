@@ -12,7 +12,7 @@ from core.config import *
 from core.utils import utils
 
 bot=classes.theBot()
-bot.remove_command("help")
+bot.remove_command('help')
 bot.launch_time=datetime.now(timezone.utc)
 
 def start_up():
@@ -57,6 +57,7 @@ async def main():
         await bot.load_extension('cogs.commands.general')
         await bot.load_extension('cogs.commands.management')
         await bot.load_extension('cogs.commands.music')
+        
         await bot.start(config.token)
 
 asyncio.run(main())
