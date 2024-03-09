@@ -1,6 +1,6 @@
 <p align="center">
     <h1 align="center">Luminara </h1>
-    A Powerful Discord Bot
+    A Powerful Discord Bot，Based on Discord.py and wavelink.
 </p>
 
 ---
@@ -15,5 +15,6 @@
 
 ## Work with
 ---
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 

@@ -25,3 +25,14 @@ class HelpView(discord.ui.View):
     def __init__(self):
         super().__init__()
         self.add_item(Help())
+class PlayButton(discord.ui.Button):
+    def __init__(self):
+        super().__init__(label='播放',style=discord.ButtonStyle.green)
+    async def callback(self,interaction:discord.Interaction):
+        await interaction.response.send_message('尚未完成')
+
+class MusicControllerView(discord.ui.View):
+    def __init__(self):
+        super().__init__()
+        self.add_item(PlayButton())
+            
