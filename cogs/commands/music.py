@@ -25,21 +25,37 @@ class Music(Cogs):
         original: wavelink.Playable | None = payload.original
         track: wavelink.Playable = payload.track
 
-        embed: discord.Embed = discord.Embed(title="Now Playing")
+        embed: discord.Embed = discord.Embed()
+        embed.title = "Now Playing"
+        embed.color = discord.Color.purple()
+        embed.timestamp=datetime.now(timezone.utc)
         embed.description = f"**{track.title}** by `{track.author}`"
-
+        embed.set_footer(text='Luminara')
+        
         if track.artwork:
             embed.set_thumbnail(url=track.artwork)
 
         if original and original.recommended:
-            embed.description += f"\n\n`This track was recommended via {track.source}`"
+            embed.description += f"\n\n`本曲目來自 {track.source} 自動推薦`"
 
         if track.album.name:
-            embed.add_field(name="Album", value=track.album.name)
+            embed.add_field(name="專輯", value=track.album.name)
 
         await player.home.send(embed=embed)
 
         musciController =MusicController()
+    
+    @commands.Cog.listener()
+    async def on_wavelink_truck_end(self, payload: wavelink.TrackEndEventPayload) -> None:
+        player: wavelink.Player | None = payload.player
+        if not player:
+            # Handle edge cases...
+            return
+
+        if not player.queue:
+            pass
+        else:
+            return await player.play(player.queue.get())
 
         
 
@@ -53,24 +69,27 @@ class Music(Cogs):
             embed.color=discord.Color.red()
             embed.title="%s | 無法在私人訊息中使用此命令 !" % (emojis.errors)
             return await ctx.send(embed=embed)
+        
+        loading= await ctx.send("%s | 正在處理您的請求，請稍後..." % (emojis.loading))
     
         player : wavelink.Player
         player = cast(wavelink.Player, ctx.voice_client)
         
         if not player:
+            loading.delete()
             try:
                 embed.color=colors.green
-                embed.title="%s | 成功加入您所處的語音頻道 %s" % (emojis.success,ctx.author.voice.channel.mention)
+                embed.title="%s | 成功加入您所處的語音頻道 %s !" % (emojis.success,ctx.author.voice.channel.mention)
                 
                 player = await ctx.author.voice.channel.connect(cls=wavelink.Player)
                 await ctx.send(embed=embed)
             except AttributeError:
                 embed.color=discord.Color.red()
-                embed.title="%s | 請先加入任一語音頻道在使用本命令" % (emojis.errors)
+                embed.title="%s | 請先加入任一語音頻道在使用本命令 !" % (emojis.errors)
                 return await ctx.send(embed=embed)   
             except discord.ClientException:
                 embed.color=discord.Color.red()
-                embed.title="%s | 未知原因，無法加入您所處的語音頻道" % (emojis.errors)
+                embed.title="%s | 未知原因，無法加入您所處的語音頻道 !" % (emojis.errors)
                 return await ctx.send(embed=embed)
             
         player.autoplay = wavelink.AutoPlayMode.enabled
@@ -79,15 +98,16 @@ class Music(Cogs):
             player.home = ctx.channel
         elif player.home != ctx.channel:
             embed.color=discord.Color.red()
-            embed.title="%s | 只能在 %s" % (emojis.errors,player.home.mention)
-            await ctx.send(embed=embed)
+            embed.title="%s | 只能在 %s 使用本命令 !" % (emojis.errors,player.home.mention)
+            return await ctx.send(embed=embed)
         
         tracks: wavelink.Search = await wavelink.Playable.search(query)
 
         if not tracks:
             embed.color=discord.Color.red()
-            await ctx.send(f"{ctx.author.mention} - Could not find any tracks with that query. Please try again.")
-            return
+            embed.title="%s | 找不到任何與您的查詢相符的結果 !" % (emojis.errors)
+            await ctx.send(ctx.author.mention)
+            return await ctx.send(embed=embed)
 
         if isinstance(tracks, wavelink.Playlist):
             # tracks is a playlist...
@@ -96,7 +116,7 @@ class Music(Cogs):
         else:
             track: wavelink.Playable = tracks[0]
             await player.queue.put_wait(track)
-            await ctx.send(f"Added **`{track}`** to the queue.")
+            await ctx.send(f"已將 **`{track}`** 加入播放清單")
 
         if not player.playing:
             # Play now since we aren't playing anything...
