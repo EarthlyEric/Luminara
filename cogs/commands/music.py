@@ -56,7 +56,19 @@ class Music(Cogs):
 
         await player.home.send(embed=embed)
 
-        musciController =MusicController()
+        musciController=MusicController()
+        
+    """
+        Wait to build the music controller embed class.
+    
+        if not hasattr(player, "musicController_id"):
+            musciController_id = await player.home.send(embed=musciController)
+            player.musicController_id = musciController_id.id
+        else:
+            message = await player.channel.fetch_message(player.musicController_id)
+            musciController_id = await message.edit(embed=musciController)
+            player.musicController_id = musciController_id.id
+    """
 
     @commands.Cog.listener()
     async def on_wavelink_track_end(self, payload: wavelink.TrackEndEventPayload) -> None:
