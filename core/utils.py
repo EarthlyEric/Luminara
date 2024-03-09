@@ -28,30 +28,30 @@ class colors():
 
 class icon():
 
-    icon_url= 'https://raw.githubusercontent.com/EarthlyEric/Lost_cdn/master/public/Lost.png'
-    guide_icon_url='https://raw.githubusercontent.com/EarthlyEric/Lost_cdn/master/public/guide.gif'
+    icon_url= "https://raw.githubusercontent.com/EarthlyEric/Lost_cdn/master/public/Lost.png"
+    guide_icon_url="https://raw.githubusercontent.com/EarthlyEric/Lost_cdn/master/public/guide.gif"
 
 class utils():
 
     @classmethod
-    def processesBar(self,level:int,style=['[','#','-',']'],multiple=2):
+    def processesBar(self,level:int,style=["[","#","-","]"],multiple=2):
         """
         style format example
         if style input is like this
 
             level=50
             multiple=1
-            style=['[','#','-',']']
+            style=["[","#","-","]"]
 
         output: [######-----]
         
         """
         if level>100 or level<0 or multiple<=0:
-            raise ValueError('level limt is 0~100,multiple must above 1.')
+            raise ValueError("level limt is 0~100,multiple must above 1.")
         else:
             level//=10
 
-            string=''
+            string=""
             string+=style[0]
             for i in range(level*multiple):
                 string+=style[1]
@@ -67,12 +67,12 @@ class utils():
 
 class emojis():
     
-    success='<a:success:1046376200685228082>'
-    errors='<a:errors:1047495355786338365>'
-    Lost='<:Lost:1008221589231386645>'
-    CPU='<:CPU:1008034878882852954>'
-    RAM='<:RAM:1008035593894236241>'
-    server='<:server:1008236554042490950>'
-    discord_api='<:discord_api:1013700080118804580>'
-    clock='<:clock_lost:1013705761064493096>'
-    loading='<a:loading:1001057291036020776>'
+    success="<a:success:1046376200685228082>"
+    errors="<a:errors:1047495355786338365>"
+    Lost="<:Lost:1008221589231386645>"
+    CPU="<:CPU:1008034878882852954>"
+    RAM="<:RAM:1008035593894236241>"
+    server="<:server:1008236554042490950>"
+    discord_api="<:discord_api:1013700080118804580>"
+    clock="<:clock_lost:1013705761064493096>"
+    loading="<a:loading:1001057291036020776>"

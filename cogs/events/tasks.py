@@ -10,7 +10,7 @@ class Tasks(commands.Cog):
     @tasks.loop(seconds=60)
     async def update_status(self):
        await self.bot.change_presence(
-        activity=discord.Activity(type=discord.ActivityType.streaming, name ='%shelp｜在 %s 個伺服器中'%(self.bot.command_prefix,str(len(self.bot.guilds))))
+        activity=discord.Activity(type=discord.ActivityType.streaming, name ="%shelp｜在 %s 個伺服器中"%(self.bot.command_prefix,str(len(self.bot.guilds))))
         )
          
     @update_status.before_loop
