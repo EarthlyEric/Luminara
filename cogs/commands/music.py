@@ -55,9 +55,9 @@ class Music(Cogs):
             embed.add_field(name="專輯", value=track.album.name)
 
         now_playing_embed = await player.home.send(embed=embed)
-        await now_playing_embed.delete(delay=10)
+        await now_playing_embed.delete(delay=60)
 
-        musciController=MusicController()
+        musciController=MusicController(timestamp=datetime.now(timezone.utc),track=track)
         
     """
         Wait to build the music controller embed class.
@@ -93,7 +93,7 @@ class Music(Cogs):
             embed.title="%s | 無法在私人訊息中使用此命令 !" % (emojis.errors)
             return await ctx.send(embed=embed)
         
-        loading = await ctx.send("%s | 正在處理您的請求，請稍後..." % (emojis.loading))
+        loading = await ctx.reply("%s | 正在處理您的請求，請稍後..." % (emojis.loading))
     
         player : wavelink.Player
         player = cast(wavelink.Player, ctx.voice_client)
@@ -136,7 +136,6 @@ class Music(Cogs):
         if isinstance(tracks, wavelink.Playlist):
             await loading.delete(delay=1.5)
 
-            # tracks is a playlist...
             added: int = await player.queue.put_wait(tracks)
             await ctx.send(f"已將播放清單 **`{tracks.name}`** (共{added} 首) 加入序列")
         else:
@@ -147,8 +146,13 @@ class Music(Cogs):
             await ctx.send(f"已將 **`{track}`** 加入序列")
 
         if not player.playing:
-            # Play now since we aren"t playing anything...
             await player.play(player.queue.get())
+
+        @commands.command(name="pasue",aliases=["stop"])
+        async def pasue(ctx: commands.Context):
+            player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
+            if not player:
+                return
             
 
 async def setup(bot):
