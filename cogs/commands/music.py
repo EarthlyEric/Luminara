@@ -22,7 +22,7 @@ class Music(Cogs):
         if not player:
             return
 
-        if len(player.channel.members) == 0 and player.connected:
+        if len(player.channel.members) == 1 and player.connected:
             await player.home.channel.send("沒有人在語音頻道中，將在 10 秒後自動離開 !")
             await asyncio.sleep(10)
             return await player.disconnect()
@@ -39,7 +39,7 @@ class Music(Cogs):
         track: wavelink.Playable = payload.track
 
         embed: discord.Embed = discord.Embed()
-        embed.title = "Now Playing"
+        embed.title = "%s | 現正放送 !" % (emojis.music)
         embed.color = discord.Color.purple()
         embed.timestamp=datetime.now(timezone.utc)
         embed.description = f"**{track.title}** by `{track.author}`"
@@ -54,7 +54,8 @@ class Music(Cogs):
         if track.album.name:
             embed.add_field(name="專輯", value=track.album.name)
 
-        await player.home.send(embed=embed)
+        now_playing_embed = await player.home.send(embed=embed)
+        await now_playing_embed.delete(delay=10)
 
         musciController=MusicController()
         
@@ -78,10 +79,7 @@ class Music(Cogs):
             return
 
         if player.queue.is_empty:
-            pass
-        elif len(player.channel.members) == 0:
-            pass
-            #
+            return await player.play(player.auto_queue.get())
         else:
             return await player.play(player.queue.get())
     
@@ -101,7 +99,6 @@ class Music(Cogs):
         player = cast(wavelink.Player, ctx.voice_client)
         
         if not player:
-            await loading.delete(delay=1.5)
             try:
                 embed.color=colors.green
                 embed.title="%s | 成功加入您所處的語音頻道 %s !" % (emojis.success,ctx.author.voice.channel.mention)
@@ -129,19 +126,25 @@ class Music(Cogs):
         tracks: wavelink.Search = await wavelink.Playable.search(query)
 
         if not tracks:
+            await loading.delete(delay=1.5)
+
             embed.color=discord.Color.red()
             embed.title="%s | 找不到任何與您的查詢相符的結果 !" % (emojis.errors)
             await ctx.send(ctx.author.mention)
             return await ctx.send(embed=embed)
 
         if isinstance(tracks, wavelink.Playlist):
+            await loading.delete(delay=1.5)
+
             # tracks is a playlist...
             added: int = await player.queue.put_wait(tracks)
-            await ctx.send(f"Added the playlist **`{tracks.name}`** ({added} songs) to the queue.")
+            await ctx.send(f"已將播放清單 **`{tracks.name}`** (共{added} 首) 加入序列")
         else:
+            await loading.delete(delay=1.5)
+
             track: wavelink.Playable = tracks[0]
             await player.queue.put_wait(track)
-            await ctx.send(f"已將 **`{track}`** 加入播放清單")
+            await ctx.send(f"已將 **`{track}`** 加入序列")
 
         if not player.playing:
             # Play now since we aren"t playing anything...
