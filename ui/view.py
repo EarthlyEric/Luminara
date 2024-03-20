@@ -29,6 +29,7 @@ class HelpView(discord.ui.View):
 class PlayButton(discord.ui.Button):
     def __init__(self):
         super().__init__(label="播放",style=discord.ButtonStyle.green)
+        
     async def callback(self,interaction:discord.Interaction):
         await interaction.response.send_message("尚未完成")
 
