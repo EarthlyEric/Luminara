@@ -76,3 +76,4 @@ class emojis():
     discord_api="<:discord_api:1013700080118804580>"
     clock="<:clock_lost:1013705761064493096>"
     loading="<a:loading:1001057291036020776>"
+    music="<:music:1002824345095241878>"
