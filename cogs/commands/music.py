@@ -55,13 +55,10 @@ class Music(Cogs):
             embed.add_field(name="專輯", value=track.album.name)
 
         now_playing_embed = await player.home.send(embed=embed)
-        await now_playing_embed.delete(delay=60)
+        
 
         musciController=MusicController(timestamp=datetime.now(timezone.utc),track=track)
-        
-    """
-        Wait to build the music controller embed class.
-    
+
         if not hasattr(player, "musicController_id"):
             musciController_id = await player.home.send(embed=musciController)
             player.musicController_id = musciController_id.id
@@ -69,7 +66,9 @@ class Music(Cogs):
             message = await player.channel.fetch_message(player.musicController_id)
             musciController_id = await message.edit(embed=musciController)
             player.musicController_id = musciController_id.id
-    """
+        
+        await now_playing_embed.delete(delay=10)
+
 
     @commands.Cog.listener()
     async def on_wavelink_track_end(self, payload: wavelink.TrackEndEventPayload) -> None:
@@ -77,7 +76,7 @@ class Music(Cogs):
         if not player:
             # Handle edge cases...
             return
-
+            
         if player.queue.is_empty:
             return await player.play(player.auto_queue.get())
         else:
@@ -134,16 +133,16 @@ class Music(Cogs):
             return await ctx.send(embed=embed)
 
         if isinstance(tracks, wavelink.Playlist):
-            await loading.delete(delay=1.5)
+            await loading.delete()
 
             added: int = await player.queue.put_wait(tracks)
-            await ctx.send(f"已將播放清單 **`{tracks.name}`** (共{added} 首) 加入序列")
+            await ctx.send(f":heavy_plus_sign: | 已將播放清單 **`{tracks.name}`** (共{added} 首) 加入序列")
         else:
-            await loading.delete(delay=1.5)
+            await loading.delete()
 
             track: wavelink.Playable = tracks[0]
             await player.queue.put_wait(track)
-            await ctx.send(f"已將 **`{track}`** 加入序列")
+            await ctx.send(f":heavy_plus_sign: | 已將 **`{track}`** 加入序列")
 
         if not player.playing:
             await player.play(player.queue.get())
