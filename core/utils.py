@@ -64,6 +64,13 @@ class utils():
     @classmethod
     def showinfo(self,tip, info):
         print("{}:{}".format(tip,info))
+    
+    @classmethod
+    def convertMiliseconds(self,miliseconds:int):
+        seconds, miliseconds = divmod(miliseconds, 1000)
+        minutes, seconds = divmod(seconds, 60)
+        hours, minutes = divmod(minutes, 60)
+        return f"{hours}:{minutes}:{seconds}"
 
 class emojis():
     
@@ -76,4 +83,6 @@ class emojis():
     discord_api="<:discord_api:1013700080118804580>"
     clock="<:clock_lost:1013705761064493096>"
     loading="<a:loading:1001057291036020776>"
-    music="<:music:1002824345095241878>"
+    music="<a:music:1002824345095241878>"
+
+ 
