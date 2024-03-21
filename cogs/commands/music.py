@@ -54,22 +54,19 @@ class Music(Cogs):
         if track.album.name:
             embed.add_field(name="專輯", value=track.album.name)
 
-        now_playing_embed = await player.home.send(embed=embed)
-        
-
+       
         musciController=MusicController(timestamp=datetime.now(timezone.utc),track=track)
 
         if not hasattr(player, "musicController_id"):
             musciController_id = await player.home.send(embed=musciController)
             player.musicController_id = musciController_id.id
         else:
-            message = await player.channel.fetch_message(player.musicController_id)
+            message = await player.home.fetch_message(player.musicController_id)
             musciController_id = await message.edit(embed=musciController)
             player.musicController_id = musciController_id.id
         
-        await now_playing_embed.delete(delay=10)
-
-
+        await player.home.send(embed=embed,delete_after=10)
+        
     @commands.Cog.listener()
     async def on_wavelink_track_end(self, payload: wavelink.TrackEndEventPayload) -> None:
         player: wavelink.Player | None = payload.player
@@ -147,11 +144,16 @@ class Music(Cogs):
         if not player.playing:
             await player.play(player.queue.get())
 
-        @commands.command(name="pasue",aliases=["stop"])
-        async def pasue(ctx: commands.Context):
+        @commands.command(name="toggle_pasue_resume",aliases=["pause","stop","resume"])
+        async def pasue_resume(ctx: commands.Context):
             player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
             if not player:
                 return
+            
+            if player.paused:
+                pass
+            else:
+                pass
             
 
 async def setup(bot):
