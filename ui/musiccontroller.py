@@ -1,7 +1,8 @@
 import discord
 import datetime
-
 import wavelink
+
+from core.utils import utils
 
 class MusicController(discord.Embed):
     def __init__(
@@ -10,9 +11,10 @@ class MusicController(discord.Embed):
             track: wavelink.Playable
             ):
         super().__init__()
-        self.title=f" **{track.title}**"
+        self.title=f" **{track.title}** - `{track.author}`"
+        self.description=f"```[{utils.convertMiliseconds(track.length)}]```"
+        self.url=track.uri
         self.timestamp=timestamp
         self.color=discord.Color.blurple()
-        self.set_author(name="音樂播放控制器",icon_url="https://cdn.discordapp.com/emojis/1002824345095241878.png")
         self.set_footer(text="Luminara")
         
