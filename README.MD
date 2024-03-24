@@ -4,7 +4,7 @@
     <img src="/res/logo/Luminara_Banner_Github.png" alt="Logo" width="680">
   </a>
 
-  <h3 align="center">Luminara</h3>
+  <h2 align="center">Luminara</h2>
 
   <p align="center">
     A Powerful Discord Bot，Based on Discord.py and wavelink.
