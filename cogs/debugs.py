@@ -26,7 +26,7 @@ class Debugs(Cogs):
             embed.set_footer(text="Luminara • Debug System")
             return await ctx.send(embed=embed)
         except Exception as e:
-            print("[Debug][ERROR] %s")%(e)
+            print("[Debug][ERROR] %s ")%(str(e))
 
             embed = discord.Embed(title="%s | 重新載入中..."%(emojis.errors), description="載入失敗", color=colors.red,timestamp=datetime.now())
             embed.add_field(name="原因",value="`%s`"%(e))
