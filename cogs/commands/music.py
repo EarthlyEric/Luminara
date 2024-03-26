@@ -22,9 +22,8 @@ class Music(Cogs):
         if not player:
             return
 
-        if len(player.channel.members) == 1 and player.connected:
-            await player.home.channel.send("沒有人在語音頻道中，將在 10 秒後自動離開 !")
-            await asyncio.sleep(10)
+        if len(player.channel.members) == 0 and player.connected:
+            await player.homel.send("沒有人在語音頻道中，將在 10 秒後自動離開 !")
             return await player.disconnect()
 
     
@@ -32,8 +31,8 @@ class Music(Cogs):
     async def on_wavelink_track_start(self, payload: wavelink.TrackStartEventPayload) -> None:
         player: wavelink.Player | None = payload.player
         if not player:
-            # Handle edge cases...
-            return
+            
+            return print("Player not found...")
 
         original: wavelink.Playable | None = payload.original
         track: wavelink.Playable = payload.track
@@ -54,18 +53,26 @@ class Music(Cogs):
         if track.album.name:
             embed.add_field(name="專輯", value=track.album.name)
 
-       
+        
+
+        await player.home.send(embed=embed,delete_after=10)
+
         musciController=MusicController(timestamp=datetime.now(timezone.utc),track=track)
 
         if not hasattr(player, "musicController_id"):
             musciController_id = await player.home.send(embed=musciController)
             player.musicController_id = musciController_id.id
+
+            return
         else:
             message = await player.home.fetch_message(player.musicController_id)
             musciController_id = await message.edit(embed=musciController)
             player.musicController_id = musciController_id.id
+
+            return
+
         
-        await player.home.send(embed=embed,delete_after=10)
+
         
     @commands.Cog.listener()
     async def on_wavelink_track_end(self, payload: wavelink.TrackEndEventPayload) -> None:
@@ -144,16 +151,22 @@ class Music(Cogs):
         if not player.playing:
             await player.play(player.queue.get())
 
-        @commands.command(name="toggle_pasue_resume",aliases=["pause","stop","resume"])
-        async def pasue_resume(ctx: commands.Context):
-            player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
-            if not player:
-                return
+    @commands.command(name="toggle_pasue_resume",aliases=["pause","resume"])
+    async def toggle_pasue_resume(self, ctx: commands.Context):
+        player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
+        if not player:
+            return
             
-            if player.paused:
-                pass
-            else:
-                pass
+        if player.paused:
+            await player.pause(False)
+
+            return await player.home.send("已恢復播放 !")
+        elif player.playing:
+            await player.pause(True)
+
+            return await player.home.send("已暫停播放 !")
+
+            
             
 
 async def setup(bot):
