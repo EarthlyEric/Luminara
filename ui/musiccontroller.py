@@ -12,11 +12,13 @@ class MusicController(discord.Embed):
             ):
         super().__init__()
         self.title=f"{emojis.notes} | **{track.title}** - `{track.author}`"
-        self.description=f"`[{utils.convertMiliseconds(track.length)}/]``"
+        self.description=f"`[{utils.convertMiliseconds(track.length)}/]`"
         self.url=track.uri
         if track.artwork:
-            self.thumbnail = track.artwork
+            self.set_thumbnail(url=track.artwork) 
         self.timestamp=timestamp
         self.color=discord.Color.blurple()
         self.set_footer(text="Luminara")
+
+        super.__init__(self)
         
