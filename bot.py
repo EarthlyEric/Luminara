@@ -15,6 +15,7 @@ bot=classes.theBot()
 bot.remove_command("help")
 bot.launch_time=datetime.now(timezone.utc)
 
+
 def start_up():
     print("____________________________________________________________________________________________________________")
     print(open("./res/logo/logo.txt", "r").read())
