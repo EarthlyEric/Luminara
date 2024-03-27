@@ -9,11 +9,11 @@ from core.utils import colors,icon,emojis
 
 class Management(Cogs):
     @commands.group(name="info")
-    async def info(self,ctx:commands.Context):
+    async def info(self,ctx: commands.Context):
         pass
 
     @info.command(name="guild")
-    async def guild(self,ctx:commands.Context):
+    async def guild(self,ctx: commands.Context):
         name=ctx.guild.name
         icon_url=ctx.guild.icon.url
         id=ctx.guild.id
@@ -57,7 +57,7 @@ class Management(Cogs):
         return await ctx.reply(embed=embed)
     
     @info.command(name="user")
-    async def user(self,ctx:commands.Context,user:discord.Member=None):
+    async def user(self,ctx: commands.Context,user:discord.Member=None):
         if user==None:
             name=ctx.author.name
             avatar_url=ctx.author.avatar.url

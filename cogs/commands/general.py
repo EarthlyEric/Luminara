@@ -11,8 +11,9 @@ from core.utils import colors,icon,utils,emojis
 
 class General(Cogs):
     @commands.command(name="help")
-    async def help(self, ctx:commands.Context):
+    async def help(self, ctx: commands.Context):
         view=HelpView()
+        
         embed=discord.Embed(color=colors.purple,timestamp=datetime.now())
         embed.set_author(name="Luminara使用指南",icon_url=icon.guide_icon_url,url="https://blog.earthlyeric6.ml/")
         embed.add_field(name="Hello，我是Luminara，很高興見到你!",value="你可以從下面選擇想看的指令使令用法類別。")
@@ -21,7 +22,7 @@ class General(Cogs):
         return await ctx.reply(embed=embed,view=view)
  
     @commands.command(name="ping")
-    async def ping(self, ctx:commands.Context):
+    async def ping(self, ctx: commands.Context):
         bot_uptime = datetime.now(timezone.utc) - self.bot.launch_time
         hours, remainder = divmod(int(bot_uptime.total_seconds()), 3600)
         minutes, seconds = divmod(remainder, 60)
