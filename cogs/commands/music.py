@@ -67,7 +67,7 @@ class Music(Cogs):
             musciController_id = await message.edit(embed=musciController)
             player.musicController_id = musciController_id.id
 
-        return await player.home.send(embed=embed,delete_after=30)
+        await player.home.send(embed=embed,delete_after=30)
     
     @commands.command(name="play")
     async def play(self,ctx: commands.Context, *, query: str):
@@ -140,7 +140,7 @@ class Music(Cogs):
         if not player:
             raise PlayerNotFounded
         
-        ctx.send(f"{emojis.success} | 已離開{player.channel.mention} !")
+        await ctx.send(f"{emojis.success} | 已離開{player.channel.mention} !")
         await player.disconnect()
     
     @commands.command(name="queue")
@@ -193,7 +193,42 @@ class Music(Cogs):
             await ctx.send(":track_next: | 已跳過當前曲目 !即將播放下一首曲目。")
             return await player.play(player.queue.get())
 
-        return 
+        return
+
+    @commands.group(name="effect") 
+    async def effect(self,ctx: commands.Context):
+        pass
+
+    @effect.command(name="clear")
+    async def clear(self,ctx: commands.Context):
+        player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
+        if not player:
+            raise PlayerNotFounded
+        
+        if player.paused:
+            await ctx.send(f"{emojis.errors} | 播放暫停中，無法進行操作!")
+            return
+        elif player.playing:
+            filters: wavelink.Filters = player.filters
+            filters.timescale.set(speed=1, pitch=1, rate=1)
+            await player.set_filters(filters)
+            return await ctx.send(":musical_note: | 已清除所有音樂效果 !")
+
+    @effect.command(name="nightcore")
+    async def nightcore(self,ctx: commands.Context):
+        player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
+
+        if not player:
+            raise PlayerNotFounded
+        
+        if player.paused:
+            await ctx.send(f"{emojis.errors} | 播放暫停中，無法進行操作!")
+            return
+        elif player.playing:
+            filters: wavelink.Filters = player.filters
+            filters.timescale.set(speed=1.25, pitch=1.2, rate=1)
+            await player.set_filters(filters)
+            return await ctx.send(":musical_note: | 已啟用 Nightcore 效果 !")
            
 async def setup(bot):
     await bot.add_cog(Music(bot))
