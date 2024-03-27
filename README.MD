@@ -7,10 +7,10 @@
   <h2 align="center">Luminara</h2>
 
   <p align="center">
-    A Powerful Discord Bot，Based on Discord.py and wavelink.
+    A Powerful Discord Bot，Based on Discord.py, Lavelink and MongoDB.
     <br/>
     <br/>
-    <a href="https://github.com/EarthlyEric/Luminara/issues">Report Bug</a>
+    <a href="https://github.com/EarthlyEric/Luminara/issues">Issue Bugs</a>
     
   </p>
 </p>
