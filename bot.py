@@ -19,16 +19,13 @@ bot.launch_time=datetime.now(timezone.utc)
 def start_up():
     print("____________________________________________________________________________________________________________")
     print(open("./res/logo/logo.txt", "r").read())
-    time.sleep(0.5)
+    time.sleep(0.3)
     print("____________________________________________________________________________________________________________")
     print()
-    utils.showinfo("作業系統",platform.platform())
-    utils.showinfo("系統版本",platform.version())
-    utils.showinfo("作業系統名稱", platform.system())
+    utils.showinfo("OS Platform",platform.platform())
     utils.showinfo("系統位數", platform.architecture()[0])
     utils.showinfo("CPU 架構", platform.machine())
-    utils.showinfo("系統名稱", platform.node())
-    utils.showinfo("處理器", platform.processor())
+    utils.showinfo("System Name", platform.node())
     print("Time:%s"%(datetime.now().strftime("%Y-%m-%d %I:%M:%S %p")))
     print("____________________________________________________________________________________________________________")
     print("                                                                                                            ")
@@ -49,7 +46,7 @@ async def main():
     async with bot:
         # Debug Commands
         await bot.load_extension("cogs.debugs")
-        #await bot.load_extension("cogs.slash_debugs")
+        await bot.load_extension("cogs.slash_debugs")
         # Events Cogs
         await bot.load_extension("cogs.events.events")
         await bot.load_extension("cogs.events.errors")
