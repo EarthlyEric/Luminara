@@ -140,13 +140,13 @@ class Music(Cogs):
             await loading.delete()
 
             added: int = await player.queue.put_wait(tracks)
-            await ctx.send(f":heavy_plus_sign: | 已將播放清單 **`{tracks.name}`** (共{added} 首) 加入序列")
+            await ctx.send(f":white_check_mark: | 已將播放清單 **`{tracks.name}`** (共{added} 首) 加入序列")
         else:
             await loading.delete()
 
             track: wavelink.Playable = tracks[0]
             await player.queue.put_wait(track)
-            await ctx.send(f":heavy_plus_sign: | 已將 **`{track}`** 加入序列")
+            await ctx.send(f":white_check_mark: | 已將 **`{track}`** 加入序列")
 
         if not player.playing:
             await player.play(player.queue.get())
