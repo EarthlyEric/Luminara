@@ -4,8 +4,6 @@ ENV deployToken default_value
 
 RUN apk update && \
     apk upgrade 
-RUN apk add openjdk13 
-RUN apk add gcc
 RUN apk add build-base linux-headers
 
 WORKDIR /app
