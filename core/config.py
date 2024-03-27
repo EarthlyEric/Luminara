@@ -14,7 +14,7 @@ class config():
         commandPrefix="b"+os.getenv("commandPrefix")
     else:
         token=os.getenv("deployToken")
-        commandPrefix=os.getenv("commandPrefix")
+        commandPrefix=config["commandPrefix"]
 
     MongoDBURI=os.getenv("MongoDBURI")
     
