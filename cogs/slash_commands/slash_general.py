@@ -9,8 +9,8 @@ from ui.view import *
 from core.utils import colors,icon,utils,emojis
 
 class slash_General(Slash_Cogs):
-    @commands.command(name="help")
-    async def help(self, ctx: commands.Context):
+    @discord.app_commands.command(name="help",description="查看Luminara使用指南")
+    async def help(self, interaction: discord.Interaction):
         view=HelpView()
         
         embed=discord.Embed(color=colors.purple,timestamp=datetime.now())
@@ -18,4 +18,4 @@ class slash_General(Slash_Cogs):
         embed.add_field(name="Hello，我是Luminara，很高興見到你!",value="你可以從下面選擇想看的指令使令用法類別。")
         embed.set_footer(text="Luminara")
 
-        return await ctx.reply(embed=embed,view=view)
+        return await interaction.response.send_message(embed=embed,view=view)
