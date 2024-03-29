@@ -1,5 +1,14 @@
 # -*- coding: UTF-8 -*-
 
+extension_path = {
+        "general": "commands",
+        "music": "commands",
+        "management": "commands",
+        "errors": "events",
+        "events": "events",
+        "tasks": "events"
+    }
+
 class colors():
 
     default=0
