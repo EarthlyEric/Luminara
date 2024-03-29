@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 import classes
 from core.config import *
 from core.utils import utils
+from ui.musiccontroller import MusicControllerView
 
 bot=classes.theBot()
 bot.remove_command("help")
@@ -38,9 +39,14 @@ def start_up():
 @bot.event
 async def on_ready():
     start_up()
+    slash = await bot.tree.sync()
     await bot.change_presence(
         activity=discord.Activity(type=discord.ActivityType.streaming, name="%shelp|在 %s 個伺服器中"%(bot.command_prefix,str(len(bot.guilds))))
         )
+
+@bot.command(name="test")
+async def test(ctx):
+    await ctx.send("",view=MusicControllerView(ctx=ctx,bot=bot))
 
 async def main():
     async with bot:
@@ -55,7 +61,7 @@ async def main():
         await bot.load_extension("cogs.commands.general")
         await bot.load_extension("cogs.commands.management")
         await bot.load_extension("cogs.commands.music")
-        
+                
         await bot.start(config.token)
 
 asyncio.run(main())
