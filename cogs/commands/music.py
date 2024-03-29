@@ -10,7 +10,7 @@ from typing import cast
 from classes import Cogs
 from core.config import config
 from ui.view import *
-from ui.musiccontroller import MusicController
+from ui.musiccontroller import MusicControllerView
 
 class PlayerNotFounded(commands.CommandError):
         pass
@@ -19,7 +19,6 @@ class Music(Cogs):
     def __init__(self, bot):
         super().__init__(bot)
       
-    
     @commands.Cog.listener()
     async def on_voice_state_update(self, member: discord.Member, before: discord.VoiceState, after: discord.VoiceState) -> None:
         player: wavelink.Player | None = await self.bot.get_player(member.guild)
@@ -55,20 +54,11 @@ class Music(Cogs):
         if track.album.name:
             embed.add_field(name="專輯", value=track.album.name)
 
-        musciController=MusicController(timestamp=datetime.now(timezone.utc),track=track)
+        try:
+            await player.home.send(embed=embed, view=MusicControllerView(player=player,bot=self.bot))
+        except Exception as e:
+            print(e)
 
-        if not hasattr(player, "musicController_id"):
-            print("debug")
-            musciController_id = await player.home.send(embed=musciController)
-            player.musicController_id = musciController_id.id  
-        else:
-            print("debsug")
-            message = await player.home.fetch_message(player.musicController_id)
-            musciController_id = await message.edit(embed=musciController)
-            player.musicController_id = musciController_id.id
-
-        await player.home.send(embed=embed,delete_after=30)
-    
     @commands.command(name="play")
     async def play(self,ctx: commands.Context, *, query: str):
         embed = discord.Embed()
@@ -140,7 +130,13 @@ class Music(Cogs):
         if not player:
             raise PlayerNotFounded
         
-        await ctx.send(f"{emojis.success} | 已離開{player.channel.mention} !")
+        embed=discord.Embed()
+        embed.color=colors.red
+        embed.timestamp=f"{emojis.success} | 已離開{player.channel.mention} !"
+        embed.set_footer(text="Luminara")
+        embed.timestamp=datetime.now(timezone.utc)
+        
+        await ctx.send(embed=embed)
         await player.disconnect()
     
     @commands.command(name="queue")
@@ -163,6 +159,7 @@ class Music(Cogs):
         embed.description += "```"
 
         return await ctx.send(embed=embed)
+    
     @commands.command(name="toggle_pasue_resume",aliases=["pause","resume"])
     async def toggle_pasue_resume(self, ctx: commands.Context):
         player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
@@ -184,13 +181,13 @@ class Music(Cogs):
             raise PlayerNotFounded
         
         if player.queue.is_empty:
-            await ctx.send(f"{emojis.errors} | 播放序列已經空了，無法進行操作!")
+            await ctx.reply(f"{emojis.errors} | 播放序列已經空了，無法進行操作!")
             return
         elif player.paused:
-            await ctx.send(f"{emojis.errors} | 播放暫停中，無法進行操作!")
+            await ctx.reply(f"{emojis.errors} | 播放暫停中，無法進行操作!")
             return      
         elif player.playing:
-            await ctx.send(":track_next: | 已跳過當前曲目 !即將播放下一首曲目。")
+            await ctx.reply(":track_next: | 已跳過當前曲目 !即將播放下一首曲目。")
             return await player.play(player.queue.get())
 
         return
