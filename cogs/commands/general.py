@@ -16,7 +16,7 @@ class General(Cogs):
         
         embed=discord.Embed(color=colors.purple,timestamp=datetime.now())
         embed.set_author(name="Luminara使用指南",icon_url=icon.guide_icon_url,url="https://blog.earthlyeric6.ml/")
-        embed.add_field(name="Hello，我是Luminara，很高興見到你!",value="你可以從下面選擇想看的指令使令用法類別。")
+        embed.add_field(name="Hello，我是Luminara，很高興見到你!",value="你可以從下面選擇想看的命令類別。")
         embed.set_footer(text="Luminara")
 
         return await ctx.reply(embed=embed,view=view)
@@ -37,7 +37,7 @@ class General(Cogs):
         # Embed Message
         embed=discord.Embed(color=colors.purple,timestamp=datetime.now())
         embed.insert_field_at
-        embed.set_author(name="Luminara狀態",icon_url=icon.icon_url,url="https://blog.earthlyeric6.ml/")
+        embed.timestamp="Luminara狀態"
         # CPU Usage
         embed.add_field(name="%s | CPU"%(emojis.CPU),value=f"`{cpu_usage}%{usage_bar}`",inline=True)
         # RAM Usage
