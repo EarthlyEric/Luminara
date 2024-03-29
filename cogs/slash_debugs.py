@@ -23,7 +23,7 @@ class Slash_Debugs(Slash_Cogs):
         extension = extensions.value.replace('"', '')
         extension_location = extension_path[f"{extension}"]
 
-        embed=discord.Embed( timestamp=datetime.now())
+        embed=discord.Embed(timestamp=datetime.now())
         
         embed.set_footer(text="Luminara • Debug System")
         try:
