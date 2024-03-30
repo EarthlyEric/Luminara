@@ -21,14 +21,13 @@ from core.utils import colors, icon, emojis
 class General(Cogs):
     @commands.hybrid_command(name="help", description="查看Luminara的使用指南", with_app_command=True)
     async def help(self, ctx: commands.Context):
-        view = HelpView()
         
         embed = discord.Embed(color=colors.purple, timestamp=datetime.now())
         embed.set_author(name="Luminara使用指南")
         embed.add_field(name="Hello，我是Luminara，很高興見到你!", value="你可以從下面選擇想看的命令類別。")
         embed.set_footer(text="Luminara")
 
-        return await ctx.reply(embed=embed, view=view)
+        return await ctx.reply(embed=embed)
  
     @commands.hybrid_command(name="ping", description="查看Luminara的狀態", with_app_command=True)
     async def ping(self, ctx: commands.Context):
