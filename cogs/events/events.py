@@ -1,13 +1,38 @@
 # -*- coding: UTF-8 -*-
-import nextcord
-from nextcord.ext import commands
+import discord
+from discord.ext import commands
+
 from core.config import *
-from core.classes import Cogs
+from classes import Cogs
 
 class Events(Cogs):
     @commands.Cog.listener()
-    async def on_guild_join(self, guild:nextcord.Guild):
-        await print('%s'%(guild.name))
+    async def on_guild_join(self, guild:discord.Guild):
+        """
+        db=pymongo.MongoClient(config.MongoDBURI)
+        db["LuminaraDB"]["guilds"].insert_one({
+            "id":guild.id,
+            "name":guild.name,
+            "language":"zh_TW",
+            "settings":{
+                "welcome":{
+                    "channel":None,
+                    "message":None,
+                    "embed":False
+                },
+                "leave":{
+                    "channel":None,
+                    "message":None,
+                    "embed":False
+                },
+                "log":{
+                    "channel":None,
+                    "embed":False
+                }
+            }
+        })
+        """
+        print("%s"%(guild.name))
 
-def setup(bot):
-    bot.add_cog(Events(bot))
+async def setup(bot):
+    await bot.add_cog(Events(bot))

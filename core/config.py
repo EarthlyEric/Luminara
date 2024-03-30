@@ -3,14 +3,18 @@ from configobj import ConfigObj
 import os
 
 class config():
-    config=ConfigObj('config.ini')
-    
-    # Version Infomation.
-    version=config['Info']['version']
-    # Import MongoDB connection config.
+    config=ConfigObj("config.ini")
+    version=config["version"]
 
-    deploy=config['Deploy']
-    if str(os.getenv('enable_beta', default=True))=='True':
-        token=str(deploy['beta_token'])
+    lavalinkHost = os.getenv("lavalinkHost")
+    lavalinkPasswd = os.getenv("lavalinkPasswd")
+
+    if str(os.getenv("betaMode", default=True))=="True":
+        token=os.getenv("betaToken")
+        commandPrefix="b"+os.getenv("commandPrefix")
     else:
-        token=str(deploy['deploy_token'])
+        token=os.getenv("deployToken")
+        commandPrefix=config["commandPrefix"]
+
+    MongoDBURI=os.getenv("MongoDBURI")
+    

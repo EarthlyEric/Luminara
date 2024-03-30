@@ -1,6 +1,10 @@
 # Luminara Version History
 ---
-## v.1.0.release
+## v.1.0.pre-release.1
+- [+] 新的機器人頭像
+- [+] 完成 Music 功能 Rebuild
+- [+] Muisc , General , Debugs 加入對斜線命令的支援
+- [+] 回應顯示優化
 
 ## v.0.9.9.9.beta
 - [-]暫時移除music功能 Rebuild
@@ -33,7 +37,7 @@
 - [+] 音樂功能基礎更新。
 ## v.0.9.9.4.beta
 - [+] 將機器人名稱從Elyse更改成Lost。
-- [+/-] 因為函式庫`discord.py => nextcord`更改，因此music功能只剩下基礎功能`$play`。
+- [+/-] 因為函式庫`nextcord.py => nextcord`更改，因此music功能只剩下基礎功能`$play`。
 ，後續將陸續更新。
 - [+] 更新`$help`的文字錯誤。
 - [+] 更改機器人命令前綴，`e! => $`。
