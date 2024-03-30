@@ -3,6 +3,8 @@
 ## v.1.0.pre-release.1
 - [+] 新的機器人頭像
 - [+] 完成 Music 功能 Rebuild
+- [+] Muisc , General , Debugs 加入對斜線命令的支援
+- [+] 回應顯示優化
 
 ## v.0.9.9.9.beta
 - [-]暫時移除music功能 Rebuild
