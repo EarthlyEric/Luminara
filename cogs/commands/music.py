@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 import asyncio
+import typing
 import discord
 import wavelink
 from datetime import datetime, timezone
@@ -55,11 +56,11 @@ class Music(Cogs):
             embed.add_field(name="專輯", value=track.album.name)
 
         try:
-            await player.home.send(embed=embed, view=MusicControllerView(player=player,bot=self.bot))
+            await player.home.send(embed=embed)
         except Exception as e:
             print(e)
 
-    @commands.hybrid_command(name="play",description="播放音樂",with_app_command=True)
+    @commands.hybrid_command(name="play", description="播放音樂", with_app_command=True)
     async def play(self,ctx: commands.Context, *, query: str):
         embed = discord.Embed()
         embed.set_footer(text="Luminara")
@@ -69,7 +70,7 @@ class Music(Cogs):
             embed.title="%s | 無法在私人訊息中使用此命令 !" % (emojis.errors)
             return await ctx.send(embed=embed)
         
-        loading = await ctx.reply("%s | 正在處理您的請求，請稍後..." % (emojis.loading))
+        loading = await ctx.send("%s | 正在處理您的請求，請稍後..." % (emojis.loading))
     
         player : wavelink.Player
         player = cast(wavelink.Player, ctx.voice_client)
@@ -167,17 +168,17 @@ class Music(Cogs):
         if not player:
             raise PlayerNotFounded
             
-        if player.paused:
+        if player.playing:
             await player.pause(True)
             return await ctx.send(":pause_button: | 已暫停播放 !")
         
-    @commands.command(name="resume", description="恢復播放", with_app_command=True )
+    @commands.command(name="resume", description="恢復播放", with_app_command=True)
     async def resume(self, ctx: commands.Context):
         player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
         if not player:
             raise PlayerNotFounded
 
-        if player.playing:
+        if player.paused:
             await player.pause(False)
             return await ctx.send(":play_pause: | 已恢復播放 !")
         
@@ -200,40 +201,31 @@ class Music(Cogs):
 
         return
 
-    @commands.hybrid_group(name="effect",with_app_command=True,description="音樂效果操作") 
-    async def effect(self,ctx: commands.Context):
-        pass
-
-    @effect.command(name="clear")
-    async def clear(self,ctx: commands.Context):
+    @commands.hybrid_command(name="effect",with_app_command=True,description="音樂效果操作") 
+    async def effect(self,ctx: commands.Context, type:str):
         player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
         if not player:
             raise PlayerNotFounded
         
         if player.paused:
-            await ctx.send(f"{emojis.errors} | 播放暫停中，無法進行操作!")
-            return
+            return await ctx.send(f"{emojis.errors} | 播放暫停中，無法進行操作!")
         elif player.playing:
-            filters: wavelink.Filters = player.filters
-            filters.timescale.set(speed=1, pitch=1, rate=1)
-            await player.set_filters(filters)
-            return await ctx.send(":musical_note: | 已清除所有音樂效果 !")
-
-    @effect.command(name="nightcore")
-    async def nightcore(self,ctx: commands.Context):
-        player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
-
-        if not player:
-            raise PlayerNotFounded
-        
-        if player.paused:
-            await ctx.send(f"{emojis.errors} | 播放暫停中，無法進行操作!")
-            return
-        elif player.playing:
-            filters: wavelink.Filters = player.filters
-            filters.timescale.set(speed=1.25, pitch=1.2, rate=1)
-            await player.set_filters(filters)
-            return await ctx.send(":musical_note: | 已啟用 Nightcore 效果 !")
+            if type == "clear":
+                filters: wavelink.Filters = player.filters
+                filters.timescale.set(speed=1, pitch=1, rate=1)
+                await player.set_filters(filters)
+                return await ctx.send(":musical_note: | 已清除所有音樂效果 !")
+            elif type == "nightcore":
+                filters: wavelink.Filters = player.filters
+                filters.timescale.set(speed=1.25, pitch=1.2, rate=1)
+                await player.set_filters(filters)
+                return await ctx.send(":musical_note: | 已啟用 Nightcore 效果 !")
+    
+    @effect.autocomplete("type")
+    async def effect_autocomplete(self, ctx:commands.Context, current:str) -> typing.List[discord.app_commands.Choice]:
+        return [discord.app_commands.Choice(name="Clear All", value="clear"),
+                discord.app_commands.Choice(name="Nightcore", value="nightcore")]
+    
            
 async def setup(bot):
     await bot.add_cog(Music(bot))
