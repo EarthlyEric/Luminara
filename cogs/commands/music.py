@@ -13,7 +13,7 @@ from ui.view import *
 from ui.musiccontroller import MusicControllerView
 
 class PlayerNotFounded(commands.CommandError):
-        pass
+    pass
 
 class Music(Cogs):
     def __init__(self, bot):
@@ -59,7 +59,7 @@ class Music(Cogs):
         except Exception as e:
             print(e)
 
-    @commands.command(name="play")
+    @commands.hybrid_command(name="play",description="播放音樂",with_app_command=True)
     async def play(self,ctx: commands.Context, *, query: str):
         embed = discord.Embed()
         embed.set_footer(text="Luminara")
@@ -124,7 +124,7 @@ class Music(Cogs):
         if not player.playing:
             await player.play(player.queue.get())
     
-    @commands.command(name="disconnect",aliases=["leave"])
+    @commands.hybrid_command(name="disconnect", description="離開語音頻道")
     async def disconnect(self, ctx: commands.Context):
         player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
         if not player:
@@ -139,7 +139,8 @@ class Music(Cogs):
         await ctx.send(embed=embed)
         await player.disconnect()
     
-    @commands.command(name="queue")
+
+    @commands.hybrid_command(name="queue", description="顯示播放序列", with_app_command=True)
     async def queue(self, ctx: commands.Context):
         player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
         if not player:
@@ -160,20 +161,27 @@ class Music(Cogs):
 
         return await ctx.send(embed=embed)
     
-    @commands.command(name="toggle_pasue_resume",aliases=["pause","resume"])
-    async def toggle_pasue_resume(self, ctx: commands.Context):
+    @commands.hybrid_command(name="pasue", description="暫停播放", with_app_command=True)
+    async def pasue(self, ctx: commands.Context):
         player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
         if not player:
             raise PlayerNotFounded
             
         if player.paused:
-            await player.pause(False)
-            return await player.home.send(":arrow_forward: | 已恢復播放 !")
-        elif player.playing:
             await player.pause(True)
-            return await player.home.send(":stop_button: | 已暫停播放 !")
-    
-    @commands.command(name="skip",aliases=["next"])
+            return await ctx.send(":pause_button: | 已暫停播放 !")
+        
+    @commands.command(name="resume", description="恢復播放", with_app_command=True )
+    async def resume(self, ctx: commands.Context):
+        player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
+        if not player:
+            raise PlayerNotFounded
+
+        if player.playing:
+            await player.pause(False)
+            return await ctx.send(":play_pause: | 已恢復播放 !")
+        
+    @commands.hybrid_command(name="skip", description="跳過當前曲目", with_app_command=True)
     async def skip(self, ctx: commands.Context):
         player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
 
@@ -192,7 +200,7 @@ class Music(Cogs):
 
         return
 
-    @commands.group(name="effect") 
+    @commands.hybrid_group(name="effect",with_app_command=True,description="音樂效果操作") 
     async def effect(self,ctx: commands.Context):
         pass
 
