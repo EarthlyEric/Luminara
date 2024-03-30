@@ -46,6 +46,7 @@ class Music(Cogs):
         embed.description = f"**{track.title}** by `{track.author}`"
         embed.set_footer(text="Luminara")
         
+        
         if track.artwork:
             embed.set_thumbnail(url=track.artwork)
 
@@ -54,6 +55,8 @@ class Music(Cogs):
 
         if track.album.name:
             embed.add_field(name="專輯", value=track.album.name)
+        
+        embed.add_field(name="FROM", value=f"[點擊這裡]({track.uri})")
 
         try:
             await player.home.send(embed=embed)
