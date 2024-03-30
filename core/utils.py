@@ -85,7 +85,7 @@ class emojis():
     
     success="<a:success:1046376200685228082>"
     errors="<a:errors:1047495355786338365>"
-    Lost="<:Lost:1008221589231386645>"
+    luminara="<:luminara:1223666700537303111>"
     CPU="<:CPU:1008034878882852954>"
     RAM="<:RAM:1008035593894236241>"
     server="<:server:1008236554042490950>"
@@ -95,5 +95,6 @@ class emojis():
     music="<a:music:1002824345095241878>"
     ok=":white_check_mark:"
     notes=":notes:"
+    beta="<:beta:1013696625031520276"
 
  
