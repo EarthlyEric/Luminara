@@ -1,5 +1,7 @@
 # Luminara Version History
 ---
+## v.1.0.pre-release.2
+
 ## v.1.0.pre-release.1
 - [+] 新的機器人頭像
 - [+] 完成 Music 功能 Rebuild
