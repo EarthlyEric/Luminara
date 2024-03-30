@@ -38,10 +38,10 @@ def start_up():
     
 @bot.event
 async def on_ready():
+    await bot.tree.sync()
     start_up()
-    slash = await bot.tree.sync()
     await bot.change_presence(
-        activity=discord.Activity(type=discord.ActivityType.streaming, name="%shelp|在 %s 個伺服器中"%(bot.command_prefix,str(len(bot.guilds))))
+        activity=discord.Activity(type=discord.ActivityType.streaming, name="%shelp | 在 %s 個伺服器中"%(bot.command_prefix,str(len(bot.guilds))))
         )
 
 @bot.command(name="test")
@@ -52,7 +52,6 @@ async def main():
     async with bot:
         # Debug Commands
         await bot.load_extension("cogs.debugs")
-        await bot.load_extension("cogs.slash_debugs")
         # Events Cogs
         await bot.load_extension("cogs.events.events")
         await bot.load_extension("cogs.events.errors")
