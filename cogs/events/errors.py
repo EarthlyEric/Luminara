@@ -6,7 +6,7 @@ from datetime import datetime
 import cogs.commands.music as music
 from core.config import *
 from classes import Cogs
-from core.utils import colors,icon,emojis
+from core.utils import colors, emojis
 
 class Errors(Cogs):
     @commands.Cog.listener()

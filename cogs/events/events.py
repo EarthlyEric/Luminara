@@ -1,10 +1,8 @@
 # -*- coding: UTF-8 -*-
 import discord
 from discord.ext import commands
-import pymongo
 
 from core.config import *
-from core.db import DBClient
 from classes import Cogs
 
 class Events(Cogs):
