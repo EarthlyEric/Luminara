@@ -1,22 +1,15 @@
 # -*- coding: UTF-8 -*-
 import discord
 import psutil
-import wavelink
 from datetime import datetime,timezone
 from discord.ext import commands
 
 from classes import Cogs
 from core.config import config
 from ui.view import *
-from core.utils import colors,icon,utils,emojis
+from core.utils import colors ,utils, emojis
 from classes import Cogs
-import discord
-import psutil
-import wavelink
-from datetime import datetime, timezone
-from discord.ext import commands
-from ui.view import HelpView
-from core.utils import colors, icon, emojis
+
 
 class General(Cogs):
     @commands.hybrid_command(name="help", description="查看Luminara的使用指南", with_app_command=True)
@@ -51,8 +44,8 @@ class General(Cogs):
         embed.add_field(name="%s Luminara上線時間(本次進程)" % (emojis.clock), value="`%s d, %s h, %s m, %s s`" % (days, hours, minutes, seconds), inline=False)
         embed.add_field(name="%s | Bot Version" % (emojis.luminara), value=" `%s`  %s" % (config.version,emojis.beta), inline=False)
         embed.set_footer(text="Luminara")
-        image=discord.File("./res/logo/Luminara_Banner_Github.png",filename="luminara_banner.png")
-        embed.set_image(url="attachment://luminara_banner.png")
+        image=discord.File("./res/logo/Luminara_Banner_resize.jpg",filename="luminara_banner.jpg")
+        embed.set_image(url="attachment://luminara_banner.jpg")
 
         return await ctx.reply(embed=embed,file=image)
 
