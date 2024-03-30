@@ -10,9 +10,12 @@ from core.utils import colors, emojis, icon, extension_path
 
 class Debugs(Cogs):
     
-    @commands.hybrid_command(name="reload",description="重新載入指定的Extension !",with_app_command=True)
+    @commands.hybrid_command(name="reload",description="重新載入指定的 Extension !",with_app_command=True)
     @commands.is_owner()
     async def reload(self, ctx:commands.Context, extension:str):
+        if not extension_path[f"{extension}"]:
+            return await ctx.send(f"Extension `{extension}` not found.")
+
         extension_location=extension_path[f"{extension}"]
 
         embed=discord.Embed(timestamp=datetime.now())
