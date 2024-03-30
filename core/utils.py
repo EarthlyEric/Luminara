@@ -95,6 +95,6 @@ class emojis():
     music="<a:music:1002824345095241878>"
     ok=":white_check_mark:"
     notes=":notes:"
-    beta="<:beta:1013696625031520276"
+    beta="<:beta:1013696625031520276>"
 
  
