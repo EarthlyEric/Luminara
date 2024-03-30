@@ -1,4 +1,6 @@
 # -*- coding: UTF-8 -*-
+from typing import Optional
+import typing
 import discord
 from discord.ext import commands
 from datetime import datetime
@@ -8,14 +10,15 @@ from core.utils import colors, emojis, icon, extension_path
 
 class Debugs(Cogs):
     
-    @commands.command(name="reload",description="重新載入指定的Extension")
+    @commands.hybrid_command(name="reload",description="重新載入指定的Extension !",with_app_command=True)
     @commands.is_owner()
-    async def reload(self,ctx,extension):
+    async def reload(self, ctx:commands.Context, extension:str):
         extension_location=extension_path[f"{extension}"]
 
         embed=discord.Embed(timestamp=datetime.now())
         embed.set_footer(text="Luminara • Debug System")
         try:
+            await self.bot.tree.sync()
             await self.bot.reload_extension("cogs.%s.%s"%(extension_location,extension))
             print(f"[Debug][INFO] Reloaded {extension_location}.{extension}")
 
@@ -33,5 +36,16 @@ class Debugs(Cogs):
             embed.add_field(name="原因", value=f"`{e}`")
             
             return await ctx.send(embed=embed)
+    
+    @reload.autocomplete("extension")
+    async def reload_autocomplete(self, ctx:commands.Context, current:str) -> typing.List[discord.app_commands.Choice]:
+        return [discord.app_commands.Choice(name="general", value="general"),
+                discord.app_commands.Choice(name="management", value="management"),
+                discord.app_commands.Choice(name="music", value="music"),
+                discord.app_commands.Choice(name="errors", value="errors"),
+                discord.app_commands.Choice(name="events", value="events"),
+                discord.app_commands.Choice(name="tasks", value="tasks")]
+        
+
 async def setup(bot):
     await bot.add_cog(Debugs(bot))
