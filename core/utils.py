@@ -96,5 +96,6 @@ class emojis():
     ok=":white_check_mark:"
     notes=":notes:"
     beta="<:beta:1013696625031520276>"
+    user=":bust_in_silhouette:"
 
  
