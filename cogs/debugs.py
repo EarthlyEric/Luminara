@@ -46,7 +46,8 @@ class Debugs(Cogs):
                 discord.app_commands.Choice(name="music", value="music"),
                 discord.app_commands.Choice(name="errors", value="errors"),
                 discord.app_commands.Choice(name="events", value="events"),
-                discord.app_commands.Choice(name="tasks", value="tasks")]
+                discord.app_commands.Choice(name="tasks", value="tasks"),
+                discord.app_commands.Choice(name="imagegen", value="imagegen"),]
     
     @commands.hybrid_command(name="sync",description="同步所有的Slash Commands",with_app_command=True)
     @commands.is_owner()
@@ -83,6 +84,5 @@ class Debugs(Cogs):
         return [discord.app_commands.Choice(name="guild", value="guild"),
                 discord.app_commands.Choice(name="global", value="global")]
         
-
 async def setup(bot):
     await bot.add_cog(Debugs(bot))

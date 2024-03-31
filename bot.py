@@ -50,16 +50,17 @@ async def test(ctx):
 
 async def main():
     async with bot:
-        # Debug Commands
+
         await bot.load_extension("cogs.debugs")
-        # Events Cogs
+
         await bot.load_extension("cogs.events.events")
         await bot.load_extension("cogs.events.errors")
         await bot.load_extension("cogs.events.tasks")
-        # Traditional Commands
+
         await bot.load_extension("cogs.commands.general")
         await bot.load_extension("cogs.commands.management")
         await bot.load_extension("cogs.commands.music")
+        await bot.load_extension("cogs.commands.imagegen")
                 
         await bot.start(config.token)
 
