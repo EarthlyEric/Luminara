@@ -128,7 +128,7 @@ class Music(Cogs):
         if not player.playing:
             await player.play(player.queue.get())
     
-    @commands.hybrid_command(name="disconnect", description="離開語音頻道")
+    @commands.hybrid_command(name="disconnect", description="離開語音頻道", with_app_command=True)
     async def disconnect(self, ctx: commands.Context):
         player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
         if not player:
@@ -141,7 +141,7 @@ class Music(Cogs):
         embed.timestamp=datetime.now(timezone.utc)
         
         await ctx.send(embed=embed)
-        await player.disconnect()
+        return await player.disconnect()
     
 
     @commands.hybrid_command(name="queue", description="顯示播放序列", with_app_command=True)
@@ -193,16 +193,12 @@ class Music(Cogs):
             raise PlayerNotFounded
         
         if player.queue.is_empty:
-            await ctx.reply(f"{emojis.errors} | 播放序列已經空了，無法進行操作!")
-            return
+            return await ctx.reply(f"{emojis.errors} | 播放序列已經空了，無法進行操作!")
         elif player.paused:
-            await ctx.reply(f"{emojis.errors} | 播放暫停中，無法進行操作!")
-            return      
+            return  await ctx.reply(f"{emojis.errors} | 播放暫停中，無法進行操作!")
         elif player.playing:
             await ctx.reply(":track_next: | 已跳過當前曲目 !即將播放下一首曲目。")
             return await player.play(player.queue.get())
-
-        return
 
     @commands.hybrid_command(name="effect",with_app_command=True,description="音樂效果操作") 
     async def effect(self,ctx: commands.Context, type:str):
