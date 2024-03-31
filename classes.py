@@ -5,6 +5,7 @@ import logging
 from discord import app_commands
 from discord.ext import commands 
 
+from core.api.api import boot
 from core.config import config
 
 class theBot(commands.Bot):
@@ -17,7 +18,7 @@ class theBot(commands.Bot):
     async def setup_hook(self) -> None:
         nodes = [wavelink.Node(identifier="Self-Hosted Node US 01",uri=config.lavalinkHost, password=config.lavalinkPasswd)]
         await wavelink.Pool.connect(nodes=nodes, client=self, cache_capacity=100)
-    
+
     async def on_wavelink_node_ready(self, payload: wavelink.NodeReadyEventPayload) -> None:
         print(f"Wavelink Node connected: {payload.node!r} | Resumed: {payload.resumed}")
 
