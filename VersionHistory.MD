@@ -2,6 +2,8 @@
 ---
 ## v.1.0.pre-release.2
 - [+] 圖片生成 `/image-gen`
+- [+]唬爛文生成 `/bullshit`
+[Based on Repo](github.com/telunyang/python_bullshit_generator)
 ## v.1.0.pre-release.1.hotfix.2
 - [+] 修復一些錯誤
 ## v.1.0.pre-release.1.hotfix.1
