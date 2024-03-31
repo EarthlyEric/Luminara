@@ -61,6 +61,7 @@ async def main():
         await bot.load_extension("cogs.commands.management")
         await bot.load_extension("cogs.commands.music")
         await bot.load_extension("cogs.commands.imagegen")
+        await bot.load_extension("cogs.commands.funs")
                 
         await bot.start(config.token)
 
