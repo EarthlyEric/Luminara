@@ -1,6 +1,7 @@
 # Luminara Version History
 ---
 ## v.1.0.pre-release.1.hotfix.1
+- [+]修復 /disconnect
 
 ## v.1.0.pre-release.1
 - [+] 新的機器人頭像
