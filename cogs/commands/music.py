@@ -136,7 +136,7 @@ class Music(Cogs):
         
         embed=discord.Embed()
         embed.color=colors.red
-        embed.timestamp=f"{emojis.success} | 已離開{player.channel.mention} !"
+        embed.title=f"{emojis.success} | 已離開{player.channel.mention} !"
         embed.set_footer(text="Luminara")
         embed.timestamp=datetime.now(timezone.utc)
         
