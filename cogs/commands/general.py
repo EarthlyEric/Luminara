@@ -46,7 +46,6 @@ class General(Cogs):
         embed.set_image(url="attachment://luminara_banner.jpg")
 
         return await ctx.reply(embed=embed,file=image)
-
-   
+      
 async def setup(bot):
     await bot.add_cog(General(bot))

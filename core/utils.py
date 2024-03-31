@@ -7,7 +7,8 @@ extension_path = {
         "errors": "events",
         "events": "events",
         "tasks": "events",
-        "imagegen": "commands"
+        "imagegen": "commands",
+        "funs": "commands"
     }
 
 class colors():
