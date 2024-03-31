@@ -1,5 +1,7 @@
 # Luminara Version History
 ---
+## v.1.0.pre-release.1.hotfix.2
+- [+] 修復一些錯誤
 ## v.1.0.pre-release.1.hotfix.1
 - [+] 修復 `/disconnect`
 - [+] 未知錯誤的詳細輸出
