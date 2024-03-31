@@ -4,12 +4,10 @@ import psutil
 from datetime import datetime,timezone
 from discord.ext import commands
 
-from classes import Cogs
+from core.libs.class_define import Cogs
 from core.config import config
 from ui.view import *
 from core.utils import colors ,utils, emojis
-from classes import Cogs
-
 
 class General(Cogs):
     @commands.hybrid_command(name="help", description="查看Luminara的使用指南", with_app_command=True)

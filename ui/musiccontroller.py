@@ -2,11 +2,11 @@
 import discord
 import wavelink
 
-import classes
+import core.libs.class_define as class_define
 from core.utils import emojis
 
 class MusicControllerView(discord.ui.View):
-    def __init__(self, player:wavelink.Player, bot: classes.theBot,timeout=180):
+    def __init__(self, player:wavelink.Player, bot: class_define.theBot,timeout=180):
         super().__init__(timeout=timeout)
         self.bot = bot
         self.player = player

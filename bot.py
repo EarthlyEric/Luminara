@@ -7,12 +7,12 @@ import asyncio
 from discord.ext import commands
 from datetime import datetime, timezone
 
-import classes
+import core.libs.class_define as class_define
 from core.config import *
 from core.utils import utils
 from ui.musiccontroller import MusicControllerView
 
-bot=classes.theBot()
+bot=class_define.theBot()
 bot.remove_command("help")
 bot.launch_time=datetime.now(timezone.utc)
 

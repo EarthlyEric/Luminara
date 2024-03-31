@@ -5,7 +5,6 @@ import logging
 from discord import app_commands
 from discord.ext import commands 
 
-from core.api.api import boot
 from core.config import config
 
 class theBot(commands.Bot):

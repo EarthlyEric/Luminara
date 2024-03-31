@@ -8,7 +8,7 @@ from core.utils import colors,icon,utils,emojis
 from discord.ext import commands
 from typing import cast
 
-from classes import Cogs
+from core.libs.class_define import Cogs
 from core.config import config
 from ui.view import *
 from ui.musiccontroller import MusicControllerView

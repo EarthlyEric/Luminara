@@ -5,7 +5,7 @@ import discord
 from discord.ext import commands
 from datetime import datetime
 
-from classes import Cogs
+from core.libs.class_define import Cogs
 from core.utils import colors, emojis, icon, extension_path
 
 class Debugs(Cogs):
