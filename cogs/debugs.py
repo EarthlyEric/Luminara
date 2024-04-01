@@ -49,7 +49,8 @@ class Debugs(Cogs):
                 discord.app_commands.Choice(name="tasks", value="tasks"),
                 discord.app_commands.Choice(name="imagegen", value="imagegen"),
                 discord.app_commands.Choice(name="funs", value="funs"),
-                discord.app_commands.Choice(name="copilot", value="copilot"),]
+                discord.app_commands.Choice(name="copilot", value="copilot"),
+                discord.app_commands.Choice(name="tools", value="tools")]
     
     @commands.hybrid_command(name="sync",description="同步所有的Slash Commands",with_app_command=True)
     @commands.is_owner()
