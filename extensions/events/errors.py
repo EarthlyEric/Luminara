@@ -19,7 +19,7 @@ class Errors(Cogs):
             embed.add_field(name="%s | 遺失必要參數"%(emojis.errors),value="%s"%(error))
         if isinstance(error,commands.CommandNotFound):
             embed.add_field(name=":question: 未知命令",value="%s"%(error))   
-        if isinstance(error,music.PlayerNotFounded):
+        if isinstance(error,PlayerNotFounded):
             embed.add_field(name="%s | 未找到播放器"%(emojis.errors),value="請確保執行本命令時，機器人有在語音頻道中。")
         else:
             embed.add_field(name="%s | Unknown"%(emojis.errors),value="未知錯誤，請聯絡機器人開發者。")
