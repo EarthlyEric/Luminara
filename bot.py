@@ -62,6 +62,7 @@ async def main():
         await bot.load_extension("cogs.commands.imagegen")
         await bot.load_extension("cogs.commands.funs")
         await bot.load_extension("cogs.commands.copilot")
+        await bot.load_extension("cogs.commands.tools")
                 
         await bot.start(config.token)
 
