@@ -10,7 +10,6 @@ from datetime import datetime, timezone
 import core.libs.class_define as class_define
 from core.config import *
 from core.utils import utils
-from ui.musiccontroller import MusicControllerView
 
 bot=class_define.theBot()
 bot.remove_command("help")
