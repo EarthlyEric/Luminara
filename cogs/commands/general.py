@@ -6,7 +6,6 @@ from discord.ext import commands
 
 from core.libs.class_define import Cogs
 from core.config import config
-from ui.view import *
 from core.utils import colors ,utils, emojis
 
 class General(Cogs):

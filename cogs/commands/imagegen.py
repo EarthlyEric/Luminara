@@ -24,9 +24,6 @@ class ImageGen(Cogs):
             embed.set_image(url="attachment://luminara-imagegen.jpg")
 
         return await ctx.send(embed=embed, file=image_file)
-            
-            
-    
 
 async def setup(bot):
     await bot.add_cog(ImageGen(bot))
