@@ -20,8 +20,8 @@ class ImageGen(Cogs):
 
         async with ctx.typing():
             image = await WizModel.generate_image(prompt, steps)
-            image_file = discord.File(image, filename="image.jpg")
-            embed.set_image(url="attachment://image.jpg")
+            image_file = discord.File(image, filename="luminara-imagegen.jpg")
+            embed.set_image(url="attachment://luminara-imagegen.jpg")
 
         return await ctx.send(embed=embed, file=image_file)
             
