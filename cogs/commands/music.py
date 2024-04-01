@@ -5,7 +5,8 @@ import discord
 import wavelink
 from datetime import datetime, timezone
 from discord.ext import commands
-from typing import cast
+from typing import Optional, cast
+from reactionmenu import ViewButton,ViewMenu
 
 from core.libs.class_define import Cogs
 from core.utils import colors,emojis
@@ -66,16 +67,14 @@ class Music(Cogs):
             embed.title="%s | 無法在私人訊息中使用此命令 !" % (emojis.errors)
             return await ctx.send(embed=embed)
         
-        async with ctx.typing():
-    
-            player : wavelink.Player
-            player = cast(wavelink.Player, ctx.voice_client)
-
+        player : wavelink.Player
+        player = cast(wavelink.Player, ctx.voice_client)
+        
+        async with ctx.typing():  
             if not player:
                 try:
                     embed.color=colors.green
                     embed.title="%s | 成功加入您所處的語音頻道 %s !" % (emojis.success,ctx.author.voice.channel.mention)
-                
                     player = await ctx.author.voice.channel.connect(cls=wavelink.Player)
                     await ctx.send(embed=embed)
                 except AttributeError:
@@ -86,9 +85,9 @@ class Music(Cogs):
                     embed.color=discord.Color.red()
                     embed.title="%s | 未知原因，無法加入您所處的語音頻道 !" % (emojis.errors)
                     return await ctx.send(embed=embed)
+                
+            player.autoplay = wavelink.AutoPlayMode.partial
             
-            player.autoplay = wavelink.AutoPlayMode.disabled
-
             if not hasattr(player, "home"):
                 player.home = ctx.channel
             elif player.home != ctx.channel:
@@ -140,17 +139,34 @@ class Music(Cogs):
         if player.queue.is_empty:
             return await ctx.send(f"{emojis.errors} | 播放序列已經空了 !")
         
-        embed = discord.Embed()
-        embed.set_footer(text="Luminara")
-        embed.timestamp=datetime.now(timezone.utc)
-        embed.color=discord.Color.purple()
-        embed.title="%s | 播放序列" % (emojis.music)
-        embed.description="```ini\n"
-        for index, track in enumerate(player.queue, start=1):
-            embed.description += f"{index}. {track.title} by {track.author}\n"
-        embed.description += "```"
+        menu = ViewMenu(ctx, menu_type=ViewMenu.TypeEmbed)
 
-        return await ctx.send(embed=embed)
+        back_button = ViewButton(style=discord.ButtonStyle.primary, label=None, emoji=emojis.back, custom_id=ViewButton.ID_PREVIOUS_PAGE)
+        next_button = ViewButton(style=discord.ButtonStyle.primary, label=None, emoji=emojis.next, custom_id=ViewButton.ID_NEXT_PAGE)
+
+        menu.add_button(back_button)
+        menu.add_button(next_button)
+
+        for page in range(1,(player.queue.count//10)+2):
+            embed = discord.Embed()
+            embed.set_footer(text=f"共{player.queue.count}首 • Luminara")
+            embed.timestamp=datetime.now(timezone.utc)
+            embed.color=discord.Color.purple()
+            embed.title="%s | 播放序列" % (emojis.music)
+            
+            embed.description="```ini\n"
+            start_index =(page- 1) * 10
+            end_index = start_index + 10
+
+            for index, track in enumerate(player.queue[start_index:end_index], start=start_index+1):
+                embed.description += f"{index}. {track.title} by {track.author}\n"
+
+            embed.description += "```"
+
+            menu.add_page(embed)
+    
+        return await menu.start()
+        
     
     @commands.hybrid_command(name="pasue", description="暫停播放", with_app_command=True)
     async def pasue(self, ctx: commands.Context):
@@ -211,6 +227,7 @@ class Music(Cogs):
     async def effect_autocomplete(self, ctx:commands.Context, current:str) -> typing.List[discord.app_commands.Choice]:
         return [discord.app_commands.Choice(name="Clear All", value="clear"),
                 discord.app_commands.Choice(name="Nightcore", value="nightcore")]
+    
     
            
 async def setup(bot):
