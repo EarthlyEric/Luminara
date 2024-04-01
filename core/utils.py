@@ -1,4 +1,21 @@
 # -*- coding: UTF-8 -*-
+import ipaddress
+
+class IPChecker():
+    @classmethod
+    def is_ipv4(self,ip:str):
+        try:
+            ipaddress.IPv4Address(ip)
+            return True
+        except:
+            return 
+    @classmethod
+    def is_ipv6(self,ip:str):
+        try:
+            ipaddress.IPv6Address(ip)
+            return True
+        except:
+            return False
 
 extension_path = {
         "general": "commands",
@@ -10,6 +27,7 @@ extension_path = {
         "imagegen": "commands",
         "funs": "commands",
         "copilot": "commands",
+        "tools": "commands",
     }
 
 class colors():
