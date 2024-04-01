@@ -3,7 +3,7 @@ import discord
 from discord.ext import commands
 from datetime import datetime
 
-import cogs.commands.music as music
+from extensions.commands.music import PlayerNotFounded
 from core.config import *
 from core.libs.class_define import Cogs
 from core.utils import colors, emojis

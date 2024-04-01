@@ -17,6 +17,8 @@ bot.launch_time=datetime.now(timezone.utc)
 
 
 def start_up():
+    if platform.system() == "Windows": os.system("cls") 
+    else: os.system("clear")
     print("____________________________________________________________________________________________________________")
     print(open("./res/logo/logo.txt", "r").read())
     time.sleep(0.3)
@@ -52,7 +54,7 @@ async def main():
         await bot.load_extension("extensions.events.errors")
         await bot.load_extension("extensions.events.tasks")
 
-        await bot.load_extension("extensionscogs.commands.general")
+        await bot.load_extension("extensions.commands.general")
         await bot.load_extension("extensions.commands.management")
         await bot.load_extension("extensions.commands.music")
         await bot.load_extension("extensions.commands.imagegen")
