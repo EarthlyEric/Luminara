@@ -8,7 +8,8 @@ extension_path = {
         "events": "events",
         "tasks": "events",
         "imagegen": "commands",
-        "funs": "commands"
+        "funs": "commands",
+        "copilot": "commands",
     }
 
 class colors():
@@ -99,5 +100,6 @@ class emojis():
     notes=":notes:"
     beta="<:beta:1013696625031520276>"
     user=":bust_in_silhouette:"
+    sleep=":sleeping:"
 
  
