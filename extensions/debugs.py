@@ -21,7 +21,7 @@ class Debugs(Cogs):
         embed=discord.Embed(timestamp=datetime.now())
         embed.set_footer(text="Luminara • Debug System")
         try:
-            await self.bot.reload_extension("cogs.%s.%s"%(extension_location,extension))
+            await self.bot.reload_extension("extensions.%s.%s"%(extension_location,extension))
             print(f"[Debug][INFO] Reloaded {extension_location}.{extension}")
 
             embed.title=f"{emojis.success} | 重新載入中..."

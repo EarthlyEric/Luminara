@@ -43,26 +43,22 @@ async def on_ready():
         activity=discord.Activity(type=discord.ActivityType.streaming, name="%shelp | 在 %s 個伺服器中"%(bot.command_prefix,str(len(bot.guilds))))
         )
 
-@bot.command(name="test")
-async def test(ctx):
-    await ctx.send("",view=MusicControllerView(ctx=ctx,bot=bot))
-
 async def main():
     async with bot:
 
-        await bot.load_extension("cogs.debugs")
+        await bot.load_extension("extensions.debugs")
 
-        await bot.load_extension("cogs.events.events")
-        await bot.load_extension("cogs.events.errors")
-        await bot.load_extension("cogs.events.tasks")
+        await bot.load_extension("extensions.events.events")
+        await bot.load_extension("extensions.events.errors")
+        await bot.load_extension("extensions.events.tasks")
 
-        await bot.load_extension("cogs.commands.general")
-        await bot.load_extension("cogs.commands.management")
-        await bot.load_extension("cogs.commands.music")
-        await bot.load_extension("cogs.commands.imagegen")
-        await bot.load_extension("cogs.commands.funs")
-        await bot.load_extension("cogs.commands.copilot")
-        await bot.load_extension("cogs.commands.tools")
+        await bot.load_extension("extensionscogs.commands.general")
+        await bot.load_extension("extensions.commands.management")
+        await bot.load_extension("extensions.commands.music")
+        await bot.load_extension("extensions.commands.imagegen")
+        await bot.load_extension("extensions.commands.funs")
+        await bot.load_extension("extensions.commands.copilot")
+        await bot.load_extension("extensions.commands.tools")
                 
         await bot.start(config.token)
 
