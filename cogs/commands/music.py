@@ -4,14 +4,11 @@ import typing
 import discord
 import wavelink
 from datetime import datetime, timezone
-from core.utils import colors,icon,utils,emojis
 from discord.ext import commands
 from typing import cast
 
 from core.libs.class_define import Cogs
-from core.config import config
-from ui.view import *
-from ui.musiccontroller import MusicControllerView
+from core.utils import colors,emojis
 
 class PlayerNotFounded(commands.CommandError):
     pass
@@ -21,15 +18,10 @@ class Music(Cogs):
         super().__init__(bot)
       
     @commands.Cog.listener()
-    async def on_voice_state_update(self, member: discord.Member, before: discord.VoiceState, after: discord.VoiceState) -> None:
-        player: wavelink.Player | None = await self.bot.get_player(member.guild)
-        if not player:
-            return
-
-        if len(player.channel.members) == 0 and player.connected:
-            await player.homel.send("沒有人在語音頻道中，將在 10 秒後自動離開 !")
-            return await player.disconnect()
-
+    async def on_wavelink_inactive_player(self, player: wavelink.Player) -> None:
+        await player.home.send(f"{emojis.sleep} | 播放器已經閒置超過 {player.inactive_timeout} 秒，即將自動離開語音頻道 !")
+        await player.disconnect()
+        
     @commands.Cog.listener()
     async def on_wavelink_track_start(self, payload: wavelink.TrackStartEventPayload) -> None:
         player: wavelink.Player | None = payload.player
@@ -68,65 +60,60 @@ class Music(Cogs):
         embed = discord.Embed()
         embed.set_footer(text="Luminara")
         embed.timestamp=datetime.now(timezone.utc)
+
         if not ctx.guild:
             embed.color=discord.Color.red()
             embed.title="%s | 無法在私人訊息中使用此命令 !" % (emojis.errors)
             return await ctx.send(embed=embed)
         
-        loading = await ctx.send("%s | 正在處理您的請求，請稍後..." % (emojis.loading))
+        async with ctx.typing():
     
-        player : wavelink.Player
-        player = cast(wavelink.Player, ctx.voice_client)
-        
-        if not player:
-            try:
-                embed.color=colors.green
-                embed.title="%s | 成功加入您所處的語音頻道 %s !" % (emojis.success,ctx.author.voice.channel.mention)
+            player : wavelink.Player
+            player = cast(wavelink.Player, ctx.voice_client)
+
+            if not player:
+                try:
+                    embed.color=colors.green
+                    embed.title="%s | 成功加入您所處的語音頻道 %s !" % (emojis.success,ctx.author.voice.channel.mention)
                 
-                player = await ctx.author.voice.channel.connect(cls=wavelink.Player)
-                await ctx.send(embed=embed)
-            except AttributeError:
-                embed.color=discord.Color.red()
-                embed.title="%s | 請先加入任一語音頻道後，再執行本命令 !" % (emojis.errors)
-                return await ctx.send(embed=embed)   
-            except discord.ClientException:
-                embed.color=discord.Color.red()
-                embed.title="%s | 未知原因，無法加入您所處的語音頻道 !" % (emojis.errors)
-                return await ctx.send(embed=embed)
+                    player = await ctx.author.voice.channel.connect(cls=wavelink.Player)
+                    await ctx.send(embed=embed)
+                except AttributeError:
+                    embed.color=discord.Color.red()
+                    embed.title="%s | 請先加入任一語音頻道後，再執行本命令 !" % (emojis.errors)
+                    return await ctx.send(embed=embed)   
+                except discord.ClientException:
+                    embed.color=discord.Color.red()
+                    embed.title="%s | 未知原因，無法加入您所處的語音頻道 !" % (emojis.errors)
+                    return await ctx.send(embed=embed)
             
-        player.autoplay = wavelink.AutoPlayMode.enabled
+            player.autoplay = wavelink.AutoPlayMode.disabled
 
-        if not hasattr(player, "home"):
-            player.home = ctx.channel
-        elif player.home != ctx.channel:
-            embed.color=discord.Color.red()
-            embed.title="%s | 只能在 %s 執行本命令 !" % (emojis.errors,player.home.mention)
-            return await ctx.send(embed=embed)
+            if not hasattr(player, "home"):
+                player.home = ctx.channel
+            elif player.home != ctx.channel:
+                embed.color=discord.Color.red()
+                embed.title="%s | 只能在 %s 執行本命令 !" % (emojis.errors,player.home.mention)
+                return await ctx.send(embed=embed)
         
-        tracks: wavelink.Search = await wavelink.Playable.search(query)
+            tracks: wavelink.Search = await wavelink.Playable.search(query)
 
-        if not tracks:
-            await loading.delete(delay=1.5)
+            if not tracks:
+                embed.color=discord.Color.red()
+                embed.title=f"{emojis.errors} | 找不到任何與您的查詢相符的結果 !" 
+                await ctx.send(ctx.author.mention)
+                return await ctx.send(embed=embed)
 
-            embed.color=discord.Color.red()
-            embed.title=f"{emojis.errors} | 找不到任何與您的查詢相符的結果 !" 
-            await ctx.send(ctx.author.mention)
-            return await ctx.send(embed=embed)
+            if isinstance(tracks, wavelink.Playlist):
+                added: int = await player.queue.put_wait(tracks)
+                await ctx.send(f"{emojis.success} | 已將播放清單 **`{tracks.name}`** (共{added} 首) 加入序列")
+            else:
+                track: wavelink.Playable = tracks[0]
+                await player.queue.put_wait(track)
+                await ctx.send(f"{emojis.success} | 已將 **`{track}`** 加入序列")
 
-        if isinstance(tracks, wavelink.Playlist):
-            await loading.delete()
-
-            added: int = await player.queue.put_wait(tracks)
-            await ctx.send(f"{emojis.success} | 已將播放清單 **`{tracks.name}`** (共{added} 首) 加入序列")
-        else:
-            await loading.delete()
-
-            track: wavelink.Playable = tracks[0]
-            await player.queue.put_wait(track)
-            await ctx.send(f"{emojis.success} | 已將 **`{track}`** 加入序列")
-
-        if not player.playing:
-            await player.play(player.queue.get())
+            if not player.playing:
+                return await player.play(player.queue.get())
     
     @commands.hybrid_command(name="disconnect", description="離開語音頻道", with_app_command=True)
     async def disconnect(self, ctx: commands.Context):
