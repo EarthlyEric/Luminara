@@ -19,7 +19,7 @@ class ImageGen(Cogs):
         embed.timestamp=datetime.now(timezone.utc)
 
         async with ctx.typing():
-            image = await WizModel.generate_image(prompt, steps)
+            image = await WizModel.text2image(prompt, steps)
             image_file = discord.File(image, filename="luminara-imagegen.jpg")
             embed.set_image(url="attachment://luminara-imagegen.jpg")
 

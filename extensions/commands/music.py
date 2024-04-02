@@ -227,8 +227,6 @@ class Music(Cogs):
     async def effect_autocomplete(self, ctx:commands.Context, current:str) -> typing.List[discord.app_commands.Choice]:
         return [discord.app_commands.Choice(name="Clear All", value="clear"),
                 discord.app_commands.Choice(name="Nightcore", value="nightcore")]
-    
-    
-           
+                  
 async def setup(bot):
     await bot.add_cog(Music(bot))
