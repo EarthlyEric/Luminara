@@ -1,4 +1,7 @@
-# Luminara Version History
+# Luminara
+
+Changelogs by EarthlyEric6
+
 ---
 ## v.1.0.pre-release.2
 - [+] 圖片生成 `/image-gen`
