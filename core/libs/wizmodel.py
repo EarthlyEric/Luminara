@@ -17,7 +17,7 @@ class WizModel:
         }
 
     @classmethod
-    async def generate_image(cls, prompt: str, steps: Optional[int]) -> dict:
+    async def text2image(cls, prompt: str, steps: Optional[int]) -> dict:
         if steps is None:
             steps = 100
         payload = json.dumps({
