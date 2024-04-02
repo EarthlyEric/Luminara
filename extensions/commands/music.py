@@ -211,6 +211,7 @@ class Music(Cogs):
         
         if player.paused:
             return await ctx.send(f"{emojis.errors} | 播放暫停中，無法進行操作!")
+        
         elif player.playing:
             if type == "clear":
                 filters: wavelink.Filters = player.filters
@@ -227,6 +228,33 @@ class Music(Cogs):
     async def effect_autocomplete(self, ctx:commands.Context, current:str) -> typing.List[discord.app_commands.Choice]:
         return [discord.app_commands.Choice(name="Clear All", value="clear"),
                 discord.app_commands.Choice(name="Nightcore", value="nightcore")]
+
+    @commands.hybrid_command(name="volume", description="調整音量", with_app_command=True)
+    async def volume(self, ctx: commands.Context, volume: int):
+        player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
+        if not player:
+            raise PlayerNotFounded
+        
+        if player.paused:
+            return await ctx.send(f"{emojis.errors} | 播放暫停中，無法進行操作!")
+        
+        elif player.playing:
+            if volume > 100:
+                volume = 100
+            elif volume < 0:
+                volume = 0
+            await player.set_volume(volume)
+
+            return await ctx.send(f":loud_sound: | 已將音量調整至 {volume}% !")
+        
+    @volume.autocomplete("volume")
+    async def volume_autocomplete(self, ctx:commands.Context, current:str) -> typing.List[discord.app_commands.Choice]:
+        return [discord.app_commands.Choice(name="0%", value=0),
+                discord.app_commands.Choice(name="25%", value=25),
+                discord.app_commands.Choice(name="50%", value=50),
+                discord.app_commands.Choice(name="75%", value=75),
+                discord.app_commands.Choice(name="100%", value=100)]
+    
                   
 async def setup(bot):
     await bot.add_cog(Music(bot))

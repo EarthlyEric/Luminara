@@ -2,10 +2,12 @@
 ---
 ## v.1.0.pre-release.2
 - [+] 圖片生成 `/image-gen`
-- [+] 唬爛文生成 `/bullshit`
+- [+] 唬爛文生成 `/bullshit` [Based on Repo](github.com/telunyang/python_bullshit_generator)
 - [+] AI對話 `/ask`
 - [+/-] `Music`錯誤修復，界面優化
-[Based on Repo](github.com/telunyang/python_bullshit_generator)
+  - `/queue` 翻頁式播放列表顯示
+  - 新增音量調節`/volume`
+
 ## v.1.0.pre-release.1.hotfix.2
 - [+] 修復一些錯誤
 ## v.1.0.pre-release.1.hotfix.1
