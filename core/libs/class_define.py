@@ -7,7 +7,7 @@ from discord.ext import commands
 
 from core.config import config
 
-class theBot(commands.Bot):
+class Bot(commands.Bot):
     def __init__(self) -> None:
         intents: discord.Intents = discord.Intents.all()
         intents.message_content = True
@@ -27,12 +27,8 @@ class theBot(commands.Bot):
 
 class Cogs(commands.Cog):
     def __init__(self, bot):
-        self.bot:theBot=bot
+        self.bot:Bot=bot
 
-class Slash_Cogs(commands.Cog):
-    def __init__(self,bot):
-        self.bot=bot
-        self.count = 0
         
 
 
