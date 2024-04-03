@@ -1,12 +1,13 @@
 # -*- coding: UTF-8 -*-
 import discord
-from discord.ext import tasks,commands
-from core.libs.class_define import Cogs
+from discord.ext import tasks, commands
+from core.libs.class_define import Cogs,Bot
 
 class Tasks(Cogs):
-    def __init__(self):        
+    def __init__(self,bot:Bot):
         self.update_status.start()
-        super().__init__()
+        super().__init__(bot)
+            
 
     @tasks.loop(seconds=60)
     async def update_status(self):
