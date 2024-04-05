@@ -11,6 +11,11 @@ psutil = "==5.9.1"
 wavelink = "*"
 "discord.py" = {version = "*", extras = ["voice"]}
 pymongo = {version = "*", extras = ["srv"]}
+fastapi = "*"
+uvicorn = "*"
+requests = "*"
+sydney-py = "*"
+reactionmenu = "*"
 
 [dev-packages]
 

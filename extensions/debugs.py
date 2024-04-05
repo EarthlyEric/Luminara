@@ -5,7 +5,7 @@ import discord
 from discord.ext import commands
 from datetime import datetime
 
-from classes import Cogs
+from core.libs.class_define import Cogs
 from core.utils import colors, emojis, icon, extension_path
 
 class Debugs(Cogs):
@@ -21,7 +21,7 @@ class Debugs(Cogs):
         embed=discord.Embed(timestamp=datetime.now())
         embed.set_footer(text="Luminara • Debug System")
         try:
-            await self.bot.reload_extension("cogs.%s.%s"%(extension_location,extension))
+            await self.bot.reload_extension("extensions.%s.%s"%(extension_location,extension))
             print(f"[Debug][INFO] Reloaded {extension_location}.{extension}")
 
             embed.title=f"{emojis.success} | 重新載入中..."
@@ -46,7 +46,11 @@ class Debugs(Cogs):
                 discord.app_commands.Choice(name="music", value="music"),
                 discord.app_commands.Choice(name="errors", value="errors"),
                 discord.app_commands.Choice(name="events", value="events"),
-                discord.app_commands.Choice(name="tasks", value="tasks")]
+                discord.app_commands.Choice(name="tasks", value="tasks"),
+                discord.app_commands.Choice(name="imagegen", value="imagegen"),
+                discord.app_commands.Choice(name="funs", value="funs"),
+                discord.app_commands.Choice(name="copilot", value="copilot"),
+                discord.app_commands.Choice(name="tools", value="tools")]
     
     @commands.hybrid_command(name="sync",description="同步所有的Slash Commands",with_app_command=True)
     @commands.is_owner()
@@ -83,6 +87,5 @@ class Debugs(Cogs):
         return [discord.app_commands.Choice(name="guild", value="guild"),
                 discord.app_commands.Choice(name="global", value="global")]
         
-
 async def setup(bot):
     await bot.add_cog(Debugs(bot))

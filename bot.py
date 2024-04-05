@@ -7,17 +7,18 @@ import asyncio
 from discord.ext import commands
 from datetime import datetime, timezone
 
-import classes
+import core.libs.class_define as class_define
 from core.config import *
 from core.utils import utils
-from ui.musiccontroller import MusicControllerView
 
-bot=classes.theBot()
+bot=class_define.Bot()
 bot.remove_command("help")
 bot.launch_time=datetime.now(timezone.utc)
 
 
 def start_up():
+    if platform.system() == "Windows": os.system("cls") 
+    else: os.system("clear")
     print("____________________________________________________________________________________________________________")
     print(open("./res/logo/logo.txt", "r").read())
     time.sleep(0.3)
@@ -44,22 +45,22 @@ async def on_ready():
         activity=discord.Activity(type=discord.ActivityType.streaming, name="%shelp | 在 %s 個伺服器中"%(bot.command_prefix,str(len(bot.guilds))))
         )
 
-@bot.command(name="test")
-async def test(ctx):
-    await ctx.send("",view=MusicControllerView(ctx=ctx,bot=bot))
-
 async def main():
     async with bot:
-        # Debug Commands
-        await bot.load_extension("cogs.debugs")
-        # Events Cogs
-        await bot.load_extension("cogs.events.events")
-        await bot.load_extension("cogs.events.errors")
-        await bot.load_extension("cogs.events.tasks")
-        # Traditional Commands
-        await bot.load_extension("cogs.commands.general")
-        await bot.load_extension("cogs.commands.management")
-        await bot.load_extension("cogs.commands.music")
+
+        await bot.load_extension("extensions.debugs")
+
+        await bot.load_extension("extensions.events.events")
+        await bot.load_extension("extensions.events.errors")
+        await bot.load_extension("extensions.events.tasks")
+
+        await bot.load_extension("extensions.commands.general")
+        await bot.load_extension("extensions.commands.management")
+        await bot.load_extension("extensions.commands.music")
+        await bot.load_extension("extensions.commands.imagegen")
+        await bot.load_extension("extensions.commands.funs")
+        await bot.load_extension("extensions.commands.copilot")
+        await bot.load_extension("extensions.commands.tools")
                 
         await bot.start(config.token)
 

@@ -1,4 +1,21 @@
 # -*- coding: UTF-8 -*-
+import ipaddress
+
+class IPChecker():
+    @classmethod
+    def is_ipv4(self,ip:str):
+        try:
+            ipaddress.IPv4Address(ip)
+            return True
+        except:
+            return 
+    @classmethod
+    def is_ipv6(self,ip:str):
+        try:
+            ipaddress.IPv6Address(ip)
+            return True
+        except:
+            return False
 
 extension_path = {
         "general": "commands",
@@ -6,7 +23,11 @@ extension_path = {
         "management": "commands",
         "errors": "events",
         "events": "events",
-        "tasks": "events"
+        "tasks": "events",
+        "imagegen": "commands",
+        "funs": "commands",
+        "copilot": "commands",
+        "tools": "commands",
     }
 
 class colors():
@@ -97,5 +118,8 @@ class emojis():
     notes=":notes:"
     beta="<:beta:1013696625031520276>"
     user=":bust_in_silhouette:"
+    sleep=":sleeping:"
+    next="➡️"
+    back="⬅️"
 
  

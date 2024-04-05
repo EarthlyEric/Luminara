@@ -3,7 +3,7 @@ import discord
 from discord.ext import commands
 
 from core.config import *
-from classes import Cogs
+from core.libs.class_define import Cogs
 
 class Events(Cogs):
     @commands.Cog.listener()
