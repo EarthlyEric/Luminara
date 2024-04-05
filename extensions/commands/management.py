@@ -73,7 +73,7 @@ class Management(Cogs):
         embed.set_footer(text="Luminara")
 
         return await ctx.reply(embed=embed)
-    
+    """
     @commands.hybrid_command(name="ban", description="封鎖使用者", with_app_command=True)
     @commands.has_permissions(ban_members=True)
     async def ban(self,ctx: commands.Context,user:discord.User,reason:str):
@@ -85,6 +85,7 @@ class Management(Cogs):
     async def kick(self,ctx: commands.Context,user:discord.User,reason:str):
         await ctx.guild.kick(user,reason=reason)
         return await ctx.reply(f"已踢出{user.mention}，原因：{reason}")
+    """
 
 async def setup(bot):
     await bot.add_cog(Management(bot))
