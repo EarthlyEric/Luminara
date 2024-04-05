@@ -9,7 +9,7 @@ from core.utils import colors,icon,emojis
 
 class Management(Cogs):
 
-    @commands.hybrid_command(name="guild-info",description="顯示伺服器詳情",with_app_command=True)
+    @commands.hybrid_command(name="guild-info", description="顯示伺服器詳情", with_app_command=True)
     async def guild_info(self,ctx: commands.Context):
         name=ctx.guild.name
         icon_url=ctx.guild.icon.url
@@ -51,7 +51,7 @@ class Management(Cogs):
 
         return await ctx.reply(embed=embed)
     
-    @commands.hybrid_command(name="user-info",description="顯示使用者詳情",with_app_command=True)
+    @commands.hybrid_command(name="user-info", description="顯示使用者詳情", with_app_command=True)
     async def user_info(self,ctx: commands.Context,user:Optional[discord.User]):
         if not user:
             name=ctx.author.name
@@ -73,6 +73,18 @@ class Management(Cogs):
         embed.set_footer(text="Luminara")
 
         return await ctx.reply(embed=embed)
+    
+    @commands.hybrid_command(name="ban", description="封鎖使用者", with_app_command=True)
+    @commands.has_permissions(ban_members=True)
+    async def ban(self,ctx: commands.Context,user:discord.User,reason:str):
+        await ctx.guild.ban(user,reason=reason)
+        return await ctx.reply(f"已封鎖{user.mention}，原因：{reason}")
+    
+    @commands.hybrid_command(name="kick", description="踢出使用者", with_app_command=True)
+    @commands.has_permissions(kick_members=True)
+    async def kick(self,ctx: commands.Context,user:discord.User,reason:str):
+        await ctx.guild.kick(user,reason=reason)
+        return await ctx.reply(f"已踢出{user.mention}，原因：{reason}")
 
 async def setup(bot):
     await bot.add_cog(Management(bot))
