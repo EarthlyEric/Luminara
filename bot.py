@@ -11,7 +11,7 @@ import core.libs.class_define as class_define
 from core.config import *
 from core.utils import utils
 
-bot=class_define.theBot()
+bot=class_define.Bot()
 bot.remove_command("help")
 bot.launch_time=datetime.now(timezone.utc)
 
