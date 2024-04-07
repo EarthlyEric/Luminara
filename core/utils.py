@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 import ipaddress
 
-class IPChecker():
+class iptools():
     @classmethod
     def is_ipv4(self,ip:str):
         try:
