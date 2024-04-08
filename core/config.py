@@ -18,5 +18,6 @@ class config():
 
     MongoDBURI=os.getenv("MongoDBURI")
     
-    WIZMODEL_API_KEY = os.getenv("wizmodel_apikey")
+    WIZMODEL_APIKEY = os.getenv("wizmodel_apikey")
+    IPINFO_APIKEY= os.getenv("ipinfo_apikey")
     

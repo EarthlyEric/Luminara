@@ -1,22 +1,4 @@
 # -*- coding: UTF-8 -*-
-import ipaddress
-
-class iptools():
-    @classmethod
-    def is_ipv4(self,ip:str):
-        try:
-            ipaddress.IPv4Address(ip)
-            return True
-        except:
-            return 
-    @classmethod
-    def is_ipv6(self,ip:str):
-        try:
-            ipaddress.IPv6Address(ip)
-            return True
-        except:
-            return False
-
 extension_path = {
         "general": "commands",
         "music": "commands",
