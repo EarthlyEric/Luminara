@@ -16,9 +16,9 @@ uvicorn = "*"
 requests = "*"
 sydney-py = "*"
 reactionmenu = "*"
-dnspython = "*"
 pip = "*"
 mcstatus = "*"
+dnspython = "*"
 
 [dev-packages]
 
