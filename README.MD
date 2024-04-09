@@ -33,5 +33,8 @@
 ---
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
-WizModels,IPinfo.io
+
+![WizModels](https://www.wizmodel.com/assets/logo-black-a9d29746.svg)
+
+![IPinfo.io](https://website-cdn.ipinfo.io/_next/static/media/logo.a3c39026.svg)
 

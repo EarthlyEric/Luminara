@@ -42,6 +42,7 @@ class Tools(Cogs):
             embed.set_image(url="attachment://maps.jpg")
             
             return await ctx.send(embed=embed, file=image_file)
+        
               
 async def setup(bot):
     await bot.add_cog(Tools(bot))
