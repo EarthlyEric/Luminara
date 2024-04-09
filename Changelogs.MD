@@ -4,6 +4,7 @@ Changelogs by EarthlyEric6
 
 ---
 ## v.1.0.pre-release.3
+### 小型更新
 - [+] IP地址或網域 查詢 `/addres-lookup`
 ## v.1.0.pre-release.2.hotfix.1
 skip
