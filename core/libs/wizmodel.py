@@ -9,7 +9,7 @@ from core.config import config
 
 class WizModel:
     def __init__(self) -> None:
-        self.api_key = config.WIZMODEL_API_KEY
+        self.api_key = config.WIZMODEL_APIKEY
         self.url = "https://api.wizmodel.com/sdapi/v1/txt2img"
         self.header = {
             'Content-Type': 'application/json',

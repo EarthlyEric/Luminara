@@ -3,6 +3,12 @@
 Changelogs by EarthlyEric6
 
 ---
+## v.1.0.pre-release.3
+### 小型更新
+- [+] IP地址或網域 查詢 `/addres-lookup`
+- [+] LuminaraAPI 引入
+## v.1.0.pre-release.2.hotfix.1
+skip
 ## v.1.0.pre-release.2
 - [+] 圖片生成 `/image-gen`
 - [+] 唬爛文生成 `/bullshit` [Based on Repo](github.com/telunyang/python_bullshit_generator)

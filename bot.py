@@ -10,14 +10,16 @@ from datetime import datetime, timezone
 import core.libs.class_define as class_define
 from core.config import *
 from core.utils import utils
+from core.libs.luminara_api import LuminaraAPI
 
 bot=class_define.Bot()
 bot.remove_command("help")
 bot.launch_time=datetime.now(timezone.utc)
 
+async def start_up():
+    luminara_api_status = await LuminaraAPI.getStatus()
 
-def start_up():
-    if platform.system() == "Windows": os.system("cls") 
+    if platform.system() == "Windows": os.system("") 
     else: os.system("clear")
     print("____________________________________________________________________________________________________________")
     print(open("./res/logo/logo.txt", "r").read())
@@ -35,12 +37,13 @@ def start_up():
     print("Login as %s"%(bot.user))
     print("Luminara Version: %s"%(config.version))
     print("Discord API Version: %s"%(discord.__version__))
+    print("Luminara API Version: %s"%(luminara_api_status.version))
     print("____________________________________________________________________________________________________________")
     
 @bot.event
 async def on_ready():
     await bot.tree.sync()
-    start_up()
+    await start_up()
     await bot.change_presence(
         activity=discord.Activity(type=discord.ActivityType.streaming, name="%shelp | 在 %s 個伺服器中"%(bot.command_prefix,str(len(bot.guilds))))
         )

@@ -7,6 +7,7 @@ from discord.ext import commands
 from core.libs.class_define import Cogs
 from core.config import config
 from core.utils import colors ,utils, emojis
+from core.libs.luminara_api import LuminaraAPI
 
 class General(Cogs):
     @commands.hybrid_command(name="help", description="查看Luminara的使用指南", with_app_command=True)
@@ -31,6 +32,8 @@ class General(Cogs):
         ram = psutil.virtual_memory()
         ram_usage = ram.percent
         usage_bar = utils.processesBar(level=int(round(ram_usage, 0)))
+
+        luminara_api_status = await LuminaraAPI.getStatus()
         
         embed = discord.Embed(color=colors.purple, timestamp=datetime.now())
         embed.set_author(name="Luminara狀態")
@@ -40,6 +43,7 @@ class General(Cogs):
         embed.add_field(name="%s | Discord API狀態" % (emojis.discord_api), value="`%s ms`" % (str(round(self.bot.latency*1000))), inline=False)
         embed.add_field(name="%s Luminara上線時間(本次進程)" % (emojis.clock), value="`%s d, %s h, %s m, %s s`" % (days, hours, minutes, seconds), inline=False)
         embed.add_field(name="%s | Bot Version" % (emojis.luminara), value=" `%s`  %s" % (config.version,emojis.beta), inline=False)
+        embed.add_field(name="%s | Luminara API 版本" % (emojis.luminara), value="`%s`" % (luminara_api_status.version), inline=False)
         embed.set_footer(text="Luminara")
         image=discord.File("./res/logo/Luminara_Banner_resize.jpg",filename="luminara_banner.jpg")
         embed.set_image(url="attachment://luminara_banner.jpg")
