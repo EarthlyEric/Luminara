@@ -126,7 +126,7 @@ class Music(Cogs):
         embed.set_footer(text="Luminara")
         embed.timestamp=datetime.now(timezone.utc)
         
-        await ctx.send(embed=embed)
+        await ctx.reply(embed=embed)
         return await player.disconnect()
     
 
@@ -137,7 +137,7 @@ class Music(Cogs):
             raise PlayerNotFounded
 
         if player.queue.is_empty:
-            return await ctx.send(f"{emojis.errors} | 播放序列已經空了 !")
+            return await ctx.reply(f"{emojis.errors} | 播放序列已經空了 !")
         
         menu = ViewMenu(ctx, menu_type=ViewMenu.TypeEmbed)
 
@@ -176,9 +176,9 @@ class Music(Cogs):
             
         if player.playing:
             await player.pause(True)
-            return await ctx.send(":pause_button: | 已暫停播放 !")
+            return await ctx.reply(":pause_button: | 已暫停播放 !")
         
-    @commands.command(name="resume", description="恢復播放", with_app_command=True)
+    @commands.hybrid_command(name="resume", description="恢復播放", with_app_command=True)
     async def resume(self, ctx: commands.Context):
         player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
         if not player:
@@ -186,10 +186,10 @@ class Music(Cogs):
 
         if player.paused:
             await player.pause(False)
-            return await ctx.send(":play_pause: | 已恢復播放 !")
+            return await ctx.reply(":play_pause: | 已恢復播放 !")
         
     @commands.hybrid_command(name="skip", description="跳過當前曲目", with_app_command=True)
-    async def skip(self, ctx: commands.Context):
+    async def skip(self, ctx: commands.Context, index:Optional[int] = None):
         player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
 
         if not player:
@@ -198,31 +198,36 @@ class Music(Cogs):
         if player.queue.is_empty:
             return await ctx.reply(f"{emojis.errors} | 播放序列已經空了，無法進行操作!")
         elif player.paused:
-            return  await ctx.reply(f"{emojis.errors} | 播放暫停中，無法進行操作!")
+            return await ctx.reply(":pause_button: | 播放器已經暫停，無法進行操作 !")
         elif player.playing:
-            await ctx.reply(":track_next: | 已跳過當前曲目 !即將播放下一首曲目。")
-            return await player.play(player.queue.get())
+            if index==None:
+                return await player.play(player.queue.get())
+            elif index > player.queue.count:
+                return await ctx.reply(f"{emojis.errors} | 請輸入有效的曲目編號 !")
+            else:
+                track:wavelink.Playable = player.queue.get_at(index-1)
+
+                await player.play(track=track)
+                return await ctx.reply(f":track_next: | 已跳過當前曲目 !即將播放。`{track.title}`")
 
     @commands.hybrid_command(name="effect",with_app_command=True,description="音樂效果操作") 
     async def effect(self,ctx: commands.Context, type:str):
         player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
         if not player:
             raise PlayerNotFounded
-        
-        if player.paused:
-            return await ctx.send(f"{emojis.errors} | 播放暫停中，無法進行操作!")
-        
-        elif player.playing:
-            if type == "clear":
-                filters: wavelink.Filters = player.filters
-                filters.timescale.set(speed=1, pitch=1, rate=1)
-                await player.set_filters(filters)
-                return await ctx.send(":musical_note: | 已清除所有音樂效果 !")
-            elif type == "nightcore":
-                filters: wavelink.Filters = player.filters
-                filters.timescale.set(speed=1.25, pitch=1.2, rate=1)
-                await player.set_filters(filters)
-                return await ctx.send(":musical_note: | 已啟用 Nightcore 效果 !")
+
+        if type == "clear":
+            filters: wavelink.Filters = player.filters
+            filters.timescale.set(speed=1, pitch=1, rate=1)
+            await player.set_filters(filters)
+
+            return await ctx.send(":musical_note: | 已清除所有音樂效果 !")
+        elif type == "nightcore":
+            filters: wavelink.Filters = player.filters
+            filters.timescale.set(speed=1.25, pitch=1.2, rate=1)
+            await player.set_filters(filters)
+
+            return await ctx.reply(":musical_note: | 已啟用 Nightcore 效果 !")
     
     @effect.autocomplete("type")
     async def effect_autocomplete(self, ctx:commands.Context, current:str) -> typing.List[discord.app_commands.Choice]:
@@ -235,17 +240,14 @@ class Music(Cogs):
         if not player:
             raise PlayerNotFounded
         
-        if player.paused:
-            return await ctx.send(f"{emojis.errors} | 播放暫停中，無法進行操作!")
-        
-        elif player.playing:
-            if volume > 100:
+        if volume > 100:
                 volume = 100
-            elif volume < 0:
-                volume = 0
-            await player.set_volume(volume)
+        elif volume < 0:
+            volume = 0
 
-            return await ctx.send(f":loud_sound: | 已將音量調整至 {volume}% !")
+        await player.set_volume(volume)
+
+        return await ctx.reply(f":loud_sound: | 已將音量調整至 {volume}% !")
         
     @volume.autocomplete("volume")
     async def volume_autocomplete(self, ctx:commands.Context, current:str) -> typing.List[discord.app_commands.Choice]:
