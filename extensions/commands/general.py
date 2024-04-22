@@ -43,7 +43,7 @@ class General(Cogs):
         embed.add_field(name="%s | Discord API狀態" % (emojis.discord_api), value="`%s ms`" % (str(round(self.bot.latency*1000))), inline=False)
         embed.add_field(name="%s Luminara上線時間(本次進程)" % (emojis.clock), value="`%s d, %s h, %s m, %s s`" % (days, hours, minutes, seconds), inline=False)
         embed.add_field(name="%s | Bot Version" % (emojis.luminara), value=" `%s`  %s" % (config.version,emojis.beta), inline=False)
-        embed.add_field(name="%s | Luminara API 版本" % (emojis.luminara), value="`%s`" % (luminara_api_status.version), inline=False)
+        embed.add_field(name="%s | Luminara API 版本" % (emojis.luminara), value="`%s-%s`" % (luminara_api_status.version,luminara_api_status.buildid), inline=False)
         embed.set_footer(text="Luminara")
         image=discord.File("./res/logo/Luminara_Banner_resize.jpg",filename="luminara_banner.jpg")
         embed.set_image(url="attachment://luminara_banner.jpg")

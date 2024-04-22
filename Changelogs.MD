@@ -3,6 +3,16 @@
 Changelogs by EarthlyEric6
 
 ---
+## v.1.0.pre-release.3.2
+- [+/-] `/ping` 資訊 luminara api 顯示buildid
+- 
+## v.1.0.pre-release.3.1
+### 小型更新
+- [+/-] Music 細部系統更新
+  -[+/-] 暫停播放時，可以進行`/effect` `/skip`
+  -[+] 解決`/resume`未註冊到應用命令列表
+  -[+] `/skip`現在可以精準跳過到特定曲目(依據`/queue`上的曲目編號)
+  -[+] 
 ## v.1.0.pre-release.3
 ### 小型更新
 - [+] IP地址或網域 查詢 `/addres-lookup`

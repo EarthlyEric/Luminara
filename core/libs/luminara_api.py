@@ -12,6 +12,7 @@ class LuminaraAPI:
     class StatusDetails:
         def __init__(self, response) -> None:
             self.version = response["version"]
+            self.buildid = response["buildid"]
             
     @classmethod
     async def getStatus(cls):
@@ -29,3 +30,4 @@ class LuminaraAPI:
                 image_codes = await response.json()
                 image = io.BytesIO(base64.b64decode(image_codes["image"]))
                 return image
+    
