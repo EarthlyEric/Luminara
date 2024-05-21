@@ -11,7 +11,7 @@ from reactionmenu import ViewButton,ViewMenu
 from core.libs.class_define import Cogs
 from core.utils import colors,emojis
 
-class PlayerNotFounded(commands.CommandError):
+class PlayerNotFounded(Exception):
     pass
 
 class Music(Cogs):
@@ -256,6 +256,27 @@ class Music(Cogs):
                 discord.app_commands.Choice(name="50%", value=50),
                 discord.app_commands.Choice(name="75%", value=75),
                 discord.app_commands.Choice(name="100%", value=100)]
+    
+    @commands.hybrid_command(name="nowplaying", description="顯示當前播放曲目", with_app_command=True)
+    async def nowplaying(self, ctx: commands.Context):
+        player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
+        if not player:
+            raise PlayerNotFounded
+
+        if not player.playing:
+            return await ctx.reply(f"{emojis.errors} | 播放序列已經空了 !")
+        
+        track: wavelink.Playable = player.current
+        embed = discord.Embed()
+        embed.set_footer(text="Luminara")
+        embed.timestamp=datetime.now(timezone.utc)
+        embed.color=discord.Color.purple()
+        embed.title="%s | 現正播放" % (emojis.music)
+        embed.description=f"**{track.title}** by `{track.author}`"
+        embed.set_thumbnail(url=track.artwork)
+        embed.add_field(name="FROM", value=f"[點擊這裡]({track.uri})")
+
+        return await ctx.reply(embed=embed)
     
                   
 async def setup(bot):
