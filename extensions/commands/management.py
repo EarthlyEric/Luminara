@@ -4,7 +4,7 @@ import discord
 from datetime import datetime
 from discord.ext import commands
 
-from core.libs.class_define import Cogs
+from core.libs.bot import Cogs
 from core.utils import colors,icon,emojis
 
 class Management(Cogs):

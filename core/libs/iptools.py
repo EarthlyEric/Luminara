@@ -1,6 +1,4 @@
 # -*- coding: UTF-8 -*-
-import asyncio
-import platform
 from aiohttp import ClientSession
 
 from core.config import config

@@ -5,7 +5,7 @@ from datetime import datetime
 
 from extensions.commands.music import PlayerNotFounded
 from core.config import *
-from core.libs.class_define import Cogs
+from core.libs.bot import Cogs
 from core.utils import colors, emojis
 
 class Errors(Cogs):

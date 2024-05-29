@@ -4,7 +4,7 @@ from datetime import datetime
 from discord.ext import commands
 from dns.resolver import Resolver
 
-from core.libs.class_define import Cogs
+from core.libs.bot import Cogs
 from core.libs.iptools import iptools
 from core.libs.luminara_api import LuminaraAPI
 

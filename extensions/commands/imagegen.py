@@ -3,7 +3,7 @@ import discord
 from discord.ext import commands
 from typing import Optional
 
-from core.libs.class_define import Cogs
+from core.libs.bot import Cogs
 
 from core.libs.wizmodel import WizModel
 

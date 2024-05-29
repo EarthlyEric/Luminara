@@ -4,7 +4,7 @@ import psutil
 from datetime import datetime,timezone
 from discord.ext import commands
 
-from core.libs.class_define import Cogs
+from core.libs.bot import Cogs
 from core.config import config
 from core.utils import colors ,utils, emojis
 from core.libs.luminara_api import LuminaraAPI

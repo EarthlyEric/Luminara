@@ -8,7 +8,7 @@ from discord.ext import commands
 from typing import Optional, cast
 from reactionmenu import ViewButton,ViewMenu
 
-from core.libs.class_define import Cogs
+from core.libs.bot import Cogs
 from core.utils import colors,emojis
 
 class PlayerNotFounded(Exception):

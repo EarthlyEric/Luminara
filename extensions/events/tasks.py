@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 import discord
 from discord.ext import tasks, commands
-from core.libs.class_define import Cogs,Bot
+from core.libs.bot import Cogs,Bot
 
 class Tasks(Cogs):
     def __init__(self,bot:Bot):
